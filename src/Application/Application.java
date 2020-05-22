@@ -22,6 +22,7 @@ public class Application extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         //this is a test comment
+        // hello
     }    
     
     public static void main(String[] args) {
