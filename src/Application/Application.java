@@ -1,7 +1,9 @@
-package Drawings;
+package Application;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
+
+import Drawings.Character;
 
 public class Application extends JFrame {
     
