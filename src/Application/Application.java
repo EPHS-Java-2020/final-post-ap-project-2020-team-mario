@@ -20,11 +20,6 @@ public class Application extends JFrame {
         setTitle("Application");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-<<<<<<< HEAD
-=======
-        //this is a test comment
-        // hello
->>>>>>> 2b612e9ae9cc7a3390a273138d57ddbfe5b44c2f
     }    
     
     public static void main(String[] args) {
