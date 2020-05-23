@@ -11,10 +11,13 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class Person extends Sprite {
 
 	private int dx;
     private int dy;
+    private List<Bullet> bullets;
     private boolean gunRaised=false;
     private boolean isWalking=false;
     private final int PERIOD=99;
@@ -22,10 +25,12 @@ public class Person extends Sprite {
 
     public Person(int x, int y) {
         super(x, y);
+        bullets= new ArrayList<Bullet>();
     }
     
     public Person() {
         super(500, 500);
+        bullets= new ArrayList<Bullet>();
     }
 
     public void move() {
@@ -35,7 +40,9 @@ public class Person extends Sprite {
         
     }
     
-    
+    public List<Bullet> getBullets() {
+        return bullets;
+    }
     
 
   //modify the appearance
@@ -150,7 +157,9 @@ public class Person extends Sprite {
              
         }
        
-        
+        for (Bullet bullets : bullets) {
+            bullets.drawImage(g2d);
+        }
 
 	}
 	
@@ -160,7 +169,8 @@ public class Person extends Sprite {
         int key = e.getKeyCode();
         
         if (key == KeyEvent.VK_K) {
-            gunRaised=true;
+            fire();
+        	gunRaised=true;
 		} else {
 
 			gunRaised=false;
@@ -184,6 +194,9 @@ public class Person extends Sprite {
 		}
     }    
 	
+	public void fire() {
+        bullets.add(new Bullet(x+197, y-160)); //change to cooridnates x+197 & y-160
+    }
 
 
 
