@@ -4,6 +4,8 @@ package Application;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 
+import animations.Board;
+
 public class Application extends JFrame {
     
     public Application() {
