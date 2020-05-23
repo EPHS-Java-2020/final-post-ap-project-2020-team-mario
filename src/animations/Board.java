@@ -66,6 +66,25 @@ public class Board extends JPanel implements Runnable {
 		person.drawImage(g);
 	}
 	
+	
+	private void cycle() {
+		List<Bullet> bullets = person.getBullets();
+
+        for (int i = 0; i < bullets.size(); i++) {
+
+        	Bullet bullet = bullets.get(i);
+
+            if (bullet.isVisible()) {
+
+                bullet.move();
+            } else {
+
+                bullets.remove(i);
+            }
+            
+        }
+        person.move();
+	}
 
 	@Override
 	public void run() {
@@ -76,7 +95,7 @@ public class Board extends JPanel implements Runnable {
 
 		while (true) {
 
-			person.move();
+			cycle();
 			repaint();
 
 			timeDiff = System.currentTimeMillis() - beforeTime;
