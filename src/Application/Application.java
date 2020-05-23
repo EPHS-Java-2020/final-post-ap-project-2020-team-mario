@@ -1,8 +1,9 @@
 package Application;
 
-
 import java.awt.EventQueue;
 import javax.swing.JFrame;
+
+import Drawings.Character;
 
 public class Application extends JFrame {
     
@@ -13,13 +14,14 @@ public class Application extends JFrame {
 
     private void initUI() {
 
-        add(new Board());
+        add(new Character());
 
         setSize(500, 500);
 
         setTitle("Application");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        //this is a test comment
     }    
     
     public static void main(String[] args) {
@@ -29,8 +31,4 @@ public class Application extends JFrame {
             ex.setVisible(true);
         });
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> c6251c018e63311a079bb4339de1b9fa8320f7f9
