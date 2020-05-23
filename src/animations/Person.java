@@ -159,7 +159,7 @@ public class Person extends Sprite {
 
         int key = e.getKeyCode();
         
-        if (key == KeyEvent.VK_SPACE) {
+        if (key == KeyEvent.VK_K) {
             gunRaised=true;
 		} else {
 
