@@ -165,19 +165,19 @@ public class Person extends Sprite {
 
 			gunRaised=false;
 			isWalking=true;
-			if (key == KeyEvent.VK_LEFT) {
+			if (key == KeyEvent.VK_A) {
 				dx = -4;
 			}
 
-			if (key == KeyEvent.VK_RIGHT) {
+			if (key == KeyEvent.VK_D) {
 				dx = 4;
 			}
 
-			if (key == KeyEvent.VK_UP) {
+			if (key == KeyEvent.VK_W) {
 				dy = -2;
 			}
 
-			if (key == KeyEvent.VK_DOWN) {
+			if (key == KeyEvent.VK_S) {
 				dy = 2;
 			}
 			
@@ -193,19 +193,19 @@ public class Person extends Sprite {
         int key = e.getKeyCode();
         isWalking=false;
 
-        if (key == KeyEvent.VK_LEFT) {
+        if (key == KeyEvent.VK_A) {
             dx = 0;
         }
 
-        if (key == KeyEvent.VK_RIGHT) {
+        if (key == KeyEvent.VK_D) {
             dx = 0;
         }
 
-        if (key == KeyEvent.VK_UP) {
+        if (key == KeyEvent.VK_W) {
             dy = 0;
         }
 
-        if (key == KeyEvent.VK_DOWN) {
+        if (key == KeyEvent.VK_S) {
             dy = 0;
         }
     }
