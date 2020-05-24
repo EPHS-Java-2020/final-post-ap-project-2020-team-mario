@@ -12,16 +12,18 @@ public class Bullet extends Sprite {
 
     private final int BOARD_WIDTH = 1000;
     private final int BULLET_SPEED = 7;
+    private int length;
 
-    public Bullet(int x, int y) {
+    public Bullet(int x, int y, int charP) {
         super(x, y);
+        length = charP;
     }
 
-    public void move(int charP) {
+    public void move() {
         
         super.x += BULLET_SPEED;
         
-        if (super.x > charP + 700) {
+        if (super.x > length + 700) {
             visible = false;
         }
     }

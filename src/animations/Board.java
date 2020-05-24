@@ -71,6 +71,7 @@ public class Board extends JPanel implements Runnable {
 		Graphics2D g2d = (Graphics2D) g;
 		
 		g2d.drawImage(floor, 0, 600, this);
+		g2d.drawImage(floor, 700, 600, this);
 
 		drawCharacter(g);
 
@@ -91,7 +92,7 @@ public class Board extends JPanel implements Runnable {
 
             if (bullet.isVisible()) {
 
-                bullet.move(person.x);
+                bullet.move();
             } else {
 
                 bullets.remove(i);
