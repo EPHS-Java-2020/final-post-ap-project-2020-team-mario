@@ -17,6 +17,8 @@ public class Person extends Sprite {
 
 	private double dx;
     private double dy;
+    private int sX;
+    private int sY;
     private List<Bullet> bullets;
     private boolean gunRaised=false;
     private boolean isWalking=false;
@@ -25,11 +27,15 @@ public class Person extends Sprite {
 
     public Person(int x, int y) {
         super(x, y);
+        sX=x;
+        sY=y;
         bullets= new ArrayList<Bullet>();
     }
     
     public Person() {
         super(500, 500);
+        sX=500;
+        sY=500;
         bullets= new ArrayList<Bullet>();
     }
 
@@ -64,28 +70,28 @@ public class Person extends Sprite {
         height = (int) size.getHeight();
         super.setHeight(height);
         
-        Rectangle2D hair = new Rectangle2D.Double(super.x+7, super.y-225, 50, 10);
+        Rectangle2D hair = new Rectangle2D.Double(sX+7, super.y-225, 50, 10);
         g2d.setColor(new Color(87, 49, 26));
         g2d.fill(hair);
 
-        Rectangle2D head = new Rectangle2D.Double(super.x+7, super.y-215, 50, 50);
+        Rectangle2D head = new Rectangle2D.Double(sX+7, super.y-215, 50, 50);
         g2d.setStroke(new BasicStroke(3));
         g2d.setColor(new Color(255, 210, 143));
         g2d.fill(head);
-        Rectangle2D eye1 = new Rectangle2D.Double(super.x+10, super.y-205, 10, 10);
-        Rectangle2D eye2 = new Rectangle2D.Double(super.x+31, super.y-205, 10, 10);
-        Rectangle2D mouth = new Rectangle2D.Double(super.x+10, super.y-182, 30, 7);
+        Rectangle2D eye1 = new Rectangle2D.Double(sX+10, super.y-205, 10, 10);
+        Rectangle2D eye2 = new Rectangle2D.Double(sX+31, super.y-205, 10, 10);
+        Rectangle2D mouth = new Rectangle2D.Double(sX+10, super.y-182, 30, 7);
         g2d.setColor(new Color(163, 77, 77));
         g2d.fill(mouth);
         g2d.setColor(new Color(49, 54, 53));
         g2d.fill(eye1);
         g2d.fill(eye2);
-        Rectangle2D body = new Rectangle2D.Double(super.x+7, super.y-165, 50, 85);
+        Rectangle2D body = new Rectangle2D.Double(sX+7, super.y-165, 50, 85);
         g2d.setColor(new Color(77, 73, 73));
         g2d.fill(body);
 
      
-        Rectangle2D leftArm = new Rectangle2D.Double(super.x - 13, super.y - 165, 20, 80);
+        Rectangle2D leftArm = new Rectangle2D.Double(sX - 13, super.y - 165, 20, 80);
 		g2d.setColor(new Color(255, 210, 143));
 		g2d.fill(leftArm);
 		
@@ -95,38 +101,38 @@ public class Person extends Sprite {
 		Rectangle2D rightShoe = null;
 		
 		if(time<=22 && isWalking) {
-			leftLeg = new Rectangle2D.Double(super.x+7, super.y-80, 23, 90);
-			rightLeg = new Rectangle2D.Double(super.x+34, super.y-80, 23, 70);
+			leftLeg = new Rectangle2D.Double(sX+7, super.y-80, 23, 90);
+			rightLeg = new Rectangle2D.Double(sX+34, super.y-80, 23, 70);
 			g2d.setColor(new Color(32, 51, 97));
 			g2d.fill(leftLeg);
 			g2d.fill(rightLeg);
 			
-			leftShoe = new Rectangle2D.Double(super.x, super.y+10, 30, 15);    
-			rightShoe = new Rectangle2D.Double(super.x+34, super.y-10, 30, 15);
+			leftShoe = new Rectangle2D.Double(sX, super.y+10, 30, 15);    
+			rightShoe = new Rectangle2D.Double(sX+34, super.y-10, 30, 15);
 			g2d.setColor(new Color(100, 100, 100));
 			g2d.fill(leftShoe);
 			g2d.fill(rightShoe);
 		}else if(time<=44 && isWalking) {
-			leftLeg = new Rectangle2D.Double(super.x+7, super.y-80, 23, 70);
-			rightLeg = new Rectangle2D.Double(super.x+34, super.y-80, 23, 90);
+			leftLeg = new Rectangle2D.Double(sX+7, super.y-80, 23, 70);
+			rightLeg = new Rectangle2D.Double(sX+34, super.y-80, 23, 90);
 			g2d.setColor(new Color(32, 51, 97));
 			g2d.fill(leftLeg);
 			g2d.fill(rightLeg);
 			
-			leftShoe = new Rectangle2D.Double(super.x, super.y-10, 30, 15);    
-			rightShoe = new Rectangle2D.Double(super.x+34, super.y+10, 30, 15);
+			leftShoe = new Rectangle2D.Double(sX, super.y-10, 30, 15);    
+			rightShoe = new Rectangle2D.Double(sX+34, super.y+10, 30, 15);
 			g2d.setColor(new Color(100, 100, 100));
 			g2d.fill(leftShoe);
 			g2d.fill(rightShoe);
 		}else {
-			leftLeg = new Rectangle2D.Double(super.x+7, super.y-80, 23, 90);
-			rightLeg = new Rectangle2D.Double(super.x+34, super.y-80, 23, 90);
+			leftLeg = new Rectangle2D.Double(sX+7, super.y-80, 23, 90);
+			rightLeg = new Rectangle2D.Double(sX+34, super.y-80, 23, 90);
 			g2d.setColor(new Color(32, 51, 97));
 			g2d.fill(leftLeg);
 			g2d.fill(rightLeg);
 			
-			leftShoe = new Rectangle2D.Double(super.x, super.y+10, 30, 15);    
-			rightShoe = new Rectangle2D.Double(super.x+34, super.y+10, 30, 15);
+			leftShoe = new Rectangle2D.Double(sX, super.y+10, 30, 15);    
+			rightShoe = new Rectangle2D.Double(sX+34, super.y+10, 30, 15);
 			g2d.setColor(new Color(100, 100, 100));
 			g2d.fill(leftShoe);
 			g2d.fill(rightShoe);
@@ -139,18 +145,18 @@ public class Person extends Sprite {
         
         
         if(gunRaised) {
-        	 Rectangle2D rightArm = new Rectangle2D.Double(super.x+57, super.y-165, 80, 20);
+        	 Rectangle2D rightArm = new Rectangle2D.Double(sX+57, super.y-165, 80, 20);
              g2d.setColor(new Color(255, 210, 143));
              g2d.fill(rightArm);
              
             
-            Rectangle2D gunHandle = new Rectangle2D.Double(super.x+137, super.y-165, 20, 30);
-            Rectangle2D gunBarrel = new Rectangle2D.Double(super.x+157, super.y-165, 40, 15);
+            Rectangle2D gunHandle = new Rectangle2D.Double(sX+137, super.y-165, 20, 30);
+            Rectangle2D gunBarrel = new Rectangle2D.Double(sX+157, super.y-165, 40, 15);
             g2d.setColor(new Color(150, 150, 150));
             g2d.fill(gunHandle);
             g2d.fill(gunBarrel);
         }else {
-        	 Rectangle2D rightArm = new Rectangle2D.Double(super.x+57, super.y-165, 20, 80);
+        	 Rectangle2D rightArm = new Rectangle2D.Double(sX+57, super.y-165, 20, 80);
              g2d.setColor(new Color(255, 210, 143));
              g2d.fill(rightArm);
              
