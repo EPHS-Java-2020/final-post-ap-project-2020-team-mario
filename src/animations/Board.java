@@ -34,6 +34,7 @@ public class Board extends JPanel implements Runnable {
 	private Thread animator;
 	private boolean hasPainted;
 	private Image floor;
+	private DrawMap map;
 	
 
 
@@ -49,7 +50,8 @@ public class Board extends JPanel implements Runnable {
 		hasPainted = false;
 		Floor theFloor = new Floor();
 		floor = theFloor.getFloor();
-		person = new Person(0, 0);
+		person = new Person(500, 0);
+		map = new DrawMap();
 	}
 
 	@Override
@@ -69,6 +71,7 @@ public class Board extends JPanel implements Runnable {
 		super.paintComponent(g);
 		
 		Graphics2D g2d = (Graphics2D) g;
+		map.drawAll(g, person.x, person.y);
 		g2d.drawImage(floor, 0, 600, this);
 		g2d.drawImage(floor, 700, 600, this);
 
