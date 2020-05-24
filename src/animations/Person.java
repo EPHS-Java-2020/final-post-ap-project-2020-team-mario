@@ -20,7 +20,7 @@ public class Person extends Sprite {
     private List<Bullet> bullets;
     private boolean gunRaised=false;
     private boolean isWalking=false;
-    private final int PERIOD=99;
+    private final int PERIOD=66;
     private int time=0;
 
     public Person(int x, int y) {
@@ -94,7 +94,7 @@ public class Person extends Sprite {
 		Rectangle2D rightLeg = null;
 		Rectangle2D rightShoe = null;
 		
-		if(time<=33 && isWalking) {
+		if(time<=22 && isWalking) {
 			leftLeg = new Rectangle2D.Double(super.x+7, super.y-80, 23, 90);
 			rightLeg = new Rectangle2D.Double(super.x+34, super.y-80, 23, 70);
 			g2d.setColor(new Color(32, 51, 97));
@@ -106,7 +106,7 @@ public class Person extends Sprite {
 			g2d.setColor(new Color(100, 100, 100));
 			g2d.fill(leftShoe);
 			g2d.fill(rightShoe);
-		}else if(time<=66 && isWalking) {
+		}else if(time<=44 && isWalking) {
 			leftLeg = new Rectangle2D.Double(super.x+7, super.y-80, 23, 70);
 			rightLeg = new Rectangle2D.Double(super.x+34, super.y-80, 23, 90);
 			g2d.setColor(new Color(32, 51, 97));
