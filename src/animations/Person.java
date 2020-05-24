@@ -15,8 +15,8 @@ import java.util.List;
 
 public class Person extends Sprite {
 
-	private int dx;
-    private int dy;
+	private double dx;
+    private double dy;
     private List<Bullet> bullets;
     private boolean gunRaised=false;
     private boolean isWalking=false;
@@ -163,10 +163,29 @@ public class Person extends Sprite {
 
 	}
 	
+	public boolean isOnGround() {
+		return super.y+25 <= 604 && super.y+25 >= 596;
+	}
+	
+	
+	public void fall() {
+		dy += 0.25;
+	}
+	
+	public void land() {
+		dy = 0;
+	}
+	
 	//modify movements when keys pressed
 	public void keyPressed(KeyEvent e) {
 
         int key = e.getKeyCode();
+        
+        if (key == KeyEvent.VK_SPACE) {
+        	if (isOnGround()) {
+        		dy = -8;
+        	} 
+        }
         
         if (key == KeyEvent.VK_K) {
             fire();
@@ -175,21 +194,14 @@ public class Person extends Sprite {
 
 			gunRaised=false;
 			isWalking=true;
-			if (key == KeyEvent.VK_A) {
+			if (key == KeyEvent.VK_LEFT) {
 				dx = -4;
 			}
 
-			if (key == KeyEvent.VK_D) {
+			if (key == KeyEvent.VK_RIGHT) {
 				dx = 4;
 			}
 
-			if (key == KeyEvent.VK_W) {
-				dy = -2;
-			}
-
-			if (key == KeyEvent.VK_S) {
-				dy = 2;
-			}
 			
 		}
     }    
@@ -206,21 +218,15 @@ public class Person extends Sprite {
         int key = e.getKeyCode();
         isWalking=false;
 
-        if (key == KeyEvent.VK_A) {
+        if (key == KeyEvent.VK_LEFT) {
             dx = 0;
         }
 
-        if (key == KeyEvent.VK_D) {
+        if (key == KeyEvent.VK_RIGHT) {
             dx = 0;
         }
 
-        if (key == KeyEvent.VK_W) {
-            dy = 0;
-        }
-
-        if (key == KeyEvent.VK_S) {
-            dy = 0;
-        }
+        
     }
 }
 

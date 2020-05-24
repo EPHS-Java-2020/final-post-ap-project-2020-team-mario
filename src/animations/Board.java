@@ -22,6 +22,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import mapSetup.*;
+
 import animations.*;
 
 
@@ -30,6 +32,10 @@ public class Board extends JPanel implements Runnable {
 	private Person person;
 	private final int DELAY = 10;
 	private Thread animator;
+	private boolean hasPainted;
+	private Image floor;
+	
+
 
 	public Board() {
 
@@ -40,13 +46,17 @@ public class Board extends JPanel implements Runnable {
 		addKeyListener(new TAdapter());
 		setBackground(Color.black);
 		setFocusable(true);
-		
+		hasPainted = false;
+		Floor theFloor = new Floor();
+		floor = theFloor.getFloor();
 
-		person = new Person();
+		person = new Person(0, 0);
 	}
 
 	@Override
 	public void addNotify() {
+		System.out.println("In Notify");
+
 		super.addNotify();
 
 		animator = new Thread(this);
@@ -55,7 +65,12 @@ public class Board extends JPanel implements Runnable {
 
 	@Override
 	public void paintComponent(Graphics g) {
+		
 		super.paintComponent(g);
+		
+		Graphics2D g2d = (Graphics2D) g;
+		
+		g2d.drawImage(floor, 0, 600, this);
 
 		drawCharacter(g);
 
@@ -94,10 +109,16 @@ public class Board extends JPanel implements Runnable {
 		beforeTime = System.currentTimeMillis();
 
 		while (true) {
-
+			
 			cycle();
 			repaint();
-
+			
+			if (person.isOnGround()) {
+				person.land();
+			} else {
+				person.fall();
+			}
+			
 			timeDiff = System.currentTimeMillis() - beforeTime;
 			sleep = DELAY - timeDiff;
 
