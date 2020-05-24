@@ -12,7 +12,7 @@ public class DrawMap {
 		bricks = new ArrayList<Brick>();
 		spikes = new ArrayList<Spike>();
 		for(int i=0; i<5; i++) {
-			addStuff( (int)(Math.random()*1000)+1000 );
+			addStuff();
 		}
 	}
 	public void drawAll(Graphics g, int x, int y) {
@@ -21,9 +21,14 @@ public class DrawMap {
 		for (Brick brick: bricks) {
 			brick.drawImage(x, y, g2d);
 		}
+		
+		for(Spike spike: spikes) {
+			spike.drawImage(x, y, g2d);
+		}
 	}
-	public void addStuff(int x) {
-		bricks.add(new Brick(x, 0));
+	public void addStuff() {
+		bricks.add(new Brick((int)(Math.random()*1000)+1000, 0));
+		spikes.add(new Spike((int)(Math.random()*1000)+1000, 0));
 	}
 
 }
