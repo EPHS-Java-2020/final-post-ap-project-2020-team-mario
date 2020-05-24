@@ -36,7 +36,6 @@ public class Person extends Sprite {
     public void move() {
     	super.x += dx;
         super.y += dy;
-        if(super.x>1000) {super.x=0;}
         
     }
     
@@ -169,7 +168,9 @@ public class Person extends Sprite {
 	
 	
 	public void fall() {
-		dy += 0.25;
+		if (!(dy == 8)) {
+			dy += 0.25;
+		}
 	}
 	
 	public void land() {
@@ -193,13 +194,16 @@ public class Person extends Sprite {
 		} else {
 
 			gunRaised=false;
-			isWalking=true;
 			if (key == KeyEvent.VK_LEFT) {
-				dx = -4;
+				if (super.x >= 0) {
+					dx = -4;
+					isWalking=true;
+				}
 			}
 
 			if (key == KeyEvent.VK_RIGHT) {
 				dx = 4;
+				isWalking=true;
 			}
 
 			

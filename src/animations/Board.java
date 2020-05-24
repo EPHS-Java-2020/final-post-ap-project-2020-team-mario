@@ -91,7 +91,7 @@ public class Board extends JPanel implements Runnable {
 
             if (bullet.isVisible()) {
 
-                bullet.move();
+                bullet.move(person.x);
             } else {
 
                 bullets.remove(i);

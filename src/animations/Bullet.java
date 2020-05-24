@@ -17,11 +17,11 @@ public class Bullet extends Sprite {
         super(x, y);
     }
 
-    public void move() {
+    public void move(int charP) {
         
         super.x += BULLET_SPEED;
         
-        if (super.x > BOARD_WIDTH) {
+        if (super.x > charP + 700) {
             visible = false;
         }
     }
