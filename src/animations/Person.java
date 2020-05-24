@@ -215,7 +215,7 @@ public class Person extends Sprite {
     }    
 	
 	public void fire() {
-        bullets.add(new Bullet(x+197, y-160, super.x)); //change to cooridnates x+197 & y-160
+        bullets.add(new Bullet(sX+197, super.y-160, sX)); //change to cooridnates x+197 & y-160
     }
 
 
