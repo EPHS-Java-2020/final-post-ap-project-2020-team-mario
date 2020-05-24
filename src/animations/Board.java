@@ -49,13 +49,13 @@ public class Board extends JPanel implements Runnable {
 		hasPainted = false;
 		Floor theFloor = new Floor();
 		floor = theFloor.getFloor();
-
 		person = new Person(0, 0);
 	}
 
 	@Override
 	public void addNotify() {
 		System.out.println("In Notify");
+		
 
 		super.addNotify();
 
@@ -69,7 +69,6 @@ public class Board extends JPanel implements Runnable {
 		super.paintComponent(g);
 		
 		Graphics2D g2d = (Graphics2D) g;
-		
 		g2d.drawImage(floor, 0, 600, this);
 		g2d.drawImage(floor, 700, 600, this);
 
