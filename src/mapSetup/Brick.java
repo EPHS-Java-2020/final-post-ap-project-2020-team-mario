@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
+import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 
@@ -14,9 +15,13 @@ public class Brick extends Sprite{
 	
 	private ImageIcon ii;
 	private Image brick;
+	private int sX;
+	private int sY;
 	
-	public Brick(int x, int y, int speed) {
-		super(x,y);
+	public Brick(int x, int speed) {
+		super(x,550);
+		sX=x;
+		sY=550;
 		loadImage();
 	}
 	
@@ -26,8 +31,11 @@ public class Brick extends Sprite{
 	}
 	
 	public void drawImage(int x, int y, Graphics g) {
-		super.x-=x; 
-		super.y-=y; 
+		super.x=sX-x;
+		
+		//super.x+=x;
+		
+		super.y=550; //super.y-=y
 		drawImage(g);
 		
 	}
@@ -44,4 +52,6 @@ public class Brick extends Sprite{
 		
 		g2d.drawImage(brick, super.x, super.y, this);
 	}
+	
+	
 }
