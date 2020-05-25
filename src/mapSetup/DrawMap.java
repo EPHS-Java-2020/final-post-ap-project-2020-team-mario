@@ -11,7 +11,7 @@ public class DrawMap {
 	public DrawMap() {
 		bricks = new ArrayList<Brick>();
 		spikes = new ArrayList<Spike>();
-		for(int i=0; i<5; i++) {
+		for(int i=0; i<1; i++) {
 			addStuff();
 		}
 	}
@@ -30,5 +30,12 @@ public class DrawMap {
 		bricks.add(new Brick((int)(Math.random()*1000)+1000, 0));
 		spikes.add(new Spike((int)(Math.random()*1000)+1000, 0));
 	}
+	
+	public ArrayList<Brick> getBricks(){
+		return bricks;
+	}
 
+	public ArrayList<Spike> getSpikes(){
+		return spikes;
+	}
 }
