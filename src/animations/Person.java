@@ -283,7 +283,6 @@ public class Person extends Sprite {
 				
 				if(intersection.getHeight()<intersection.getWidth()) {
 					onSomething=true;
-					System.out.println("helo");
 				}else {
 					if(brick.x - 2 <= intersection.getX()&&brick.x + 2 >= intersection.getX()) {
 						hitSomethingLeft = true;
