@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -71,11 +72,11 @@ public class Board extends JPanel implements Runnable {
 		super.paintComponent(g);
 		
 		Graphics2D g2d = (Graphics2D) g;
-		map.drawAll(g, person.x, person.y);
+		map.drawAll(g, person.x-person.getSX(), person.y);
 		g2d.drawImage(floor, 0, 600, this);
 		g2d.drawImage(floor, 700, 600, this);
 
-		drawCharacter(g);
+		if(person.visible) {drawCharacter(g);} //if-statement new (w/out the drawCharacter method)
 
 		Toolkit.getDefaultToolkit().sync();
 	}
@@ -103,6 +104,28 @@ public class Board extends JPanel implements Runnable {
         }
         person.move();
 	}
+	
+	public void checkCollisions() {//this method is new
+		//System.out.println("checking collisions");
+		List<Brick> bricks = map.getBricks();
+		Rectangle personBounds = person.getBounds();
+		
+		System.out.println(person);
+		System.out.println(bricks);
+		//int count=0;
+		for(Brick brick: bricks) {
+			Rectangle brickBounds = brick.getBounds();
+			
+			if(brickBounds.intersects(personBounds)) {
+				person.visible=false;
+//				count++;
+//				if(count==1) {
+//					System.out.println("brickX="+brick.x+"   personX="+person.x);
+//				}
+			}
+		}
+		
+	}
 
 	@Override
 	public void run() {
@@ -112,7 +135,7 @@ public class Board extends JPanel implements Runnable {
 		beforeTime = System.currentTimeMillis();
 
 		while (true) {
-			
+			checkCollisions();//new change
 			cycle();
 			repaint();
 			
