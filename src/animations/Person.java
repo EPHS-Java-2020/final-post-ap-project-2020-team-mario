@@ -14,6 +14,7 @@ import java.util.List;
 
 import mapSetup.Brick;
 import mapSetup.DrawMap;
+import mapSetup.Spike;
 
 
 
@@ -29,6 +30,7 @@ public class Person extends Sprite {
     public boolean onSomething=false;
     public boolean hitSomethingLeft=false;
     public boolean hitSomethingRight=false;
+    public boolean isAlive=true;
     private final int PERIOD=66;
     private int time=0;
 
@@ -47,8 +49,14 @@ public class Person extends Sprite {
     }
 
     public void move() {
-    	super.x += dx;
-        super.y += dy;
+    	if(isAlive) {
+    		super.x += dx;
+            super.y += dy;
+    	}else {
+    		super.x=super.x;
+    		super.y=super.y;
+    	}
+    	
         
     }
     
@@ -56,10 +64,61 @@ public class Person extends Sprite {
         return bullets;
     }
     
+    @Override
+    protected void drawImage(Graphics g) {
+    	if(isAlive) {
+    		alivePose(g);
+    	}else {
+    		deadPose(g);
+    	}
+    }
+    protected void deadPose(Graphics g) {
+		Graphics2D g2d = (Graphics2D) g;
 
+        RenderingHints rh
+                = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
+                        RenderingHints.VALUE_ANTIALIAS_ON);
+
+        rh.put(RenderingHints.KEY_RENDERING,
+                RenderingHints.VALUE_RENDER_QUALITY);
+
+        g2d.setRenderingHints(rh);
+        
+        super.y=350;
+        
+        Rectangle2D blood = new Rectangle2D.Double(sX, super.y + 235, 275, 100);// super.y+10
+        g2d.setColor(Color.red);
+        g2d.fill(blood);
+        
+        Rectangle2D shoe = new Rectangle2D.Double(sX, super.y + 235, 15, 30);// super.y+10
+		g2d.setColor(new Color(100, 100, 100));
+		g2d.fill(shoe);
+        Rectangle2D leg = new Rectangle2D.Double(sX + 15, super.y + 235, 90, 23);// super.y-80
+		g2d.setColor(new Color(32, 51, 97));
+		g2d.fill(leg);
+		
+		
+		Rectangle2D body = new Rectangle2D.Double(sX + 105, super.y + 235, 85, 28);// super.y-165
+		g2d.setColor(new Color(77, 73, 73));
+		g2d.fill(body);
+		Rectangle2D arm = new Rectangle2D.Double(sX+110, super.y + 239, 80, 20);// super.y-165
+		g2d.setColor(new Color(255, 210, 143));
+		g2d.fill(arm);
+		
+
+		Rectangle2D head = new Rectangle2D.Double(sX + 190, super.y + 230, 50, 50);// super.y-215
+		g2d.setStroke(new BasicStroke(3));
+		g2d.setColor(new Color(255, 210, 143));
+		g2d.fill(head);
+		Rectangle2D eye = new Rectangle2D.Double(sX + 225, super.y + 260, 10, 10);// super.y-205
+		g2d.setColor(new Color(49, 54, 53));
+		g2d.fill(eye);
+		Rectangle2D hair = new Rectangle2D.Double(sX + 240, super.y+230, 10, 50);// super.y-225
+		g2d.setColor(new Color(87, 49, 26));
+		g2d.fill(hair);
+	}
   //modify the appearance
-	@Override
-	protected void drawImage(Graphics g) {
+	protected void alivePose(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 
         RenderingHints rh
@@ -246,6 +305,18 @@ public class Person extends Sprite {
 				hitSomethingRight = false;
 			}
 		}
+		
+		List<Spike> spikes = map.getSpikes();
+		for(Spike spike: spikes) {
+			Rectangle spikeBounds = spike.getBounds();
+			
+			if(spikeBounds.intersects(personBounds)) {
+				isAlive=false;
+				System.out.println("you died, YOLO!");
+			}
+		}
+	
+		
 		
 		
 	}
