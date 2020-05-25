@@ -39,7 +39,7 @@ public class Floor extends Obstacle{
 		
 		g2d.setRenderingHints(rh);
 		
-		Rectangle2D floor = new Rectangle2D.Double(super.x, super.y + 235, 275, 100);// super.y+10
+		Rectangle2D floor = new Rectangle2D.Double(super.x, super.y, 1000, 100);// super.y+10
         g2d.setColor(new Color(0, 75, 0));
         g2d.fill(floor);
 	}
@@ -49,15 +49,9 @@ public class Floor extends Obstacle{
 	}
 	@Override
 	public Rectangle getBounds() {
-		return null;
+		return new Rectangle(super.x, super.y, 1000, 100);
 	}
-//	@Override
-//	public void loadImage() {
-//		ii = new ImageIcon("src/Drawings/FLoor.png");
-//		image = ii.getImage();
-//		super.width=ii.getIconWidth();
-//		super.height=ii.getIconHeight();
-//	}
+
 	
 
 }

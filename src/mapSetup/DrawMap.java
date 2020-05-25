@@ -30,13 +30,14 @@ public class DrawMap {
 		}
 		
 		for(Floor floor: floors) {
-			floor.drawImage(g2d);
+			floor.drawImage(x, y, g2d);
 		}
 	}
 	public void addStuff() {
-		bricks.add(new Brick((int)(Math.random()*1000)+1000,550, 0));
-		spikes.add(new Spike((int)(Math.random()*1000)+1000,550, 0));
+		bricks.add(new Brick(1800, 500, 0));
+		spikes.add(new Spike(1200, 550, 0));
 		floors.add(new Floor(500 ,600, 0));
+		floors.add(new Floor(1500 ,550, 0));
 	}
 	
 	public ArrayList<Brick> getBricks(){
