@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
@@ -64,11 +65,11 @@ public class Person extends Sprite {
 
         g2d.setRenderingHints(rh);
 
-        Dimension size = getSize();
-        width =  (int) size.getWidth();
-        super.setWidth(width);
-        height = (int) size.getHeight();
-        super.setHeight(height);
+//        Dimension size = getSize();
+//        width =  (int) size.getWidth();
+//        super.setWidth(width);
+//        height = (int) size.getHeight();
+//        super.setHeight(height);
         
         Rectangle2D hair = new Rectangle2D.Double(sX+7, super.y-225, 50, 10);
         g2d.setColor(new Color(87, 49, 26));
@@ -143,11 +144,12 @@ public class Person extends Sprite {
 			time=0;
 		}
         
-        
+        super.height=250;
         if(gunRaised) {
-        	 Rectangle2D rightArm = new Rectangle2D.Double(sX+57, super.y-165, 80, 20);
-             g2d.setColor(new Color(255, 210, 143));
-             g2d.fill(rightArm);
+        	super.width = 210; //changed 
+        	Rectangle2D rightArm = new Rectangle2D.Double(sX+57, super.y-165, 80, 20);
+            g2d.setColor(new Color(255, 210, 143));
+            g2d.fill(rightArm);
              
             
             Rectangle2D gunHandle = new Rectangle2D.Double(sX+137, super.y-165, 20, 30);
@@ -156,6 +158,8 @@ public class Person extends Sprite {
             g2d.fill(gunHandle);
             g2d.fill(gunBarrel);
         }else {
+        	super.width = 90; //changed
+        	
         	 Rectangle2D rightArm = new Rectangle2D.Double(sX+57, super.y-165, 20, 80);
              g2d.setColor(new Color(255, 210, 143));
              g2d.fill(rightArm);
@@ -166,6 +170,10 @@ public class Person extends Sprite {
             bullets.drawImage(g2d);
         }
 
+	}
+	
+	public Rectangle getBounds() { //changed
+		return new Rectangle(super.x+7, super.y-225, 50, 250);
 	}
 	
 	public boolean isOnGround() {
@@ -215,9 +223,12 @@ public class Person extends Sprite {
     }    
 	
 	public void fire() {
-        bullets.add(new Bullet(sX+197, super.y-160, sX)); //change to cooridnates x+197 & y-160
+        bullets.add(new Bullet(sX+197, super.y-160, sX)); 
     }
 
+	public int getSX() {
+		return sX;
+	}
 
 
 	//modify movements when keys released
@@ -236,5 +247,8 @@ public class Person extends Sprite {
 
         
     }
+    public String toString() {
+		return "{PERSON--> (X="+super.x+",Y="+super.y+")  (WIDTH="+super.width+",HEIGHT="+super.height+")}";
+	}
 }
 
