@@ -5,12 +5,15 @@ import java.util.ArrayList;
 
 public class DrawMap {
 	
-	ArrayList<Brick> bricks;
-	ArrayList<Spike> spikes;
+	private ArrayList<Brick> bricks;
+	private ArrayList<Spike> spikes;
+	private ArrayList<Floor> floors;
 	
 	public DrawMap() {
 		bricks = new ArrayList<Brick>();
 		spikes = new ArrayList<Spike>();
+		floors = new ArrayList<Floor>();
+		
 		for(int i=0; i<1; i++) {
 			addStuff();
 		}
@@ -25,14 +28,23 @@ public class DrawMap {
 		for(Spike spike: spikes) {
 			spike.drawImage(x, y, g2d);
 		}
+		
+		for(Floor floor: floors) {
+			floor.drawImage(g2d);
+		}
 	}
 	public void addStuff() {
 		bricks.add(new Brick((int)(Math.random()*1000)+1000,550, 0));
 		spikes.add(new Spike((int)(Math.random()*1000)+1000,550, 0));
+		floors.add(new Floor(500 ,600, 0));
 	}
 	
 	public ArrayList<Brick> getBricks(){
 		return bricks;
+	}
+	
+	public ArrayList<Floor> getFloors(){
+		return floors;
 	}
 
 	public ArrayList<Spike> getSpikes(){
