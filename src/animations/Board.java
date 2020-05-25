@@ -115,15 +115,17 @@ public class Board extends JPanel implements Runnable {
 
 		while (true) {
 
-			person.checkCollisions(map);//new change
-			cycle();
+			
 			repaint();
-			person.isOnGround();
+			cycle();
+			person.checkCollisions(map);//new change
 			if (person.onSomething) {
 				person.land();
 			} else {
 				person.fall();
 			}
+			
+			
 			
 			timeDiff = System.currentTimeMillis() - beforeTime;
 			sleep = DELAY - timeDiff;

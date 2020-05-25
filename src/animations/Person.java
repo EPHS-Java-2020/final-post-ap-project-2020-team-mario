@@ -27,6 +27,8 @@ public class Person extends Sprite {
     private boolean gunRaised=false;
     private boolean isWalking=false;
     public boolean onSomething=false;
+    public boolean hitSomethingLeft=false;
+    public boolean hitSomethingRight=false;
     private final int PERIOD=66;
     private int time=0;
 
@@ -206,6 +208,8 @@ public class Person extends Sprite {
 	
 	public void checkCollisions(DrawMap map) {//this method is new
 		//System.out.println("checking collisions");
+		isOnGround();
+		
 		List<Brick> bricks = map.getBricks();
 		Rectangle personBounds = this.getBounds();
 		
@@ -220,17 +224,32 @@ public class Person extends Sprite {
 				
 				if(intersection.getHeight()<intersection.getWidth()) {
 					onSomething=true;
+					System.out.println("helo");
 				}else {
-					dx=0;
+					if(brick.x - 2 <= intersection.getX()&&brick.x + 2 >= intersection.getX()) {
+						hitSomethingLeft = true;
+						hitSomethingRight = false;
+						dx = 0;
+					} else {
+
+						hitSomethingRight = true;
+						hitSomethingLeft = false;
+						dx = 0;
+					}
 				}
 //				count++;
 //				if(count==1) {
 //					System.out.println("brickX="+brick.x+"   personX="+person.x);
 //				}
+			} else {
+				hitSomethingLeft = false;
+				hitSomethingRight = false;
 			}
 		}
 		
+		
 	}
+	
 	
 	//modify movements when keys pressed
 	public void keyPressed(KeyEvent e) {
@@ -250,13 +269,21 @@ public class Person extends Sprite {
 
 			gunRaised=false;
 			if (key == KeyEvent.VK_LEFT) {
-				dx = -4;
-				isWalking=true;
+				if (!hitSomethingRight) {
+					dx = -4;
+					isWalking=true;
+				} else {
+					dx = 0;
+				}
 			}
 
 			if (key == KeyEvent.VK_RIGHT) {
-				dx = 4;
-				isWalking=true;
+				if (!hitSomethingLeft) {
+					dx = 4;
+					isWalking=true;
+				} else {
+					dx = 0;
+				}
 			}
 
 			
