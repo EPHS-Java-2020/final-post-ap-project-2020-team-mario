@@ -25,7 +25,7 @@ public class Application extends JFrame {
     }    
     
     public static void main(String[] args) {
-        
+        System.out.println("hello");
         EventQueue.invokeLater(() -> {
             Application ex = new Application();
             ex.setVisible(true);
