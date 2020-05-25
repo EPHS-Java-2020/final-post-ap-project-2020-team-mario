@@ -34,7 +34,7 @@ public class Board extends JPanel implements Runnable {
 	private final int DELAY = 10;
 	private Thread animator;
 	private boolean hasPainted;
-	private Image floor;
+	private Floor floor;
 	private DrawMap map;
 	
 
@@ -49,8 +49,7 @@ public class Board extends JPanel implements Runnable {
 		setBackground(Color.black);
 		setFocusable(true);
 		hasPainted = false;
-		Floor theFloor = new Floor();
-		floor = theFloor.getFloor();
+		floor=new Floor(0, 600, 0);
 		person = new Person(500, 0);
 		map = new DrawMap();
 	}
@@ -73,8 +72,6 @@ public class Board extends JPanel implements Runnable {
 		
 		Graphics2D g2d = (Graphics2D) g;
 		map.drawAll(g, person.x-person.getSX(), person.y);
-		g2d.drawImage(floor, 0, 600, this);
-		g2d.drawImage(floor, 700, 600, this);
 
 		if(person.visible) {drawCharacter(g);} //if-statement new (w/out the drawCharacter method)
 
