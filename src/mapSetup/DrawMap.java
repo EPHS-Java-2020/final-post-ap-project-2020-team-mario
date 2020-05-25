@@ -27,8 +27,8 @@ public class DrawMap {
 		}
 	}
 	public void addStuff() {
-		bricks.add(new Brick((int)(Math.random()*1000)+1000, 0));
-		spikes.add(new Spike((int)(Math.random()*1000)+1000, 0));
+		bricks.add(new Brick((int)(Math.random()*1000)+1000,550, 0));
+		spikes.add(new Spike((int)(Math.random()*1000)+1000,550, 0));
 	}
 	
 	public ArrayList<Brick> getBricks(){
