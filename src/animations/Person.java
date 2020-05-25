@@ -12,6 +12,9 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
+import mapSetup.Brick;
+import mapSetup.DrawMap;
+
 
 
 public class Person extends Sprite {
@@ -23,6 +26,7 @@ public class Person extends Sprite {
     private List<Bullet> bullets;
     private boolean gunRaised=false;
     private boolean isWalking=false;
+    public boolean onSomething=false;
     private final int PERIOD=66;
     private int time=0;
 
@@ -173,11 +177,19 @@ public class Person extends Sprite {
 	}
 	
 	public Rectangle getBounds() { //changed
-		return new Rectangle(super.x+7, super.y-225, 50, 250);
+		return new Rectangle(sX+7, super.y-225, 50, 250);
 	}
 	
-	public boolean isOnGround() {
-		return super.y+25 <= 604 && super.y+25 >= 596;
+	public void setDx(int dx) {
+		this.dx=dx;
+	}
+	
+	public void isOnGround() {
+		if(super.y+25 <= 604 && super.y+25 >= 596) {
+		   onSomething = true;
+		}else {
+			onSomething=false;
+		}
 	}
 	
 	
@@ -191,13 +203,42 @@ public class Person extends Sprite {
 		dy = 0;
 	}
 	
+	
+	public void checkCollisions(DrawMap map) {//this method is new
+		//System.out.println("checking collisions");
+		List<Brick> bricks = map.getBricks();
+		Rectangle personBounds = this.getBounds();
+		
+		//System.out.println(person);
+		//System.out.println(bricks);
+		//int count=0;
+		for(Brick brick: bricks) {
+			Rectangle brickBounds = brick.getBounds();
+			
+			if(brickBounds.intersects(personBounds)) {
+				Rectangle2D intersection = getBounds().createIntersection(brick.getBounds());
+				
+				if(intersection.getHeight()<intersection.getWidth()) {
+					onSomething=true;
+				}else {
+					dx=0;
+				}
+//				count++;
+//				if(count==1) {
+//					System.out.println("brickX="+brick.x+"   personX="+person.x);
+//				}
+			}
+		}
+		
+	}
+	
 	//modify movements when keys pressed
 	public void keyPressed(KeyEvent e) {
 
         int key = e.getKeyCode();
         
         if (key == KeyEvent.VK_SPACE) {
-        	if (isOnGround()) {
+        	if (onSomething) {
         		dy = -8;
         	} 
         }

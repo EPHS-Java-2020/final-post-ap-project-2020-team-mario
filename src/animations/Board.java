@@ -105,27 +105,6 @@ public class Board extends JPanel implements Runnable {
         person.move();
 	}
 	
-	public void checkCollisions() {//this method is new
-		//System.out.println("checking collisions");
-		List<Brick> bricks = map.getBricks();
-		Rectangle personBounds = person.getBounds();
-		
-		System.out.println(person);
-		System.out.println(bricks);
-		//int count=0;
-		for(Brick brick: bricks) {
-			Rectangle brickBounds = brick.getBounds();
-			
-			if(brickBounds.intersects(personBounds)) {
-				person.visible=false;
-//				count++;
-//				if(count==1) {
-//					System.out.println("brickX="+brick.x+"   personX="+person.x);
-//				}
-			}
-		}
-		
-	}
 
 	@Override
 	public void run() {
@@ -135,11 +114,12 @@ public class Board extends JPanel implements Runnable {
 		beforeTime = System.currentTimeMillis();
 
 		while (true) {
-			checkCollisions();//new change
+
+			person.checkCollisions(map);//new change
 			cycle();
 			repaint();
-			
-			if (person.isOnGround()) {
+			person.isOnGround();
+			if (person.onSomething) {
 				person.land();
 			} else {
 				person.fall();
