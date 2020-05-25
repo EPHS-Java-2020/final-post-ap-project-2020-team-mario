@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 
@@ -28,6 +29,8 @@ public class Brick extends Sprite{
 	public void loadImage() {
 		ii = new ImageIcon("src/Drawings/Fancy Brick.png");
 		brick = ii.getImage();
+		super.width=ii.getIconWidth();
+		super.height=ii.getIconHeight();
 	}
 	
 	public void drawImage(int x, int y, Graphics g) {
@@ -50,7 +53,11 @@ public class Brick extends Sprite{
 		
 		g2d.setRenderingHints(rh);
 		
-		g2d.drawImage(brick, super.x, super.y, this);
+		g2d.drawImage(brick, super.x, super.y, this); 
+	}
+	
+	public String toString() {
+		return "{BRICK--> (X="+super.x+",Y="+super.y+")  (WIDTH="+super.width+",HEIGHT="+super.height+")}";
 	}
 	
 	
