@@ -22,8 +22,8 @@ public class Person extends Sprite {
 
 	private double dx;
 	private double dy;
-	private final int sX;
-	private final int sY;
+	private int sX;
+	private int sY;
 	private List<Bullet> bullets;
 	private boolean gunRaised = false;
 	private boolean isWalking = false;
@@ -33,8 +33,6 @@ public class Person extends Sprite {
 	private int time = 0;
 	private int count = 0;
 	private int jumpCount = 0;
-	private boolean hitLeft = false;
-	private boolean hitRight = false;
 
 	public Person(int x, int y) {
 		super(x, y);
@@ -298,23 +296,14 @@ public class Person extends Sprite {
 					onSomething = true;
 				} else {
 					if (brick.x - 2 <= intersection.getX() && brick.x + 2 >= intersection.getX()) {
-						if(!hitLeft) {
-							super.x-=4;
-							hitLeft = true;
-						}
+						super.x-=4;
 					} else {
-						if(!hitRight) {
-							super.x+=4;
-							hitRight = true;
-						}
+						super.x+=4;
 					}
 				}
 				
 			}
-			
 		}
-		hitLeft = false;
-		hitRight = false;
 
 		List<Spike> spikes = map.getSpikes();
 		for (Spike spike : spikes) {

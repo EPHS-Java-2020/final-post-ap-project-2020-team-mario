@@ -48,10 +48,10 @@ public class Board extends JPanel implements Runnable {
 	private void initBoard() {
 		addKeyListener(new TAdapter());
 		addMouseListener(new MAdapter());
-		setBackground(new Color(79, 127, 240));
+		setBackground(Color.black);
 		setFocusable(true);
 		hasPainted = false;
-		person = new Person(500, 450);
+		person = new Person(500, 500);
 		map = new DrawMap();
 	}
 
