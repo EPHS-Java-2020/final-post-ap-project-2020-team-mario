@@ -52,13 +52,13 @@ public class DrawMap {
 		}
 	}
 	public void addStuff() {
-		bricks.add(new Brick(1900, 400, 0));
-		bricks.add(new Brick(1800, 500, 0));
-		spikes.add(new Spike(1850, 500, 0));
-		floors.add(new Floor(500 ,600, 0));
-		floors.add(new Floor(1500 ,550, 0));
-		boulders.add(new boulder(800,400,0));
-		bushes.add(new Bush(1000,300,0));
+		bricks.add(new Brick(1900, 1400, 0));
+		bricks.add(new Brick(1800, 1500, 0));
+		spikes.add(new Spike(1850, 1500, 0));
+		floors.add(new Floor(500 ,1600, 0));
+		floors.add(new Floor(1500 ,1550, 0));
+		boulders.add(new boulder(800,1400,0));
+		bushes.add(new Bush(1000,1300,0));
 	}
 	
 	public ArrayList<Brick> getBricks(){
