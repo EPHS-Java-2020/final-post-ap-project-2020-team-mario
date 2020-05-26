@@ -38,8 +38,10 @@ public class DrawMap {
 	}
 	public void addStuff() {
 		bricks.add(new Brick(1900, 1200, 0));
+		bricks.add(new Brick(1900, 1240, 0));
 		bricks.add(new Brick(1800, 1200, 0));
-		spikes.add(new Spike(1850, 1200, 0));
+		bricks.add(new Brick(1800, 1240, 0));
+		spikes.add(new Spike(1850, 1240, 0));
 		floors.add(new Floor(500 ,1300, 0));
 		floors.add(new Floor(1500 ,1300, 0));
 		trees.add(new Tree(750, 750, 0));
