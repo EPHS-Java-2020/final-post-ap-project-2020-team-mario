@@ -14,15 +14,25 @@ public class Application extends JFrame {
     }
 
     private void initUI() {
-
+    	StartScreen ss = new StartScreen();
+    	
+    	add(ss);
+    	setSize(2000, 1000);
+    	ss.waitFor();
+    	remove(ss);
+    	
+    	
+    	
         add(new Board());
 
-        setSize(2000, 1000);
+        //setSize(2000, 1000);
 
         setTitle("Application");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        
     }  
+     
     
     
     public static void main(String[] args) {
