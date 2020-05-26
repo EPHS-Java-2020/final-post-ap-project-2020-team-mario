@@ -26,6 +26,7 @@ import javax.swing.JPanel;
 import mapSetup.*;
 
 import animations.*;
+import java.awt.event.*;
 
 
 public class Board extends JPanel implements Runnable {
@@ -46,6 +47,7 @@ public class Board extends JPanel implements Runnable {
 
 	private void initBoard() {
 		addKeyListener(new TAdapter());
+		addMouseListener(new MAdapter());
 		setBackground(Color.black);
 		setFocusable(true);
 		hasPainted = false;
@@ -157,7 +159,15 @@ public class Board extends JPanel implements Runnable {
         }
     }
 
+	private class MAdapter extends MouseAdapter {  //board class
+		public void mouseReleased(MouseEvent e){
+	    
+		}
+		public void mousePressed(MouseEvent e) {
+			person.mousePressed(e);
+		}
 
+	}
 
 }
 
