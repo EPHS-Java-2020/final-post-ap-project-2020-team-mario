@@ -8,11 +8,25 @@ public class DrawMap {
 	private ArrayList<Brick> bricks;
 	private ArrayList<Spike> spikes;
 	private ArrayList<Floor> floors;
+	private ArrayList<boulder> boulders;
+	private ArrayList<Bush> bushes;
+	private ArrayList<Cloud> cloudes;
+	private ArrayList<Moon> moones;
+	private ArrayList<Rock> rocks;
+	private ArrayList<Sun> suns;
+	private ArrayList<Tree> trees;
 	
 	public DrawMap() {
 		bricks = new ArrayList<Brick>();
 		spikes = new ArrayList<Spike>();
 		floors = new ArrayList<Floor>();
+		boulders = new ArrayList<boulder>();
+		bushes = new ArrayList<Bush>();
+		cloudes = new ArrayList<Cloud>();
+		moones= new ArrayList<Moon>();
+		rocks = new ArrayList<Rock>();
+		suns = new ArrayList<Sun>();
+		trees = new ArrayList<Tree>();
 		
 		addStuff();
 	}
@@ -30,13 +44,24 @@ public class DrawMap {
 		for(Floor floor: floors) {
 			floor.drawImage(x, y, g2d);
 		}
+		for(boulder boulder: boulders) {
+			boulder.drawImage(x, y, g2d);
+		}
+		for(Bush bush: bushes) {
+			bush.drawImage(x, y, g2d);
+		}
+		for( : ) {
+			.drawImage(x, y, g2d);
+		}
 	}
 	public void addStuff() {
-		bricks.add(new Brick(1900, 1000, 0));
-		bricks.add(new Brick(1800, 1000, 0));
-		spikes.add(new Spike(1850, 1000, 0));
-		floors.add(new Floor(500 ,1300, 0));
-		floors.add(new Floor(1500 ,1300, 0));
+		bricks.add(new Brick(1900, 400, 0));
+		bricks.add(new Brick(1800, 500, 0));
+		spikes.add(new Spike(1850, 500, 0));
+		floors.add(new Floor(500 ,600, 0));
+		floors.add(new Floor(1500 ,550, 0));
+		boulders.add(new boulder(800,400,0));
+		bushes.add(new Bush(1000,300,0));
 	}
 	
 	public ArrayList<Brick> getBricks(){
