@@ -8,11 +8,13 @@ public class DrawMap {
 	private ArrayList<Brick> bricks;
 	private ArrayList<Spike> spikes;
 	private ArrayList<Floor> floors;
+	private ArrayList<Tree> trees;
 	
 	public DrawMap() {
 		bricks = new ArrayList<Brick>();
 		spikes = new ArrayList<Spike>();
 		floors = new ArrayList<Floor>();
+		trees = new ArrayList<Tree>();
 		
 		addStuff();
 	}
@@ -30,6 +32,9 @@ public class DrawMap {
 		for(Floor floor: floors) {
 			floor.drawImage(x, y, g2d);
 		}
+		for (Tree tree: trees) {
+			tree.drawImage(x,y,g2d);
+		}
 	}
 	public void addStuff() {
 		bricks.add(new Brick(1900, 1200, 0));
@@ -37,6 +42,7 @@ public class DrawMap {
 		spikes.add(new Spike(1850, 1200, 0));
 		floors.add(new Floor(500 ,1300, 0));
 		floors.add(new Floor(1500 ,1300, 0));
+		trees.add(new Tree(750, 750, 0));
 	}
 	
 	public ArrayList<Brick> getBricks(){
