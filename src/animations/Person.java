@@ -228,8 +228,9 @@ public class Person extends Sprite {
 
 	}
 
-	public Rectangle getBounds() { // changed
-		return new Rectangle(sX + 7, super.y - 225, 50, 250);
+	public Rectangle getBounds() { // wtf this getBounds method for the else statement
+		if(isAlive) {return new Rectangle(sX + 7, super.y - 225, 50, 250);}
+		else {return new Rectangle(sX, super.y + 230, 275, 105);}
 	}
 
 	public void setDx(int dx) {
@@ -343,7 +344,7 @@ public class Person extends Sprite {
 	public void mousePressed(MouseEvent e) { //person class
 
 		int mouse = 501; //501 = MouseEvent.MOUSE_PRESSED
-		if (mouse == MouseEvent.MOUSE_PRESSED) {
+		if (mouse == MouseEvent.MOUSE_PRESSED && isAlive) {
 			fire();
 
 			gunRaised = true;
