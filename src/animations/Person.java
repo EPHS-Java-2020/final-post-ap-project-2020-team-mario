@@ -27,8 +27,6 @@ public class Person extends Sprite {
 	private boolean gunRaised = false;
 	private boolean isWalking = false;
 	public boolean onSomething = false;
-	public boolean hitSomethingLeft = false;
-	public boolean hitSomethingRight = false;
 	public boolean isAlive = true;
 	private final int PERIOD = 66;
 	private int time = 0;
@@ -277,13 +275,8 @@ public class Person extends Sprite {
 					onSomething = true;
 				} else {
 					if (brick.x - 2 <= intersection.getX() && brick.x + 2 >= intersection.getX()) {
-						hitSomethingLeft = true;
-						hitSomethingRight = false;
 						super.x-=4;
 					} else {
-
-						hitSomethingRight = true;
-						hitSomethingLeft = false;
 						super.x+=4;
 					}
 				}
@@ -291,9 +284,6 @@ public class Person extends Sprite {
 //				if(count==1) {
 //					System.out.println("brickX="+brick.x+"   personX="+person.x);
 //				}
-			} else {
-				hitSomethingLeft = false;
-				hitSomethingRight = false;
 			}
 		}
 
@@ -328,18 +318,14 @@ public class Person extends Sprite {
 		}
 		
 		if (key == KeyEvent.VK_LEFT) {
-			if (!hitSomethingRight) {
-				dx = -4;
-				isWalking = true;
-			}
+			dx = -4;
+			isWalking = true;
 			
 		}
 
 		if (key == KeyEvent.VK_RIGHT) {
-			if (!hitSomethingLeft) {
-				dx = 4;
-				isWalking = true;
-			}
+			dx = 4;
+			isWalking = true;
 			
 		}
 
