@@ -2,6 +2,8 @@ package Application;
 
 
 import java.awt.EventQueue;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import animations.Board;
@@ -14,7 +16,6 @@ public class Application extends JFrame {
     }
 
     private void initUI() {
-
         add(new Board());
 
         setSize(2000, 1000);
@@ -22,11 +23,12 @@ public class Application extends JFrame {
         setTitle("Application");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        
     }  
+     
     
     
     public static void main(String[] args) {
-        System.out.println("yo whazzup");
         EventQueue.invokeLater(() -> {
             Application ex = new Application();
             ex.setVisible(true);
