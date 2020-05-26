@@ -279,12 +279,12 @@ public class Person extends Sprite {
 					if (brick.x - 2 <= intersection.getX() && brick.x + 2 >= intersection.getX()) {
 						hitSomethingLeft = true;
 						hitSomethingRight = false;
-						dx = 0;
+						super.x-=4;
 					} else {
 
 						hitSomethingRight = true;
 						hitSomethingLeft = false;
-						dx = 0;
+						super.x+=4;
 					}
 				}
 //				count++;
