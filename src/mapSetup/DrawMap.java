@@ -32,11 +32,11 @@ public class DrawMap {
 		}
 	}
 	public void addStuff() {
-		bricks.add(new Brick(1900, 400, 0));
-		bricks.add(new Brick(1800, 500, 0));
-		spikes.add(new Spike(1850, 500, 0));
-		floors.add(new Floor(500 ,600, 0));
-		floors.add(new Floor(1500 ,550, 0));
+		bricks.add(new Brick(1900, 1000, 0));
+		bricks.add(new Brick(1800, 1000, 0));
+		spikes.add(new Spike(1850, 1000, 0));
+		floors.add(new Floor(500 ,1300, 0));
+		floors.add(new Floor(1500 ,1300, 0));
 	}
 	
 	public ArrayList<Brick> getBricks(){

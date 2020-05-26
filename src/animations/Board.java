@@ -51,7 +51,7 @@ public class Board extends JPanel implements Runnable {
 		setBackground(Color.black);
 		setFocusable(true);
 		hasPainted = false;
-		person = new Person(500, 0);
+		person = new Person(500, 500);
 		map = new DrawMap();
 	}
 
@@ -72,7 +72,7 @@ public class Board extends JPanel implements Runnable {
 		super.paintComponent(g);
 		
 		Graphics2D g2d = (Graphics2D) g;
-		map.drawAll(g, person.x-person.getSX(), person.y);
+		map.drawAll(g, person.x, person.y);
 
 		if(person.visible) {drawCharacter(g);} //if-statement new (w/out the drawCharacter method)
 

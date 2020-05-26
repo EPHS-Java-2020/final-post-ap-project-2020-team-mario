@@ -21,9 +21,8 @@ public class Floor extends Obstacle{
 	public void drawImage(int x, int y, Graphics g) {
 		super.x=sX-x;
 		
-		//super.x+=x;
 		
-		super.y=sY; //super.y-=y
+		super.y=sY-y; 
 		drawImage(g);
 		
 	}

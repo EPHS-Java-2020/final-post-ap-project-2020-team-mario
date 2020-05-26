@@ -33,9 +33,7 @@ public abstract class Obstacle extends Sprite{
 	public void drawImage(int x, int y, Graphics g) {
 		super.x=sX-x;
 		
-		//super.x+=x;
-		
-		super.y=sY; //super.y-=y
+		super.y=sY-y;
 		drawImage(g);
 		
 	}
@@ -58,6 +56,7 @@ public abstract class Obstacle extends Sprite{
 	public Rectangle getBounds() {
 		return new Rectangle(super.x, super.y, image.getWidth(null), image.getHeight(null));
 	}
+
 	
 	
 	
