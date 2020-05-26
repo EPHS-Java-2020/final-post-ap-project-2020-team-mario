@@ -16,6 +16,7 @@ import mapSetup.Brick;
 import mapSetup.DrawMap;
 import mapSetup.Floor;
 import mapSetup.Spike;
+import java.awt.event.MouseEvent;
 
 public class Person extends Sprite {
 
@@ -310,12 +311,6 @@ public class Person extends Sprite {
 			}
 		}
 
-		if (key == KeyEvent.VK_K) {
-			fire();
-			gunRaised = true;
-		} else {
-			gunRaised = false;
-		}
 		
 		if (key == KeyEvent.VK_LEFT) {
 			dx = -4;
@@ -331,6 +326,18 @@ public class Person extends Sprite {
 
 	}
 
+	public void mousePressed(MouseEvent e) { //person class
+
+		int mouse = 501; //501 = MouseEvent.MOUSE_PRESSED
+		if (mouse == MouseEvent.MOUSE_PRESSED) {
+			fire();
+
+			gunRaised = true;
+		} else {
+			gunRaised = false;
+		}
+	}
+	
 	public void fire() {
 		bullets.add(new Bullet(sX + 197, super.y - 160, sX));
 	}
