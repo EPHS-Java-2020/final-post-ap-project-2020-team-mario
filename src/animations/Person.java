@@ -22,8 +22,8 @@ public class Person extends Sprite {
 
 	private double dx;
 	private double dy;
-	private int sX;
-	private int sY;
+	private final int sX;
+	private final int sY;
 	private List<Bullet> bullets;
 	private boolean gunRaised = false;
 	private boolean isWalking = false;

@@ -51,7 +51,7 @@ public class Board extends JPanel implements Runnable {
 		setBackground(Color.black);
 		setFocusable(true);
 		hasPainted = false;
-		person = new Person(500, 500);
+		person = new Person(500, 450);
 		map = new DrawMap();
 	}
 
