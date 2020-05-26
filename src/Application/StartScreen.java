@@ -1,8 +1,11 @@
 package Application;
 
+import java.awt.event.KeyEvent;
+
 import javax.swing.JPanel;
 
-public class StartScreen extends JPanel implements Runnable {
+public class StartScreen extends JPanel{
+	private boolean start = true;
 	
 	public StartScreen() {
 		initBoard();
@@ -12,10 +15,19 @@ public class StartScreen extends JPanel implements Runnable {
 		
 	}
 
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
+	public void waitFor() {
 		
+		while(start) {
+			
+		}
 	}
+	public void keyPressed(KeyEvent e) {
 
+		int key = e.getKeyCode();
+
+		if (key == KeyEvent.VK_SPACE) {
+			start = false;
+		}
+
+	}
 }

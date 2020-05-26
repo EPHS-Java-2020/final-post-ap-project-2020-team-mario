@@ -14,6 +14,10 @@ public class Application extends JFrame {
     }
 
     private void initUI() {
+    	
+    	StartScreen ss = new StartScreen();
+    	add(ss);
+    	remove(ss);
 
         add(new Board());
 
@@ -22,11 +26,10 @@ public class Application extends JFrame {
         setTitle("Application");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-    }  
-    
+    }    
     
     public static void main(String[] args) {
-        System.out.println("yo whazzup");
+        System.out.println("hello");
         EventQueue.invokeLater(() -> {
             Application ex = new Application();
             ex.setVisible(true);
