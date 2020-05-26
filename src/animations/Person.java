@@ -331,18 +331,16 @@ public class Person extends Sprite {
 			if (!hitSomethingRight) {
 				dx = -4;
 				isWalking = true;
-			} else {
-				dx = 0;
 			}
+			
 		}
 
 		if (key == KeyEvent.VK_RIGHT) {
 			if (!hitSomethingLeft) {
 				dx = 4;
 				isWalking = true;
-			} else {
-				dx = 0;
 			}
+			
 		}
 
 	}
