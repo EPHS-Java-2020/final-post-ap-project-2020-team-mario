@@ -50,9 +50,6 @@ public class DrawMap {
 		for(Bush bush: bushes) {
 			bush.drawImage(x, y, g2d);
 		}
-		for( : ) {
-			.drawImage(x, y, g2d);
-		}
 	}
 	public void addStuff() {
 		bricks.add(new Brick(1900, 400, 0));
