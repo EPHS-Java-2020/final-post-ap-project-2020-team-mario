@@ -14,9 +14,7 @@ public class DrawMap {
 		spikes = new ArrayList<Spike>();
 		floors = new ArrayList<Floor>();
 		
-		for(int i=0; i<1; i++) {
-			addStuff();
-		}
+		addStuff();
 	}
 	public void drawAll(Graphics g, int x, int y) {
 		Graphics2D g2d = (Graphics2D) g;
@@ -34,6 +32,7 @@ public class DrawMap {
 		}
 	}
 	public void addStuff() {
+		bricks.add(new Brick(1900, 400, 0));
 		bricks.add(new Brick(1800, 500, 0));
 		spikes.add(new Spike(1200, 550, 0));
 		floors.add(new Floor(500 ,600, 0));

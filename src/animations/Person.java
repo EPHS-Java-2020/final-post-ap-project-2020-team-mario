@@ -31,6 +31,7 @@ public class Person extends Sprite {
 	public boolean isAlive = true;
 	private final int PERIOD = 66;
 	private int time = 0;
+	private int count = 0;
 
 	public Person(int x, int y) {
 		super(x, y);
@@ -50,10 +51,21 @@ public class Person extends Sprite {
 		if (isAlive) {
 			super.x += dx;
 			super.y += dy;
+			if (onSomething&&dx!=0) {
+				isWalking = true;
+			} else {
+				isWalking = false;
+			}
+			if (count != 0) {
+				count--;
+			} else {
+				gunRaised = false;
+			}
 		} else {
 			super.x = super.x;
 			super.y = super.y;
 		}
+		
 
 	}
 
@@ -254,6 +266,7 @@ public class Person extends Sprite {
 
 	public void land() {
 		dy = 0;
+		onSomething = true;
 	}
 
 	public void checkCollisions(DrawMap map) {// this method is new
@@ -281,10 +294,7 @@ public class Person extends Sprite {
 						super.x+=4;
 					}
 				}
-//				count++;
-//				if(count==1) {
-//					System.out.println("brickX="+brick.x+"   personX="+person.x);
-//				}
+				
 			}
 		}
 
@@ -309,18 +319,17 @@ public class Person extends Sprite {
 			if (onSomething) {
 				dy = -8;
 			}
+			onSomething = false;
 		}
 
 		
 		if (key == KeyEvent.VK_LEFT) {
 			dx = -4;
-			isWalking = true;
 			
 		}
 
 		if (key == KeyEvent.VK_RIGHT) {
 			dx = 4;
-			isWalking = true;
 			
 		}
 
@@ -333,9 +342,9 @@ public class Person extends Sprite {
 			fire();
 
 			gunRaised = true;
-		} else {
-			gunRaised = false;
-		}
+			count = 30;
+		} 
+		
 	}
 	
 	public void fire() {
@@ -350,7 +359,6 @@ public class Person extends Sprite {
 	public void keyReleased(KeyEvent e) {
 
 		int key = e.getKeyCode();
-		isWalking = false;
 
 		if (key == KeyEvent.VK_LEFT) {
 			dx = 0;
