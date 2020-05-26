@@ -38,7 +38,6 @@ public class DrawMap {
 	}
 	public void addStuff() {
 		bricks.add(new Brick(1950, 1200, 0));
-		bricks.add(new Brick(1000, 1200, 0));
 		bricks.add(new Brick(1950, 1240, 0));
 		bricks.add(new Brick(1800, 1200, 0));
 		bricks.add(new Brick(1800, 1240, 0));
