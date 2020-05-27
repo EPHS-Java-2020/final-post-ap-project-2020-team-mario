@@ -321,7 +321,12 @@ public class Person extends Sprite {
 				Rectangle2D intersection = getBounds().createIntersection(brick.getBounds());
 
 				if (intersection.getHeight() < intersection.getWidth()) {
-					onSomething = true;
+					if ((brick.y - 2 <= intersection.getY() && brick.y + 2 >= intersection.getY())) {
+						onSomething = true;
+					} else {
+						super.y+=Math.abs(dy);
+					}
+					
 				} else {
 					if (brick.x - 2 <= intersection.getX() && brick.x + 2 >= intersection.getX()) {
 						if(!hitLeft) {

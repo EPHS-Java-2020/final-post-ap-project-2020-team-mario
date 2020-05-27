@@ -10,13 +10,16 @@ import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 
-public class Bullet extends Sprite {
+import mapSetup.Obstacle;
+
+public class Bullet extends Sprite{
 
 	private final int BOARD_WIDTH = 1000;
 	private final int BULLET_SPEED = 7;
 	private boolean facingRight;
 	private int length;
 	public AffineTransform tx;
+	
 
 	public Bullet(int x, int y, int charP, boolean facingRight, AffineTransform tx) {
 		super(x, y);
@@ -36,6 +39,7 @@ public class Bullet extends Sprite {
 			visible = false;
 		}
 	}
+	
 
 	@Override
 	public void drawImage(Graphics g) {
