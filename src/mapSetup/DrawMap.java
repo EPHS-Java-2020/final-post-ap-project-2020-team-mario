@@ -58,12 +58,12 @@ public class DrawMap {
 		}
 	}
 	public void addStuff() {
-		bricks.add(new Brick(1900, 1400, 0));
-		bricks.add(new Brick(1800, 1500, 0));
-		spikes.add(new Spike(1850, 1500, 0));
-		floors.add(new Floor(500 ,1600, 0));
-		floors.add(new Floor(1500 ,1550, 0));
-		enemies.add(new Enemy(1000, 1360, 2));
+		floors.add(new Floor(500 ,1100, 0));
+		bricks.add(new Brick(1500, 1040, 0));
+		bricks.add(new Brick(1580, 980, 0));
+		bricks.add(new Brick(1660, 920, 0));
+		floors.add(new Floor(1500 ,1100, 0));
+		enemies.add(new Enemy(1500, 850, 2));
 	}
 	
 	public ArrayList<Brick> getBricks(){
