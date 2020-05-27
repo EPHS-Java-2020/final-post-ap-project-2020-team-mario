@@ -7,9 +7,13 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.geom.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Enemy extends Obstacle{
-	
+import animations.Bullet;
+
+public class Enemy extends Obstacle {
+
 	private int time = 0;
 	private int timeToWalk = 0;
 	private final int PERIOD = 66;
@@ -17,148 +21,169 @@ public class Enemy extends Obstacle{
 	private boolean forward = true;
 	public int pX;
 	public int pY;
-	
+	public ArrayList<Bullet> bullets;
+
 	public Enemy(int x, int y, int speed) {
-		super(x,y,speed);
+		super(x, y, speed);
+		bullets = new ArrayList<Bullet>();
 	}
-	
+
 	@Override
 	public void drawImage(int x, int y, Graphics g) {
-		super.x=sX-x;
-		
-		super.y=sY-y;
+		super.x = sX - x;
+
+		super.y = sY - y;
 		pX = x;
 		pY = y;
 		drawImage(g);
-		
+
 	}
-	
+
 	@Override
 	public void drawImage(Graphics g) {
-		
+
 		if (forward) {
-			sX+=super.speed;
+			sX += super.speed;
 		} else {
-			sX-=super.speed;
+			sX -= super.speed;
 		}
-	
-	      Graphics2D g2d = (Graphics2D) g;
 
-			  RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		Graphics2D g2d = (Graphics2D) g;
 
-			  rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-			  g2d.setRenderingHints(rh);
-	      Rectangle2D hat = new Rectangle2D.Double(x,y,75,10);
-	      Rectangle2D topHat = new Rectangle2D.Double(x,y-10,50,10);
-	      g2d.setColor(new Color(0, 6, 94));
-	      g2d.fill(hat);
-	      g2d.fill(topHat);
+		rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 
-	      Rectangle2D head = new Rectangle2D.Double(x,y+10,50,50);
-	      g2d.setColor(new Color(255, 210, 143));
-	      g2d.fill(head);
+		g2d.setRenderingHints(rh);
+		Rectangle2D hat = new Rectangle2D.Double(x, y, 75, 10);
+		Rectangle2D topHat = new Rectangle2D.Double(x, y - 10, 50, 10);
+		g2d.setColor(new Color(0, 6, 94));
+		g2d.fill(hat);
+		g2d.fill(topHat);
 
-	      //glasses
-	      Ellipse2D rightLens = new Ellipse2D.Double(x+35,y+15,25,20);
-	      g2d.setColor(new Color(0, 0, 0));
-	      g2d.fill(rightLens);
-	      Rectangle2D noseBridge = new Rectangle2D.Double(x+15,y+20,30,10);
-	      g2d.setColor(new Color(0, 0, 0));
-	      g2d.fill(noseBridge);
-	      Ellipse2D leftLens = new Ellipse2D.Double(x,y+15,25,20);
-	      g2d.setColor(new Color(0, 0, 0));
-	      g2d.fill(leftLens);
+		Rectangle2D head = new Rectangle2D.Double(x, y + 10, 50, 50);
+		g2d.setColor(new Color(255, 210, 143));
+		g2d.fill(head);
 
-	      //mouth
-	      Ellipse2D mouth = new Ellipse2D.Double(x+5, y+40,40,20);
-	      g2d.setColor(new Color(128, 78, 68));
-	      g2d.fill(mouth);
-	      Ellipse2D mouthBelow = new Ellipse2D.Double(x+5, y+43,45,20);
-	      g2d.setColor(new Color(255, 210, 143));
-	      g2d.fill(mouthBelow);
-	      
-	      Rectangle2D body = new Rectangle2D.Double(x,y+60,50,85);
-	      g2d.setColor(new Color(10, 16, 94));
-	      g2d.fill(body);
-	      int temp = 0;
-	      g2d.setColor(new Color(255, 255, 255));
-	      for (temp = 0; temp < 80; temp += 20) {
-	        Ellipse2D button = new Ellipse2D.Double(x+25,y+68 + temp, 5,5);
-	        g2d.fill(button);
-	      }
-	  
-	      Rectangle2D leftArm = new Rectangle2D.Double(x-15,y+60,17,60);
-	      Rectangle2D rightArm = new Rectangle2D.Double(x+53, y+ 60, 17, 60);
-	      g2d.setColor(new Color(10, 16, 94));
-	      Line2D leftLine = new Line2D.Double(x-3,y+62,x-3,y+80);
-	      Line2D rightLine = new Line2D.Double(x+50,y+62,x+50,y+80);
-	      AffineTransform tx = AffineTransform.getRotateInstance(-1.5*(Math.atan((double)(x-8 - (pX+33))/(double)(y+65 - (pY-205)))),x-8,y+65);
-	      Shape newShape = tx.createTransformedShape(leftArm);
+		// glasses
+		Ellipse2D rightLens = new Ellipse2D.Double(x + 35, y + 15, 25, 20);
+		g2d.setColor(new Color(0, 0, 0));
+		g2d.fill(rightLens);
+		Rectangle2D noseBridge = new Rectangle2D.Double(x + 15, y + 20, 30, 10);
+		g2d.setColor(new Color(0, 0, 0));
+		g2d.fill(noseBridge);
+		Ellipse2D leftLens = new Ellipse2D.Double(x, y + 15, 25, 20);
+		g2d.setColor(new Color(0, 0, 0));
+		g2d.fill(leftLens);
 
-	      g2d.fill(newShape);
-	      //g2d.fill(leftArm);
-	      g2d.fill(rightArm);
-	      g2d.setStroke(new BasicStroke(5));
-	      //g2d.draw(leftLine);
-	      g2d.draw(rightLine);
+		// mouth
+		Ellipse2D mouth = new Ellipse2D.Double(x + 5, y + 40, 40, 20);
+		g2d.setColor(new Color(128, 78, 68));
+		g2d.fill(mouth);
+		Ellipse2D mouthBelow = new Ellipse2D.Double(x + 5, y + 43, 45, 20);
+		g2d.setColor(new Color(255, 210, 143));
+		g2d.fill(mouthBelow);
 
-	      Rectangle2D leftHand = new Rectangle2D.Double(x-18,y+120,15,20);
-	      Rectangle2D rightHand = new Rectangle2D.Double(x+53,y+120,15,20);
-	      g2d.setColor(new Color(255, 210, 143));
-	      Shape newShape2 = tx.createTransformedShape(leftHand);
-	      g2d.fill(newShape2);
-	      g2d.fill(rightHand);
-	      
-	      
-	      if (time <= 22) {
-	    	  Rectangle2D leftLeg = new Rectangle2D.Double(x,y+145,17,70);
-		      Rectangle2D rightLeg = new Rectangle2D.Double(x+33,y+145,17,80);
-		      g2d.setColor(new Color(77, 68, 64));
-		      g2d.fill(leftLeg);
-		      g2d.fill(rightLeg);
+		Rectangle2D body = new Rectangle2D.Double(x, y + 60, 50, 85);
+		g2d.setColor(new Color(10, 16, 94));
+		g2d.fill(body);
+		int temp = 0;
+		g2d.setColor(new Color(255, 255, 255));
+		for (temp = 0; temp < 80; temp += 20) {
+			Ellipse2D button = new Ellipse2D.Double(x + 25, y + 68 + temp, 5, 5);
+			g2d.fill(button);
+		}
 
-		      Rectangle2D leftShoe = new Rectangle2D.Double(x, y+215, 25, 15);
-		      Rectangle2D rightShoe = new Rectangle2D.Double(x + 33, y+225, 25, 15);
-		      g2d.setColor(Color.black);
-		      g2d.fill(leftShoe);
-		      g2d.fill(rightShoe);
-	      } else if (time <= 44) {
-	    	  Rectangle2D leftLeg = new Rectangle2D.Double(x,y+145,17,80);
-		      Rectangle2D rightLeg = new Rectangle2D.Double(x+33,y+145,17,80);
-		      g2d.setColor(new Color(77, 68, 64));
-		      g2d.fill(leftLeg);
-		      g2d.fill(rightLeg);
+		Rectangle2D leftArm = new Rectangle2D.Double(x - 15, y + 60, 17, 60);
+		Rectangle2D rightArm = new Rectangle2D.Double(x + 53, y + 60, 17, 60);
+		g2d.setColor(new Color(10, 16, 94));
+		Line2D rightLine = new Line2D.Double(x + 50, y + 62, x + 50, y + 80);
+		AffineTransform tx = AffineTransform.getRotateInstance(
+				-1.5 * (Math.atan((double) (x - 8 - (pX + 33)) / (double) (y + 65 - (pY - 205)))), x - 8, y + 65);
+		Shape newShape = tx.createTransformedShape(leftArm);
 
-		      Rectangle2D leftShoe = new Rectangle2D.Double(x, y+225, 25, 15);
-		      Rectangle2D rightShoe = new Rectangle2D.Double(x + 33, y+225, 25, 15);
-		      g2d.setColor(Color.black);
-		      g2d.fill(leftShoe);
-		      g2d.fill(rightShoe);
-	      } else {
-	    	  Rectangle2D leftLeg = new Rectangle2D.Double(x,y+145,17,80);
-		      Rectangle2D rightLeg = new Rectangle2D.Double(x+33,y+145,17,70);
-		      g2d.setColor(new Color(77, 68, 64));
-		      g2d.fill(leftLeg);
-		      g2d.fill(rightLeg);
+		g2d.fill(newShape);
+		// g2d.fill(leftArm);
+		g2d.fill(rightArm);
+		g2d.setStroke(new BasicStroke(5));
+		// g2d.draw(leftLine);
+		g2d.draw(rightLine);
 
-		      Rectangle2D leftShoe = new Rectangle2D.Double(x, y+225, 25, 15);
-		      Rectangle2D rightShoe = new Rectangle2D.Double(x + 33, y+215, 25, 15);
-		      g2d.setColor(Color.black);
-		      g2d.fill(leftShoe);
-		      g2d.fill(rightShoe);
-	      }
-	      time++;
-	      if (time == PERIOD) {
-	    	  time = 0;
-	      }
-	      timeToWalk++;
-	      if (timeToWalk == walkingTime) {
-	    	  forward = !forward;
-	    	  timeToWalk = 0;
-	      }
-	     
-	      
-	    }
+		Rectangle2D leftHand = new Rectangle2D.Double(x - 18, y + 120, 15, 20);
+		Rectangle2D rightHand = new Rectangle2D.Double(x + 53, y + 120, 15, 20);
+		g2d.setColor(new Color(255, 210, 143));
+		Shape newShape2 = tx.createTransformedShape(leftHand);
+		g2d.fill(newShape2);
+		g2d.fill(rightHand);
+
+		if (time <= 22) {
+			Rectangle2D leftLeg = new Rectangle2D.Double(x, y + 145, 17, 70);
+			Rectangle2D rightLeg = new Rectangle2D.Double(x + 33, y + 145, 17, 80);
+			g2d.setColor(new Color(77, 68, 64));
+			g2d.fill(leftLeg);
+			g2d.fill(rightLeg);
+
+			Rectangle2D leftShoe = new Rectangle2D.Double(x, y + 215, 25, 15);
+			Rectangle2D rightShoe = new Rectangle2D.Double(x + 33, y + 225, 25, 15);
+			g2d.setColor(Color.black);
+			g2d.fill(leftShoe);
+			g2d.fill(rightShoe);
+		} else if (time <= 44) {
+			Rectangle2D leftLeg = new Rectangle2D.Double(x, y + 145, 17, 80);
+			Rectangle2D rightLeg = new Rectangle2D.Double(x + 33, y + 145, 17, 80);
+			g2d.setColor(new Color(77, 68, 64));
+			g2d.fill(leftLeg);
+			g2d.fill(rightLeg);
+
+			Rectangle2D leftShoe = new Rectangle2D.Double(x, y + 225, 25, 15);
+			Rectangle2D rightShoe = new Rectangle2D.Double(x + 33, y + 225, 25, 15);
+			g2d.setColor(Color.black);
+			g2d.fill(leftShoe);
+			g2d.fill(rightShoe);
+		} else {
+			Rectangle2D leftLeg = new Rectangle2D.Double(x, y + 145, 17, 80);
+			Rectangle2D rightLeg = new Rectangle2D.Double(x + 33, y + 145, 17, 70);
+			g2d.setColor(new Color(77, 68, 64));
+			g2d.fill(leftLeg);
+			g2d.fill(rightLeg);
+
+			Rectangle2D leftShoe = new Rectangle2D.Double(x, y + 225, 25, 15);
+			Rectangle2D rightShoe = new Rectangle2D.Double(x + 33, y + 215, 25, 15);
+			g2d.setColor(Color.black);
+			g2d.fill(leftShoe);
+			g2d.fill(rightShoe);
+		}
+		time++;
+		if (time == PERIOD) {
+			time = 0;
+		}
+		timeToWalk++;
+		if (timeToWalk == walkingTime) {
+			forward = !forward;
+			timeToWalk = 0;
+		} else if (timeToWalk == walkingTime / 2) {
+			AffineTransform tx1 = AffineTransform.getRotateInstance(
+					-1.5 * (Math.atan((double) (x - 8 - (pX + 33)) / (double) (y + 65 - (pY - 205)))-Math.PI),
+					x - 8, y + 65);
+			Bullet bullet = new Bullet(x - 8, y + 65, 500, false, tx1);
+			bullets.add(bullet);
+
+		}
+		for (int i = 0; i < bullets.size(); i++) {
+
+			Bullet bullet1 = bullets.get(i);
+
+			if (bullet1.isVisible()) {
+
+				bullet1.move();
+				bullet1.drawImage(g);
+			} else {
+
+				bullets.remove(i);
+			}
+
+		}
+
+	}
 
 }

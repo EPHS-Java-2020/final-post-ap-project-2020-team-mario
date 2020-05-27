@@ -361,7 +361,7 @@ public class Person extends Sprite {
 		if (key == KeyEvent.VK_SPACE) {
 			if (onSomething) {
 				dy = -8;
-				jumpCount = 2;
+				jumpCount = 4;
 			}
 			onSomething = false;
 		}
@@ -393,9 +393,9 @@ public class Person extends Sprite {
 	
 	public void fire() {
 		if(facingRight) {
-			bullets.add(new Bullet(sX + 197, sY - 160, sX, true));
+			bullets.add(new Bullet(sX + 197, sY - 160, sX, true, null));
 		}else {
-			bullets.add(new Bullet(sX - 168, sY - 160, sX, false));
+			bullets.add(new Bullet(sX - 168, sY - 160, sX, false, null));
 		}
 	}
 
