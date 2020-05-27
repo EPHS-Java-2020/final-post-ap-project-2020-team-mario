@@ -27,9 +27,7 @@ public abstract class Obstacle extends Sprite{
 		loadImage();
 	}
 	
-	public void loadImage() {
-		
-	}
+	public void loadImage() {}
 	
 	public void drawImage(int x, int y, Graphics g) {
 		super.x=sX-x;

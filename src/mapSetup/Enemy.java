@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.Shape;
 import java.awt.geom.*;
 
 public class Enemy extends Obstacle{
@@ -14,9 +15,22 @@ public class Enemy extends Obstacle{
 	private final int PERIOD = 66;
 	private int walkingTime = 200;
 	private boolean forward = true;
+	public int pX;
+	public int pY;
 	
 	public Enemy(int x, int y, int speed) {
 		super(x,y,speed);
+	}
+	
+	@Override
+	public void drawImage(int x, int y, Graphics g) {
+		super.x=sX-x;
+		
+		super.y=sY-y;
+		pX = x;
+		pY = y;
+		drawImage(g);
+		
 	}
 	
 	@Override
@@ -74,22 +88,26 @@ public class Enemy extends Obstacle{
 	        g2d.fill(button);
 	      }
 	  
-	      Rectangle2D leftArm = new Rectangle2D.Double(x-20,y+60,17,60);
+	      Rectangle2D leftArm = new Rectangle2D.Double(x-15,y+60,17,60);
 	      Rectangle2D rightArm = new Rectangle2D.Double(x+53, y+ 60, 17, 60);
 	      g2d.setColor(new Color(10, 16, 94));
 	      Line2D leftLine = new Line2D.Double(x-3,y+62,x-3,y+80);
 	      Line2D rightLine = new Line2D.Double(x+50,y+62,x+50,y+80);
-	      g2d.fill(leftArm);
+	      AffineTransform tx = AffineTransform.getRotateInstance(-1.5*(Math.atan((double)(x-8 - (pX+33))/(double)(y+65 - (pY-205)))),x-8,y+65);
+	      Shape newShape = tx.createTransformedShape(leftArm);
+
+	      g2d.fill(newShape);
+	      //g2d.fill(leftArm);
 	      g2d.fill(rightArm);
 	      g2d.setStroke(new BasicStroke(5));
-	      g2d.draw(leftLine);
+	      //g2d.draw(leftLine);
 	      g2d.draw(rightLine);
 
 	      Rectangle2D leftHand = new Rectangle2D.Double(x-18,y+120,15,20);
 	      Rectangle2D rightHand = new Rectangle2D.Double(x+53,y+120,15,20);
 	      g2d.setColor(new Color(255, 210, 143));
-	      
-	      g2d.fill(leftHand);
+	      Shape newShape2 = tx.createTransformedShape(leftHand);
+	      g2d.fill(newShape2);
 	      g2d.fill(rightHand);
 	      
 	      

@@ -17,7 +17,6 @@ public class Brick extends Obstacle{
 	public Brick(int x, int y, int speed) {
 		super(x,y, speed);
 	}
-	
 	@Override
 	public void loadImage() {
 		ii = new ImageIcon("src/Drawings/Fancy Brick.png");
