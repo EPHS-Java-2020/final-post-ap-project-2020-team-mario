@@ -56,6 +56,21 @@ public class DrawMap {
 		for (Enemy enemy: enemies) {
 			enemy.drawImage(x,y,g2d);
 		}
+		for(Cloud cloud: cloudes) {
+			cloud.drawImage(x,y,g2d);
+		}
+		for(Moon moon: moones) {
+			moon.drawImage(x,y,g2d);
+		}
+		for(Rock rock: rocks) {
+			rock.drawImage(x,y,g2d);
+		}
+		for(Sun sun:suns) {
+			sun.drawImage(x,y,g2d);
+		}
+		for(Tree tree:trees) {
+			tree.drawImage(x,y,g2d);
+		}
 	}
 	public void addStuff() {
 		floors.add(new Floor(500 ,1100, 0));
@@ -64,6 +79,8 @@ public class DrawMap {
 		bricks.add(new Brick(1660, 920, 0));
 		floors.add(new Floor(1500 ,1100, 0));
 		enemies.add(new Enemy(1500, 850, 2));
+		trees.add(new Tree(800,550,0));
+		suns.add(new Sun(200,400,0));
 	}
 	
 	public ArrayList<Brick> getBricks(){
