@@ -29,6 +29,7 @@ public class Person extends Sprite {
 	private boolean isWalking = false;
 	public boolean onSomething = false;
 	public boolean isAlive = true;
+	private boolean facingRight=true;
 	private final int PERIOD = 66;
 	private int time = 0;
 	private int count = 0;
@@ -166,10 +167,6 @@ public class Person extends Sprite {
 		g2d.setColor(new Color(77, 73, 73));
 		g2d.fill(body);
 
-		Rectangle2D leftArm = new Rectangle2D.Double(sX - 13, sY - 165, 20, 80);
-		g2d.setColor(new Color(255, 210, 143));
-		g2d.fill(leftArm);
-
 		Rectangle2D leftLeg = null;
 		Rectangle2D leftShoe = null;
 		Rectangle2D rightLeg = null;
@@ -221,18 +218,47 @@ public class Person extends Sprite {
 		super.height = 250;
 		if (gunRaised) {
 			super.width = 210; // changed
-			Rectangle2D rightArm = new Rectangle2D.Double(sX + 57, sY - 165, 80, 20);
-			g2d.setColor(new Color(255, 210, 143));
-			g2d.fill(rightArm);
+			if(facingRight) {
+				Rectangle2D leftArm = new Rectangle2D.Double(sX - 13, sY - 165, 20, 80);
+				g2d.setColor(new Color(255, 210, 143));
+				g2d.fill(leftArm);
+				
+				Rectangle2D rightArm = new Rectangle2D.Double(sX + 57, sY - 165, 80, 20);
+				g2d.setColor(new Color(255, 210, 143));
+				g2d.fill(rightArm);
 
-			Rectangle2D gunHandle = new Rectangle2D.Double(sX + 137, sY - 165, 20, 30);
-			Rectangle2D gunBarrel = new Rectangle2D.Double(sX + 157, sY - 165, 40, 15);
-			g2d.setColor(new Color(150, 150, 150));
-			g2d.fill(gunHandle);
-			g2d.fill(gunBarrel);
+				Rectangle2D gunHandle = new Rectangle2D.Double(sX + 137, sY - 165, 20, 30);
+				Rectangle2D gunBarrel = new Rectangle2D.Double(sX + 157, sY - 165, 40, 15);
+				g2d.setColor(new Color(150, 150, 150));
+				g2d.fill(gunHandle);
+				g2d.fill(gunBarrel);
+			}else {
+				Rectangle2D rightArm = new Rectangle2D.Double(sX + 57, sY - 165, 20, 80);
+				g2d.setColor(new Color(255, 210, 143));
+				g2d.fill(rightArm);
+				
+				
+				
+				Rectangle2D leftArm = new Rectangle2D.Double(sX - 73, sY - 165, 80, 20);
+				g2d.setColor(new Color(255, 210, 143));
+				g2d.fill(leftArm);
+
+				Rectangle2D gunHandle = new Rectangle2D.Double(sX - 93, sY - 165, 20, 30);
+				Rectangle2D gunBarrel = new Rectangle2D.Double(sX -133, sY - 165, 40, 15);
+				g2d.setColor(new Color(150, 150, 150));
+				g2d.fill(gunHandle);
+				g2d.fill(gunBarrel);
+			}
+			
+			
+			
 		} else {
 			super.width = 90; // changed
 
+			Rectangle2D leftArm = new Rectangle2D.Double(sX - 13, sY - 165, 20, 80);
+			g2d.setColor(new Color(255, 210, 143));
+			g2d.fill(leftArm);
+			
 			Rectangle2D rightArm = new Rectangle2D.Double(sX + 57, sY - 165, 20, 80);
 			g2d.setColor(new Color(255, 210, 143));
 			g2d.fill(rightArm);
@@ -322,7 +348,6 @@ public class Person extends Sprite {
 
 			if (spikeBounds.intersects(personBounds)) {
 				isAlive = false;
-				System.out.println("you died, YOLO!");
 			}
 		}
 
@@ -344,12 +369,12 @@ public class Person extends Sprite {
 		
 		if (key == KeyEvent.VK_LEFT) {
 			dx = -4;
-			
+			facingRight=false;
 		}
 
 		if (key == KeyEvent.VK_RIGHT) {
 			dx = 4;
-			
+			facingRight=true;
 		}
 
 	}
@@ -367,7 +392,11 @@ public class Person extends Sprite {
 	}
 	
 	public void fire() {
-		bullets.add(new Bullet(sX + 197, sY - 160, sX));
+		if(facingRight) {
+			bullets.add(new Bullet(sX + 197, sY - 160, sX, true));
+		}else {
+			bullets.add(new Bullet(sX - 168, sY - 160, sX, false));
+		}
 	}
 
 	public int getSX() {
