@@ -15,6 +15,7 @@ public class DrawMap {
 	private ArrayList<Rock> rocks;
 	private ArrayList<Sun> suns;
 	private ArrayList<Tree> trees;
+	private ArrayList<Enemy> enemies;
 	
 	public DrawMap() {
 		bricks = new ArrayList<Brick>();
@@ -27,6 +28,7 @@ public class DrawMap {
 		rocks = new ArrayList<Rock>();
 		suns = new ArrayList<Sun>();
 		trees = new ArrayList<Tree>();
+		enemies = new ArrayList<Enemy>();
 		
 		addStuff();
 	}
@@ -50,6 +52,10 @@ public class DrawMap {
 		for(Bush bush: bushes) {
 			bush.drawImage(x, y, g2d);
 		}
+		
+		for (Enemy enemy: enemies) {
+			enemy.drawImage(x,y,g2d);
+		}
 	}
 	public void addStuff() {
 		bricks.add(new Brick(1900, 1400, 0));
@@ -57,8 +63,7 @@ public class DrawMap {
 		spikes.add(new Spike(1850, 1500, 0));
 		floors.add(new Floor(500 ,1600, 0));
 		floors.add(new Floor(1500 ,1550, 0));
-		boulders.add(new boulder(800,1400,0));
-		bushes.add(new Bush(1000,1300,0));
+		enemies.add(new Enemy(1000, 1360, 2));
 	}
 	
 	public ArrayList<Brick> getBricks(){

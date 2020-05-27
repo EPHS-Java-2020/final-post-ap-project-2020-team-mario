@@ -18,11 +18,12 @@ public abstract class Obstacle extends Sprite{
 	public Image image;
 	public int sX;
 	public int sY;
-	
+	public int speed;
 	public Obstacle(int x, int y, int speed) {
 		super(x,y);
 		sX=x;
 		sY=y;
+		this.speed = speed;
 		loadImage();
 	}
 	
