@@ -82,6 +82,16 @@ public class DrawMap {
 		enemies.add(new Enemy(1500, 850, 2));
 		trees.add(new Tree(800,550,0));
 		suns.add(new Sun(200,400,0));
+		spikes.add(new Spike(1575,1050,0));
+		floors.add(new Floor(2500 ,1100, 0));
+		bricks.add(new Brick(2800, 980, 0));
+		bricks.add(new Brick(2800, 1040, 0));
+		bricks.add(new Brick(3100, 1040, 0));
+		bricks.add(new Brick(3100, 980, 0));
+		bricks.add(new Brick(3100, 920, 0));
+		floors.add(new Floor(3500 ,1100, 0));
+		floors.add(new Floor(3500 ,900, 0));
+
 	}
 	
 	public ArrayList<Brick> getBricks(){
