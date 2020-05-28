@@ -12,7 +12,7 @@ import java.awt.geom.Rectangle2D;
 
 import mapSetup.Obstacle;
 
-public class Bullet extends Sprite{
+public class Bullet extends Obstacle{
 
 	private final int BOARD_WIDTH = 1000;
 	private final int BULLET_SPEED = 7;
@@ -22,7 +22,7 @@ public class Bullet extends Sprite{
 	
 
 	public Bullet(int x, int y, int charP, boolean facingRight, AffineTransform tx) {
-		super(x, y);
+		super(x + 500, y + 500, 0);
 		length = charP;
 		this.facingRight = facingRight;
 		this.tx = tx;
