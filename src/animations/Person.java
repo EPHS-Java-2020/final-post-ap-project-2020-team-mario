@@ -105,34 +105,32 @@ public class Person extends Sprite {
 
 		g2d.setRenderingHints(rh);
 
-		super.y = 450;
-
-		Rectangle2D blood = new Rectangle2D.Double(sX, sY + 235, 275, 100);// super.y+10
+		Rectangle2D blood = new Rectangle2D.Double(sX, sY, 275, 100);// super.y+10
 		g2d.setColor(Color.red);
 		g2d.fill(blood);
 
-		Rectangle2D shoe = new Rectangle2D.Double(sX, sY + 235, 15, 30);// super.y+10
+		Rectangle2D shoe = new Rectangle2D.Double(sX, sY, 15, 30);// super.y+10
 		g2d.setColor(new Color(100, 100, 100));
 		g2d.fill(shoe);
-		Rectangle2D leg = new Rectangle2D.Double(sX + 15, sY + 235, 90, 23);// super.y-80
+		Rectangle2D leg = new Rectangle2D.Double(sX + 15, sY, 90, 23);// super.y-80
 		g2d.setColor(new Color(32, 51, 97));
 		g2d.fill(leg);
 
-		Rectangle2D body = new Rectangle2D.Double(sX + 105, sY + 235, 85, 28);// super.y-165
+		Rectangle2D body = new Rectangle2D.Double(sX + 105, sY, 85, 28);// super.y-165
 		g2d.setColor(new Color(77, 73, 73));
 		g2d.fill(body);
-		Rectangle2D arm = new Rectangle2D.Double(sX + 110, sY + 239, 80, 20);// super.y-165
+		Rectangle2D arm = new Rectangle2D.Double(sX + 110, sY + 4, 80, 20);// super.y-165
 		g2d.setColor(new Color(255, 210, 143));
 		g2d.fill(arm);
 
-		Rectangle2D head = new Rectangle2D.Double(sX + 190, sY + 230, 50, 50);// super.y-215
+		Rectangle2D head = new Rectangle2D.Double(sX + 190, sY - 5, 50, 50);// super.y-215
 		g2d.setStroke(new BasicStroke(3));
 		g2d.setColor(new Color(255, 210, 143));
 		g2d.fill(head);
-		Rectangle2D eye = new Rectangle2D.Double(sX + 225, sY + 260, 10, 10);// super.y-205
+		Rectangle2D eye = new Rectangle2D.Double(sX + 225, sY + 25, 10, 10);// super.y-205
 		g2d.setColor(new Color(49, 54, 53));
 		g2d.fill(eye);
-		Rectangle2D hair = new Rectangle2D.Double(sX + 240, sY + 230, 10, 50);// super.y-225
+		Rectangle2D hair = new Rectangle2D.Double(sX + 240, sY - 5, 10, 50);// super.y-225
 		g2d.setColor(new Color(87, 49, 26));
 		g2d.fill(hair);
 	}

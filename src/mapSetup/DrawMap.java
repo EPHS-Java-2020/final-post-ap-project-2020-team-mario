@@ -91,7 +91,7 @@ public class DrawMap {
 		bricks.add(new Brick(1650, 1040, 0));
 		bricks.add(new Brick(1650, 980, 0));
 		floors.add(new Floor(1500 ,1100, 0));
-		enemies.add(new Enemy(2000, 860, 2, 200));
+		enemies.add(new Enemy(2000, 860, 2, 400));
 		trees.add(new Tree(800,550,0));
 		suns.add(new Sun(200,400,0));
 		spikes.add(new Spike(1575,1050,0));
