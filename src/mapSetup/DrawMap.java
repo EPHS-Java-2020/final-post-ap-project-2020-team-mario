@@ -118,6 +118,16 @@ public class DrawMap {
 			floors.add(new Floor(3200,900,0, 4000));
 			floors.add(new Floor(3200,1000,0, 4000));
 			chickens.add(new Chicken(2500,1000,0, 3, 210));
+			
+
+			bricks.add(new Brick(2150,1040, 0));
+			bricks.add(new Brick(2150,975, 0));
+			bricks.add(new Brick(2430,1040, 0));
+			bricks.add(new Brick(2430,975, 0));
+			spikes.add(new Spike(2200,1050,0));
+			spikes.add(new Spike(2290,1050,0));
+			spikes.add(new Spike(2380,1050,0));
+			
 		}
 
 	}
