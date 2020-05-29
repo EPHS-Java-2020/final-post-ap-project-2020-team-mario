@@ -38,6 +38,8 @@ public class Chicken extends Obstacle{
 	}
 	
 	public void drawEgg(Graphics g) {
+		
+		y+=42;
 		Graphics2D g2d = (Graphics2D) g;
 
 		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -45,6 +47,8 @@ public class Chicken extends Obstacle{
 		rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 		
 		g2d.drawImage(image, x, y, null);
+		
+		y-=42;
 
 	}
 	
@@ -173,7 +177,11 @@ public class Chicken extends Obstacle{
 	
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle(x,y,66,100);
+		if (isEgg) {
+			return new Rectangle(x,y+42,40,56);
+		} else {
+			return new Rectangle(x,y,66,100);
+		}
 	}
 	
 	
