@@ -12,9 +12,12 @@ import javax.swing.ImageIcon;
 
 public class Floor extends Obstacle{
 	
+	private int length;
 	
-	public Floor(int x, int y, int speed) {
+	
+	public Floor(int x, int y, int speed, int length) {
 		super(x,y, speed);
+		this.length = length;
 	}
 	
 	@Override
@@ -38,7 +41,7 @@ public class Floor extends Obstacle{
 		
 		g2d.setRenderingHints(rh);
 		
-		Rectangle2D floor = new Rectangle2D.Double(super.x, super.y, 1000, 100);// super.y+10
+		Rectangle2D floor = new Rectangle2D.Double(super.x, super.y, length, 100);// super.y+10
         g2d.setColor(new Color(0, 75, 0));
         g2d.fill(floor);
 	}
@@ -48,7 +51,7 @@ public class Floor extends Obstacle{
 	}
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle(super.x, super.y, 1000, 100);
+		return new Rectangle(super.x, super.y, length, 100);
 	}
 
 	

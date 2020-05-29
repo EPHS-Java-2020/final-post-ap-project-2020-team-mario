@@ -85,17 +85,15 @@ public class DrawMap {
 		}
 	}
 	public void addStuff() {
-		floors.add(new Floor(500 ,1100, 0));
+		floors.add(new Floor(500 ,1100, 0, 4000));
 		bricks.add(new Brick(1500, 1040, 0));
 		bricks.add(new Brick(1500, 980, 0));
 		bricks.add(new Brick(1650, 1040, 0));
 		bricks.add(new Brick(1650, 980, 0));
-		floors.add(new Floor(1500 ,1100, 0));
 		enemies.add(new Enemy(2000, 860, 2, 400));
 		trees.add(new Tree(800,550,0));
 		suns.add(new Sun(200,400,0));
 		spikes.add(new Spike(1575,1050,0));
-		floors.add(new Floor(2500 ,1100, 0));
 		bricks.add(new Brick(2800, 980, 0));
 		bricks.add(new Brick(2800, 1040, 0));
 		spikes.add(new Spike(2900, 1050,0));
@@ -103,10 +101,8 @@ public class DrawMap {
 		bricks.add(new Brick(3100, 980, 0));
 		bricks.add(new Brick(3100, 920, 0));
 		bricks.add(new Brick(3150, 1040, 0));
-		floors.add(new Floor(3500 ,1100, 0));
-		floors.add(new Floor(3475 ,900, 0));
-		floors.add(new Floor(3475 ,1000, 0));
-		floors.add(new Floor(2500 ,1100, 0));
+		floors.add(new Floor(3475 ,900, 0, 1000));
+		floors.add(new Floor(3475 ,1000, 0, 1000));
 		bricks.add(new Brick(2800, 980, 0));
 		bricks.add(new Brick(2800, 1040, 0));
 		spikes.add(new Spike(2900, 1050,0));
@@ -114,10 +110,10 @@ public class DrawMap {
 		bricks.add(new Brick(3100, 980, 0));
 		bricks.add(new Brick(3100, 920, 0));
 		bricks.add(new Brick(3150, 1040, 0));
-		floors.add(new Floor(3500 ,1100, 0));
-		floors.add(new Floor(3500 ,900, 0));
-		floors.add(new Floor(3475 ,900, 0));
-		floors.add(new Floor(3475 ,1000, 0));
+		floors.add(new Floor(3500 ,1100, 0, 1000));
+		floors.add(new Floor(3500 ,900, 0, 1000));
+		floors.add(new Floor(3475 ,900, 0, 1000));
+		floors.add(new Floor(3475 ,1000, 0, 1000));
 
 
 	}

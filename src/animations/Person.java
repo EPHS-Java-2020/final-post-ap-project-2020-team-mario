@@ -343,6 +343,7 @@ public class Person extends Sprite {
 		// System.out.println(person);
 		// System.out.println(bricks);
 		// int count=0;
+		onSomething = false;
 		for (Floor floor : floors) {
 			Rectangle brickBounds = floor.getBounds();
 
@@ -353,7 +354,6 @@ public class Person extends Sprite {
 					onSomething = true;
 					
 				} else {
-					onSomething = false;
 					if (floor.x - 2 <= intersection.getX() && floor.x + 2 >= intersection.getX()) {
 						if(!hitLeft) {
 							super.x-=4;
