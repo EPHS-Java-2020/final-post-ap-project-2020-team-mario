@@ -123,7 +123,6 @@ public class Board extends JPanel implements Runnable {
 			g.setColor(Color.white);
 			g.drawString("Return to Main Menu", 800, 100);
 			g2d.draw(new Rectangle(775, 65, 250, 50));
-			
 		}else {
 			starter.drawImage(g);
 		}
@@ -172,6 +171,10 @@ public class Board extends JPanel implements Runnable {
 					person.land();
 				} else {
 					person.fall();
+					if(person.needToRefresh) {
+						person.needToRefresh=false;
+						reInitBoard();
+					}
 				}
 			}
 			
