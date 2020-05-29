@@ -19,7 +19,7 @@ public class DrawMap {
 	private ArrayList<Sun> suns;
 	private ArrayList<Tree> trees;
 	private ArrayList<Enemy> enemies;
-	private ArrayList<Chicken> chickens;
+	public ArrayList<Chicken> chickens;
 	private List<List<CopBullet>> bullets;
 	public LevelManager levels;
 	
@@ -116,6 +116,10 @@ public class DrawMap {
 			chickens.add(new Chicken(1910,1000,0));
 		}
 
+	}
+	
+	public ArrayList<Chicken> getChickens() {
+		return chickens;
 	}
 	
 	public ArrayList<Brick> getBricks(){
