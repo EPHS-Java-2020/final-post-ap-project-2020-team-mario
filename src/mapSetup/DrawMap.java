@@ -98,11 +98,14 @@ public class DrawMap {
 		floors.add(new Floor(2500 ,1100, 0));
 		bricks.add(new Brick(2800, 980, 0));
 		bricks.add(new Brick(2800, 1040, 0));
+		spikes.add(new Spike(2900, 1050,0));
 		bricks.add(new Brick(3100, 1040, 0));
 		bricks.add(new Brick(3100, 980, 0));
 		bricks.add(new Brick(3100, 920, 0));
+		bricks.add(new Brick(3150, 1040, 0));
 		floors.add(new Floor(3500 ,1100, 0));
-		floors.add(new Floor(3500 ,900, 0));
+		floors.add(new Floor(3475 ,900, 0));
+		floors.add(new Floor(3475 ,1000, 0));
 
 	}
 	
