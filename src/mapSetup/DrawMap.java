@@ -19,6 +19,7 @@ public class DrawMap {
 	private ArrayList<Sun> suns;
 	private ArrayList<Tree> trees;
 	private ArrayList<Enemy> enemies;
+	private ArrayList<Chicken> chickens;
 	private List<List<CopBullet>> bullets;
 	public LevelManager levels;
 	
@@ -36,6 +37,7 @@ public class DrawMap {
 		trees = new ArrayList<Tree>();
 		enemies = new ArrayList<Enemy>();
 		bullets = new ArrayList<List<CopBullet>>();
+		chickens = new ArrayList<Chicken>();
 		addStuff();
 		
 	}
@@ -88,6 +90,9 @@ public class DrawMap {
 		for(Tree tree:trees) {
 			tree.drawImage(x,y,g2d);
 		}
+		for(Chicken chicken: chickens) {
+			chicken.drawImage(x,y,g2d);
+		}
 	}
 	public void addStuff() {
 		if (levels.level == 1) {
@@ -108,11 +113,7 @@ public class DrawMap {
 			spikes.add(new Spike(2200,1050,0));
 			spikes.add(new Spike(2290,1050,0));
 			spikes.add(new Spike(2380,1050,0));
-			
-
-
-
-
+			chickens.add(new Chicken(1950,1000,0));
 		}
 
 	}
