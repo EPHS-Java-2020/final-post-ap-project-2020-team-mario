@@ -2,18 +2,16 @@ package animations;
 
 
 import java.awt.BasicStroke;
+
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -26,6 +24,7 @@ import javax.swing.JPanel;
 import mapSetup.*;
 
 import animations.*;
+
 import java.awt.event.*;
 
 
@@ -37,7 +36,14 @@ public class Board extends JPanel implements Runnable {
 	private boolean hasPainted;
 	private Floor floor;
 	private DrawMap map;
+	private StartScreen starter;
 	
+	public static enum SCREEN{
+		START_SCREEN,
+		LEVEL1,
+		LEVEL2
+	};
+	public static SCREEN currentScreen = SCREEN.START_SCREEN;
 
 
 	public Board() {
@@ -52,18 +58,32 @@ public class Board extends JPanel implements Runnable {
 		setFocusable(true);
 		hasPainted = false;
 		person = new Person(500, 450);
+		starter=new StartScreen();
 		map = new DrawMap();
+	}
+	private void reInitBoard() {
+		if (currentScreen != SCREEN.START_SCREEN) {
+			person = new Person();
+			map = new DrawMap();
+			hasPainted = false;
+		}
 	}
 
 	@Override
 	public void addNotify() {
-		System.out.println("In Notify");
-		
-
 		super.addNotify();
-
 		animator = new Thread(this);
 		animator.start();
+	}
+	
+	public void setCurrentToStart() {
+		currentScreen=SCREEN.START_SCREEN;
+	}
+	public void setCurrentToLevel1() {
+		currentScreen=SCREEN.LEVEL1;
+	}
+	public void setCurrentToLevel2() {
+		currentScreen=SCREEN.LEVEL2;
 	}
 
 	@Override
@@ -71,11 +91,34 @@ public class Board extends JPanel implements Runnable {
 		
 		super.paintComponent(g);
 		
-		Graphics2D g2d = (Graphics2D) g;
-		map.drawAll(g, person.x, person.y);
+		if(currentScreen!=SCREEN.START_SCREEN) {
+			Graphics2D g2d = (Graphics2D) g;
+			map.drawAll(g, person.x, person.y);
 
-		if(person.visible) {drawCharacter(g);} //if-statement new (w/out the drawCharacter method)
+			if(person.visible) {drawCharacter(g);} //if-statement new (w/out the drawCharacter method)
 
+			
+			//home button
+
+	        RenderingHints rh
+	                = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
+	                        RenderingHints.VALUE_ANTIALIAS_ON);
+
+	        rh.put(RenderingHints.KEY_RENDERING,
+	                RenderingHints.VALUE_RENDER_QUALITY);
+
+	        g2d.setRenderingHints(rh);
+			
+			Font title  = new Font("arial", Font.BOLD, 20);
+			g.setFont(title);
+			g.setColor(Color.white);
+			g.drawString("Return to Main Menu", 800, 100);
+			g2d.draw(new Rectangle(775, 65, 250, 50));
+			
+		}else {
+			starter.drawImage(g);
+		}
+		
 		Toolkit.getDefaultToolkit().sync();
 	}
 
@@ -112,18 +155,16 @@ public class Board extends JPanel implements Runnable {
 		beforeTime = System.currentTimeMillis();
 
 		while (true) {
-
-			
 			repaint();
-			cycle();
-			person.checkCollisions(map);//new change
-			if (person.onSomething) {
-				person.land();
-			} else {
-				person.fall();
+			if (currentScreen != SCREEN.START_SCREEN) {
+				cycle();
+				person.checkCollisions(map);//new change
+				if (person.onSomething) {
+					person.land();
+				} else {
+					person.fall();
+				}
 			}
-			
-			
 			
 			timeDiff = System.currentTimeMillis() - beforeTime;
 			sleep = DELAY - timeDiff;
@@ -158,14 +199,16 @@ public class Board extends JPanel implements Runnable {
         }
     }
 
-	private class MAdapter extends MouseAdapter {  //board class
-		public void mouseReleased(MouseEvent e){
-	    
-		}
+	private class MAdapter extends MouseAdapter{
 		public void mousePressed(MouseEvent e) {
-			person.mousePressed(e);
-		}
 
+			starter.mousePressed(e);
+			if (starter.changedScreens) {
+				reInitBoard();
+				starter.changedScreens = false;
+			}
+
+		}
 	}
 
 }
