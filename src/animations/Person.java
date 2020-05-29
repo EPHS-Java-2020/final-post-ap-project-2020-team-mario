@@ -32,7 +32,6 @@ public class Person extends Sprite {
 	private boolean isWalking = false;
 	public boolean onSomething = false;
 	public boolean isAlive = true;
-	private boolean facingRight=true;
 	private final int PERIOD = 66;
 	private int time = 0;
 	private int count = 0;
@@ -40,6 +39,8 @@ public class Person extends Sprite {
 	private boolean hitLeft = false;
 	private boolean hitRight = false;
 	private boolean isCrouching = false;
+	private double distanceFallen = 0; //\\
+	public boolean needToRefresh=false;
 
 	public Person(int x, int y) {
 		super(x, y);
@@ -379,12 +380,17 @@ public class Person extends Sprite {
 		if (!(dy == 4)) {
 			dy += 0.25;
 		}
+		distanceFallen+=dy;
+		if(distanceFallen>=1000) {
+			needToRefresh=true;
+		}
 	}
 
 	public void land() {
 		if (jumpCount == 0) {
 			dy = 0;
 		} 
+		distanceFallen=0;
 	}
 
 	public void checkCollisions(DrawMap map) {// this method is new
