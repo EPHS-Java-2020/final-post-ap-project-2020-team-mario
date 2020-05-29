@@ -24,8 +24,10 @@ public class Chicken extends Obstacle{
 	private int stepTime=66;
 	public boolean isEgg = false;
 	
-	public Chicken(int x, int y, int speed) {
+	public Chicken(int x, int y, int speed, int dx, int walkingDistance) {
 		super(x,y, speed);
+		this.dx=dx;
+		this.walkingTime=walkingDistance;
 	}
 	
 	public void loadImage() {
