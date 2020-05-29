@@ -22,18 +22,43 @@ public class Chicken extends Obstacle{
 	private int walkingTime=180;
 	private int stepTimer=0;
 	private int stepTime=66;
+	public boolean isEgg = false;
 	
 	public Chicken(int x, int y, int speed) {
 		super(x,y, speed);
 	}
 	
+	public void loadImage() {
+		ii = new ImageIcon("src/Drawings/Egg.png");
+		image = ii.getImage();
+		super.width=ii.getIconWidth();
+		super.height=ii.getIconHeight();
+	}
+	
+	public void drawEgg(Graphics g) {
+		Graphics2D g2d = (Graphics2D) g;
+
+		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+		rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+		
+		g2d.drawImage(image, x, y, null);
+
+	}
+	
+	
 	@Override
 	public void drawImage(int x, int y, Graphics g) {
-		super.x = sX - x;
-
-		super.y = sY - y;
-		drawImage(g);
-
+		super.x=sX-x;
+		
+		super.y=sY-y;
+		if (isEgg) {
+			drawEgg(g);
+		} else {
+			
+			drawImage(g);
+			
+		}
 	}
 	
 	@Override
@@ -142,6 +167,11 @@ public class Chicken extends Obstacle{
 	
 	public String toString() {
 		return "{BRICK--> (X="+super.x+",Y="+super.y+")  (WIDTH="+super.width+",HEIGHT="+super.height+")}";
+	}
+	
+	@Override
+	public Rectangle getBounds() {
+		return new Rectangle(x,y,66,100);
 	}
 	
 	

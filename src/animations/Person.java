@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mapSetup.Brick;
+import mapSetup.Chicken;
 import mapSetup.CopBullet;
 import mapSetup.DrawMap;
 import mapSetup.Floor;
@@ -370,7 +371,9 @@ public class Person extends Sprite {
 			}
 			
 		}
+		
 	}
+	
 
 	public void fall() {
 		if (!(dy == 4)) {
@@ -434,6 +437,19 @@ public class Person extends Sprite {
 				
 			}
 			
+		}
+		ArrayList<Chicken> chickens = map.getChickens();
+		for (int i = 0; i < chickens.size(); i++) {
+			Rectangle chickenBounds = chickens.get(i).getBounds();
+			if (chickenBounds.intersects(getBounds())) {
+				Rectangle2D intersection = getBounds().createIntersection(chickenBounds);
+				if (intersection.getHeight() < intersection.getWidth()) {
+					map.chickens.get(i).isEgg = true;
+					dy = -8;
+				} else {
+					isAlive = false;
+				}
+			}
 		}
 		hitLeft = false;
 		hitRight = false;
