@@ -17,9 +17,9 @@ import javax.swing.ImageIcon;
 import animations.Sprite;
 
 public class Chicken extends Obstacle{
-	private int dx=2;
+	private int dx=1;
 	private int walkingTimer=0;
-	private int walkingTime=90;
+	private int walkingTime=180;
 	private int stepTimer=0;
 	private int stepTime=66;
 	
