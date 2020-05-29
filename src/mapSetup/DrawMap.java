@@ -115,18 +115,53 @@ public class DrawMap {
 			spikes.add(new Spike(2380,1050,0));
 			chickens.add(new Chicken(1910,1000,0, 1, 180));
 
-			floors.add(new Floor(3200,900,0, 4000));
-			floors.add(new Floor(3200,1000,0, 4000));
-			chickens.add(new Chicken(2500,1000,0, 3, 210));
+			floors.add(new Floor(3200,925,0, 2500));
+			floors.add(new Floor(3200,1000,0, 2500));
+			chickens.add(new Chicken(2950,1000,0,2,100));
 			
 
-			bricks.add(new Brick(2150,1040, 0));
-			bricks.add(new Brick(2150,975, 0));
-			bricks.add(new Brick(2430,1040, 0));
-			bricks.add(new Brick(2430,975, 0));
-			spikes.add(new Spike(2200,1050,0));
-			spikes.add(new Spike(2290,1050,0));
-			spikes.add(new Spike(2380,1050,0));
+			bricks.add(new Brick(3400,865,0));
+			chickens.add(new Chicken(3460, 825, 0, 3, 26));
+			
+			
+			bricks.add(new Brick(3600,865,0));
+			bricks.add(new Brick(3600,800,0));
+		
+			spikes.add(new Spike(3650,875,0));
+			spikes.add(new Spike(3700,875,0));
+			
+			
+			bricks.add(new Brick(3750,865,0));
+			bricks.add(new Brick(3750,800,0));
+			bricks.add(new Brick(3750,735,0));
+			
+			bricks.add(new Brick(3825,865,0));
+			bricks.add(new Brick(3825,800,0));
+			bricks.add(new Brick(3825,735,0));
+			bricks.add(new Brick(3825,670,0));
+			bricks.add(new Brick(3825,605,0));
+			
+
+			spikes.add(new Spike(3875,875,0));
+			spikes.add(new Spike(3925,875,0));
+			spikes.add(new Spike(3975,875,0));
+			spikes.add(new Spike(4025,875,0));
+			spikes.add(new Spike(4075,875,0));
+			spikes.add(new Spike(4125,875,0));
+			
+			bricks.add(new Brick(4200,865,0));
+			bricks.add(new Brick(4200,800,0));
+			
+//			spikes.add(new Spike(2200,875,0));
+//			spikes.add(new Spike(2200,875,0));
+//			spikes.add(new Spike(2200,875,0));
+//			spikes.add(new Spike(2200,875,0));
+//			spikes.add(new Spike(2200,875,0));
+//			spikes.add(new Spike(2200,875,0));
+//			spikes.add(new Spike(2200,875,0));
+//			spikes.add(new Spike(2200,875,0));
+//			spikes.add(new Spike(2200,875,0));
+//			spikes.add(new Spike(2200,875,0));
 			
 		}
 
