@@ -21,6 +21,7 @@ public class DrawMap {
 	private ArrayList<Enemy> enemies;
 	public ArrayList<Chicken> chickens;
 	private List<List<CopBullet>> bullets;
+	private ArrayList<Car> cars;
 	public LevelManager levels;
 	
 	public DrawMap(LevelManager levels) {
@@ -38,6 +39,7 @@ public class DrawMap {
 		enemies = new ArrayList<Enemy>();
 		bullets = new ArrayList<List<CopBullet>>();
 		chickens = new ArrayList<Chicken>();
+		cars = new ArrayList<Car>();
 		addStuff();
 		
 	}
@@ -92,6 +94,9 @@ public class DrawMap {
 		}
 		for(Chicken chicken: chickens) {
 			chicken.drawImage(x,y,g2d);
+		}
+		for(Car car: cars) {
+			car.drawImage(x,y,g2d);
 		}
 	}
 	public void addStuff() {
@@ -152,16 +157,7 @@ public class DrawMap {
 			bricks.add(new Brick(4200,865,0));
 			bricks.add(new Brick(4200,800,0));
 			
-//			spikes.add(new Spike(2200,875,0));
-//			spikes.add(new Spike(2200,875,0));
-//			spikes.add(new Spike(2200,875,0));
-//			spikes.add(new Spike(2200,875,0));
-//			spikes.add(new Spike(2200,875,0));
-//			spikes.add(new Spike(2200,875,0));
-//			spikes.add(new Spike(2200,875,0));
-//			spikes.add(new Spike(2200,875,0));
-//			spikes.add(new Spike(2200,875,0));
-//			spikes.add(new Spike(2200,875,0));
+			cars.add(new Car(4700, 700, 0));
 			
 		}
 
