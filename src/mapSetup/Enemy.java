@@ -10,22 +10,24 @@ import java.awt.geom.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import animations.Bullet;
-
 public class Enemy extends Obstacle {
 
 	private int time = 0;
 	private int timeToWalk = 0;
 	private final int PERIOD = 66;
 	private int walkingTime = 200;
+	private int bulletCounting = 0;
+	private int bulletTime;
 	private boolean forward = true;
 	public int pX;
 	public int pY;
-	public ArrayList<Bullet> bullets;
+	public ArrayList<CopBullet> bullets;
+	private boolean isLeft;
 
-	public Enemy(int x, int y, int speed) {
+	public Enemy(int x, int y, int speed, int bulletTime) {
 		super(x, y, speed);
-		bullets = new ArrayList<Bullet>();
+		bullets = new ArrayList<CopBullet>();
+		this.bulletTime = bulletTime;
 	}
 
 	@Override
@@ -39,8 +41,13 @@ public class Enemy extends Obstacle {
 
 	}
 
-	@Override
 	public void drawImage(Graphics g) {
+		
+		if (x < 500) {
+			isLeft = true;
+		} else {
+			isLeft = false;
+		}
 
 		if (forward) {
 			sX += super.speed;
@@ -55,34 +62,64 @@ public class Enemy extends Obstacle {
 		rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 
 		g2d.setRenderingHints(rh);
-		Rectangle2D hat = new Rectangle2D.Double(x, y, 75, 10);
-		Rectangle2D topHat = new Rectangle2D.Double(x, y - 10, 50, 10);
-		g2d.setColor(new Color(0, 6, 94));
-		g2d.fill(hat);
-		g2d.fill(topHat);
+		
+		if (isLeft) {
+			Rectangle2D hat = new Rectangle2D.Double(x, y, 75, 10);
+			Rectangle2D topHat = new Rectangle2D.Double(x, y - 10, 50, 10);
+			g2d.setColor(new Color(0, 6, 94));
+			g2d.fill(hat);
+			g2d.fill(topHat);
+		} else {
+			Rectangle2D hat = new Rectangle2D.Double(x - 25, y, 75, 10);
+			Rectangle2D topHat = new Rectangle2D.Double(x, y - 10, 50, 10);
+			g2d.setColor(new Color(0, 6, 94));
+			g2d.fill(hat);
+			g2d.fill(topHat);
+		}
 
 		Rectangle2D head = new Rectangle2D.Double(x, y + 10, 50, 50);
 		g2d.setColor(new Color(255, 210, 143));
 		g2d.fill(head);
 
 		// glasses
-		Ellipse2D rightLens = new Ellipse2D.Double(x + 35, y + 15, 25, 20);
-		g2d.setColor(new Color(0, 0, 0));
-		g2d.fill(rightLens);
-		Rectangle2D noseBridge = new Rectangle2D.Double(x + 15, y + 20, 30, 10);
-		g2d.setColor(new Color(0, 0, 0));
-		g2d.fill(noseBridge);
-		Ellipse2D leftLens = new Ellipse2D.Double(x, y + 15, 25, 20);
-		g2d.setColor(new Color(0, 0, 0));
-		g2d.fill(leftLens);
+		if (isLeft) {
+			Ellipse2D rightLens = new Ellipse2D.Double(x + 35, y + 15, 25, 20);
+			g2d.setColor(new Color(0, 0, 0));
+			g2d.fill(rightLens);
+			Rectangle2D noseBridge = new Rectangle2D.Double(x + 15, y + 20, 30, 10);
+			g2d.setColor(new Color(0, 0, 0));
+			g2d.fill(noseBridge);
+			Ellipse2D leftLens = new Ellipse2D.Double(x, y + 15, 25, 20);
+			g2d.setColor(new Color(0, 0, 0));
+			g2d.fill(leftLens);
+		} else {
+			Ellipse2D rightLens = new Ellipse2D.Double(x + 25, y + 15, 25, 20);
+			g2d.setColor(new Color(0, 0, 0));
+			g2d.fill(rightLens);
+			Rectangle2D noseBridge = new Rectangle2D.Double(x + 5, y + 20, 30, 10);
+			g2d.setColor(new Color(0, 0, 0));
+			g2d.fill(noseBridge);
+			Ellipse2D leftLens = new Ellipse2D.Double(x - 10, y + 15, 25, 20);
+			g2d.setColor(new Color(0, 0, 0));
+			g2d.fill(leftLens);
+		}
 
 		// mouth
-		Ellipse2D mouth = new Ellipse2D.Double(x + 5, y + 40, 40, 20);
-		g2d.setColor(new Color(128, 78, 68));
-		g2d.fill(mouth);
-		Ellipse2D mouthBelow = new Ellipse2D.Double(x + 5, y + 43, 45, 20);
-		g2d.setColor(new Color(255, 210, 143));
-		g2d.fill(mouthBelow);
+		if (isLeft) {
+			Ellipse2D mouth = new Ellipse2D.Double(x + 5, y + 40, 40, 20);
+			g2d.setColor(new Color(128, 78, 68));
+			g2d.fill(mouth);
+			Ellipse2D mouthBelow = new Ellipse2D.Double(x + 5, y + 43, 45, 20);
+			g2d.setColor(new Color(255, 210, 143));
+			g2d.fill(mouthBelow);
+		} else {
+			Ellipse2D mouth = new Ellipse2D.Double(x + 5, y + 40, 40, 20);
+			g2d.setColor(new Color(128, 78, 68));
+			g2d.fill(mouth);
+			Ellipse2D mouthBelow = new Ellipse2D.Double(x, y + 43, 45, 20);
+			g2d.setColor(new Color(255, 210, 143));
+			g2d.fill(mouthBelow);
+		}
 
 		Rectangle2D body = new Rectangle2D.Double(x, y + 60, 50, 85);
 		g2d.setColor(new Color(10, 16, 94));
@@ -93,28 +130,52 @@ public class Enemy extends Obstacle {
 			Ellipse2D button = new Ellipse2D.Double(x + 25, y + 68 + temp, 5, 5);
 			g2d.fill(button);
 		}
+		
+		if (isLeft) {
+			Rectangle2D leftArm = new Rectangle2D.Double(x - 20, y + 60, 17, 60);
+			Line2D leftLine = new Line2D.Double(x - 2, y + 62, x - 2, y + 77);
+			//Rectangle2D rightArm = new Rectangle2D.Double(x + 53, y + 60, 17, 60);
+			Rectangle2D rightArm = new Rectangle2D.Double(x + 53, y + 60, 60, 17);
+			g2d.setColor(new Color(10, 16, 94));
+			Line2D rightLine = new Line2D.Double(x + 50, y + 62, x + 50, y + 77);
+			g2d.fill(leftArm);
+			g2d.fill(rightArm);
+			g2d.setStroke(new BasicStroke(5));
+			g2d.draw(rightLine);
+			g2d.draw(leftLine);
 
-		Rectangle2D leftArm = new Rectangle2D.Double(x - 15, y + 60, 17, 60);
-		Rectangle2D rightArm = new Rectangle2D.Double(x + 53, y + 60, 17, 60);
-		g2d.setColor(new Color(10, 16, 94));
-		Line2D rightLine = new Line2D.Double(x + 50, y + 62, x + 50, y + 80);
-		AffineTransform tx = AffineTransform.getRotateInstance(
-				-1.5 * (Math.atan((double) (x - 8 - (pX + 33)) / (double) (y + 65 - (pY - 205)))), x - 8, y + 65);
-		Shape newShape = tx.createTransformedShape(leftArm);
+			Rectangle2D leftHand = new Rectangle2D.Double(x - 18, y + 120, 15, 20);
+			g2d.setColor(new Color(255, 210, 143));
+			g2d.fill(leftHand);
+			//Rectangle2D rightHand = new Rectangle2D.Double(x + 53, y + 120, 15, 20);
+			Rectangle2D rightHand = new Rectangle2D.Double(x + 113, y + 60, 20, 15);
+			g2d.setColor(new Color(150,150,150));
+			g2d.fill(rightHand);
+			Rectangle2D gun = new Rectangle2D.Double(x+113,y+50, 40, 10);
+			g2d.fill(gun);
+		} else {
+			Rectangle2D leftArm = new Rectangle2D.Double(x - 63, y + 60, 60, 17);
+			Rectangle2D rightArm = new Rectangle2D.Double(x + 53, y + 60, 17, 60);
+			Line2D leftLine = new Line2D.Double(x - 2, y + 62, x - 2, y + 77);
+			g2d.setColor(new Color(10, 16, 94));
+			Line2D rightLine = new Line2D.Double(x + 50, y + 62, x + 50, y + 77);
+			g2d.fill(leftArm);
+			g2d.fill(rightArm);
+			g2d.setStroke(new BasicStroke(5));
+			g2d.draw(leftLine);
+			g2d.draw(rightLine);
 
-		g2d.fill(newShape);
-		// g2d.fill(leftArm);
-		g2d.fill(rightArm);
-		g2d.setStroke(new BasicStroke(5));
-		// g2d.draw(leftLine);
-		g2d.draw(rightLine);
+			Rectangle2D rightHand = new Rectangle2D.Double(x + 53, y + 120, 15, 20);
+			Rectangle2D leftHand = new Rectangle2D.Double(x - 83, y + 60, 20, 15);
+			g2d.setColor(new Color(255, 210, 143));
+			g2d.fill(rightHand);
+			g2d.setColor(new Color(150,150,150));
+			g2d.fill(leftHand);
+			Rectangle2D gun = new Rectangle2D.Double(x-103,y+50, 40, 10);
+			g2d.fill(gun);
+		}
 
-		Rectangle2D leftHand = new Rectangle2D.Double(x - 18, y + 120, 15, 20);
-		Rectangle2D rightHand = new Rectangle2D.Double(x + 53, y + 120, 15, 20);
-		g2d.setColor(new Color(255, 210, 143));
-		Shape newShape2 = tx.createTransformedShape(leftHand);
-		g2d.fill(newShape2);
-		g2d.fill(rightHand);
+		
 
 		if (time <= 22) {
 			Rectangle2D leftLeg = new Rectangle2D.Double(x, y + 145, 17, 70);
@@ -123,11 +184,19 @@ public class Enemy extends Obstacle {
 			g2d.fill(leftLeg);
 			g2d.fill(rightLeg);
 
-			Rectangle2D leftShoe = new Rectangle2D.Double(x, y + 215, 25, 15);
-			Rectangle2D rightShoe = new Rectangle2D.Double(x + 33, y + 225, 25, 15);
-			g2d.setColor(Color.black);
-			g2d.fill(leftShoe);
-			g2d.fill(rightShoe);
+			if (isLeft) {
+				Rectangle2D leftShoe = new Rectangle2D.Double(x, y + 215, 25, 15);
+				Rectangle2D rightShoe = new Rectangle2D.Double(x + 33, y + 225, 25, 15);
+				g2d.setColor(Color.black);
+				g2d.fill(leftShoe);
+				g2d.fill(rightShoe);
+			} else {
+				Rectangle2D leftShoe = new Rectangle2D.Double(x - 10, y + 215, 25, 15);
+				Rectangle2D rightShoe = new Rectangle2D.Double(x + 23, y + 225, 25, 15);
+				g2d.setColor(Color.black);
+				g2d.fill(leftShoe);
+				g2d.fill(rightShoe);
+			}
 		} else if (time <= 44) {
 			Rectangle2D leftLeg = new Rectangle2D.Double(x, y + 145, 17, 80);
 			Rectangle2D rightLeg = new Rectangle2D.Double(x + 33, y + 145, 17, 80);
@@ -135,11 +204,19 @@ public class Enemy extends Obstacle {
 			g2d.fill(leftLeg);
 			g2d.fill(rightLeg);
 
-			Rectangle2D leftShoe = new Rectangle2D.Double(x, y + 225, 25, 15);
-			Rectangle2D rightShoe = new Rectangle2D.Double(x + 33, y + 225, 25, 15);
-			g2d.setColor(Color.black);
-			g2d.fill(leftShoe);
-			g2d.fill(rightShoe);
+			if (isLeft) {
+				Rectangle2D leftShoe = new Rectangle2D.Double(x, y + 225, 25, 15);
+				Rectangle2D rightShoe = new Rectangle2D.Double(x + 33, y + 225, 25, 15);
+				g2d.setColor(Color.black);
+				g2d.fill(leftShoe);
+				g2d.fill(rightShoe);
+			} else {
+				Rectangle2D leftShoe = new Rectangle2D.Double(x - 10, y + 225, 25, 15);
+				Rectangle2D rightShoe = new Rectangle2D.Double(x + 23, y + 225, 25, 15);
+				g2d.setColor(Color.black);
+				g2d.fill(leftShoe);
+				g2d.fill(rightShoe);
+			}
 		} else {
 			Rectangle2D leftLeg = new Rectangle2D.Double(x, y + 145, 17, 80);
 			Rectangle2D rightLeg = new Rectangle2D.Double(x + 33, y + 145, 17, 70);
@@ -147,13 +224,22 @@ public class Enemy extends Obstacle {
 			g2d.fill(leftLeg);
 			g2d.fill(rightLeg);
 
-			Rectangle2D leftShoe = new Rectangle2D.Double(x, y + 225, 25, 15);
-			Rectangle2D rightShoe = new Rectangle2D.Double(x + 33, y + 215, 25, 15);
-			g2d.setColor(Color.black);
-			g2d.fill(leftShoe);
-			g2d.fill(rightShoe);
+			if (isLeft) {
+				Rectangle2D leftShoe = new Rectangle2D.Double(x, y + 225, 25, 15);
+				Rectangle2D rightShoe = new Rectangle2D.Double(x + 33, y + 215, 25, 15);
+				g2d.setColor(Color.black);
+				g2d.fill(leftShoe);
+				g2d.fill(rightShoe);
+			} else {
+				Rectangle2D leftShoe = new Rectangle2D.Double(x - 10, y + 225, 25, 15);
+				Rectangle2D rightShoe = new Rectangle2D.Double(x + 23, y + 215, 25, 15);
+				g2d.setColor(Color.black);
+				g2d.fill(leftShoe);
+				g2d.fill(rightShoe);
+			}
 		}
 		time++;
+		bulletCounting++;
 		if (time == PERIOD) {
 			time = 0;
 		}
@@ -161,29 +247,34 @@ public class Enemy extends Obstacle {
 		if (timeToWalk == walkingTime) {
 			forward = !forward;
 			timeToWalk = 0;
-		} else if (timeToWalk == walkingTime / 2) {
-			AffineTransform tx1 = AffineTransform.getRotateInstance(
-					-1.5 * (Math.atan((double) (x - 8 - (pX + 33)) / (double) (y + 65 - (pY - 205)))-Math.PI),
-					x - 8, y + 65);
-			Bullet bullet = new Bullet(x - 8, y + 65, 500, false, tx1);
+		} 
+		if (bulletCounting == bulletTime) {
+			bulletCounting = 0;
+			CopBullet bullet;
+			if (isLeft) {
+				bullet = new CopBullet(sX+123,sY+55, 5, isLeft);
+			} else {
+				bullet = new CopBullet(sX - 108, sY + 55, 5, isLeft);
+			}
 			bullets.add(bullet);
 
 		}
 		for (int i = 0; i < bullets.size(); i++) {
 
-			Bullet bullet1 = bullets.get(i);
+			CopBullet bullet1 = bullets.get(i);
 
 			if (bullet1.isVisible()) {
-
 				bullet1.move();
-				bullet1.drawImage(g);
+				bullet1.drawImage(pX, pY, g);
 			} else {
-
 				bullets.remove(i);
 			}
 
 		}
 
+	}
+	public ArrayList<CopBullet> getBullets() {
+		return bullets;
 	}
 
 }

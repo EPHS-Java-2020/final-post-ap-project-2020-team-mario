@@ -2,6 +2,9 @@ package mapSetup;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.List;
 
 public class DrawMap {
 	
@@ -16,6 +19,7 @@ public class DrawMap {
 	private ArrayList<Sun> suns;
 	private ArrayList<Tree> trees;
 	private ArrayList<Enemy> enemies;
+	private List<List<CopBullet>> bullets;
 	
 	public DrawMap() {
 		bricks = new ArrayList<Brick>();
@@ -29,6 +33,7 @@ public class DrawMap {
 		suns = new ArrayList<Sun>();
 		trees = new ArrayList<Tree>();
 		enemies = new ArrayList<Enemy>();
+		bullets = new ArrayList<List<CopBullet>>();
 		
 		addStuff();
 	}
@@ -53,8 +58,15 @@ public class DrawMap {
 			bush.drawImage(x, y, g2d);
 		}
 		
-		for (Enemy enemy: enemies) {
+		for (int i = 0; i < enemies.size(); i++) {
+			Enemy enemy = enemies.get(i);
 			enemy.drawImage(x,y,g2d);
+			try {
+				bullets.set(i,enemy.getBullets());
+			} catch (Exception e) {
+				bullets.add(enemy.getBullets());
+			}
+			
 		}
 		for(Cloud cloud: cloudes) {
 			cloud.drawImage(x,y,g2d);
@@ -79,7 +91,7 @@ public class DrawMap {
 		bricks.add(new Brick(1650, 1040, 0));
 		bricks.add(new Brick(1650, 980, 0));
 		floors.add(new Floor(1500 ,1100, 0));
-		enemies.add(new Enemy(1500, 850, 2));
+		enemies.add(new Enemy(2000, 860, 2, 200));
 		trees.add(new Tree(800,550,0));
 		suns.add(new Sun(200,400,0));
 		spikes.add(new Spike(1575,1050,0));
@@ -104,5 +116,8 @@ public class DrawMap {
 
 	public ArrayList<Spike> getSpikes(){
 		return spikes;
+	}
+	public List<List<CopBullet>> getBullets() {
+		return bullets;
 	}
 }
