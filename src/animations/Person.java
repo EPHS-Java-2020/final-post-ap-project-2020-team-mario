@@ -328,13 +328,47 @@ public class Person extends Sprite {
 
 	public void isOnGround(DrawMap map) {
 		List<Floor> floors = map.getFloors();
-		for (Floor floor: floors) {
+		/*for (Floor floor: floors) {
 			if (getBounds().intersects(floor.getBounds())) {
 				onSomething = true;
 				return;
 			} else {
 				onSomething = false;
 			}
+		}
+		*/
+		List<Brick> bricks = map.getBricks();
+		Rectangle personBounds = this.getBounds();
+
+		// System.out.println(person);
+		// System.out.println(bricks);
+		// int count=0;
+		for (Floor floor : floors) {
+			Rectangle brickBounds = floor.getBounds();
+
+			if (brickBounds.intersects(personBounds)) {
+				Rectangle2D intersection = getBounds().createIntersection(floor.getBounds());
+
+				if (intersection.getHeight() < intersection.getWidth()) {
+					onSomething = true;
+					
+				} else {
+					onSomething = false;
+					if (floor.x - 2 <= intersection.getX() && floor.x + 2 >= intersection.getX()) {
+						if(!hitLeft) {
+							super.x-=4;
+							hitLeft = true;
+						}
+					} else {
+						if(!hitRight) {
+							super.x+=4;
+							hitRight = true;
+						}
+					}
+				}
+				
+			}
+			
 		}
 	}
 
