@@ -113,7 +113,7 @@ public class DrawMap {
 			spikes.add(new Spike(2200,1050,0));
 			spikes.add(new Spike(2290,1050,0));
 			spikes.add(new Spike(2380,1050,0));
-			chickens.add(new Chicken(1950,1000,0));
+			chickens.add(new Chicken(1910,1000,0));
 		}
 
 	}

@@ -17,9 +17,9 @@ import javax.swing.ImageIcon;
 import animations.Sprite;
 
 public class Chicken extends Obstacle{
-	private int dx=5;
+	private int dx=2;
 	private int walkingTimer=0;
-	private int walkingTime=500;
+	private int walkingTime=90;
 	private int stepTimer=0;
 	private int stepTime=66;
 	
@@ -27,12 +27,19 @@ public class Chicken extends Obstacle{
 		super(x,y, speed);
 	}
 	
-	public void move() {
-		
+	@Override
+	public void drawImage(int x, int y, Graphics g) {
+		super.x = sX - x;
+
+		super.y = sY - y;
+		drawImage(g);
+
 	}
 	
 	@Override
 	public void drawImage(Graphics g) {
+		sX+=dx;
+		
 		Graphics2D g2d = (Graphics2D) g;
 
 		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -124,6 +131,11 @@ public class Chicken extends Obstacle{
 		stepTimer++;
 		if(stepTimer==66) {
 			stepTimer=0;
+		}
+		walkingTimer++;
+		if(walkingTimer==walkingTime) {
+			walkingTimer=0;
+			dx*=-1;
 		}
 	}
 	
