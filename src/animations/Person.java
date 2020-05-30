@@ -41,6 +41,7 @@ public class Person extends Sprite {
 	private boolean isCrouching = false;
 	private double distanceFallen = 0;
 	public boolean needToRefresh = false;
+	public boolean touchedDeadlyObstacle=false;
 	public int ammo = 0;
 
 	public Person(int x, int y) {
@@ -61,6 +62,7 @@ public class Person extends Sprite {
 		if (isAlive) {
 			super.x += dx;
 			super.y += dy;
+			System.out.println("dy value=="+dy);
 			if (onSomething && dx != 0) {
 				isWalking = true;
 			} else {
@@ -74,9 +76,10 @@ public class Person extends Sprite {
 			} else {// ask for this
 			}
 		} else {
-			super.x = super.x;
-			super.y = super.y;
+			super.x +=0; //super.x=super.x
+			super.y +=0;//super.y=super.y
 		}
+//		System.out.println("Current Position: X="+super.x+" Y="+super.y);
 
 	}
 
@@ -106,9 +109,9 @@ public class Person extends Sprite {
 
 		g2d.setRenderingHints(rh);
 
-		Rectangle2D blood = new Rectangle2D.Double(sX, sY, 275, 100);// super.y+10
-		g2d.setColor(Color.red);
-		g2d.fill(blood);
+//		Rectangle2D blood = new Rectangle2D.Double(sX, sY, 275, 100);// super.y+10
+//		g2d.setColor(Color.red);
+//		g2d.fill(blood);
 
 		Rectangle2D shoe = new Rectangle2D.Double(sX, sY, 15, 30);// super.y+10
 		g2d.setColor(new Color(100, 100, 100));
@@ -121,12 +124,12 @@ public class Person extends Sprite {
 		g2d.setColor(new Color(77, 73, 73));
 		g2d.fill(body);
 		Rectangle2D arm = new Rectangle2D.Double(sX + 110, sY + 4, 80, 20);// super.y-165
-		g2d.setColor(new Color(255, 210, 143));
+		g2d.setColor(Color.red);//new Color(255, 210, 143) <----Original for arm & head
 		g2d.fill(arm);
 
 		Rectangle2D head = new Rectangle2D.Double(sX + 190, sY - 5, 50, 50);// super.y-215
 		g2d.setStroke(new BasicStroke(3));
-		g2d.setColor(new Color(255, 210, 143));
+		g2d.setColor(Color.red);
 		g2d.fill(head);
 		Rectangle2D eye = new Rectangle2D.Double(sX + 225, sY + 25, 10, 10);// super.y-205
 		g2d.setColor(new Color(49, 54, 53));
@@ -378,11 +381,14 @@ public class Person extends Sprite {
 			dy += 0.25;
 		}
 		distanceFallen += dy;
-		if (distanceFallen >= 1000) {
+		if (!touchedDeadlyObstacle  && distanceFallen >= 1000 ) {
+			System.out.println("//////////////////////////////////fell too much, onSomething-->"+onSomething);
 			needToRefresh = true;
+		}else {
+			needToRefresh=false;
 		}
 	}
-
+	
 	public void land() {
 		if (jumpCount == 0) {
 			dy = 0;
@@ -399,6 +405,7 @@ public class Person extends Sprite {
 			for (CopBullet bullet : bulletList) {
 				Rectangle bounds = bullet.getBounds();
 				if (bounds.intersects(getBounds())) {
+					touchedDeadlyObstacle =true;
 					isAlive = false;
 				}
 			}
@@ -454,7 +461,10 @@ public class Person extends Sprite {
 						map.chickens.get(i).isEgg = true;
 						dy = -8;
 					} else {
+						touchedDeadlyObstacle=true;
 						isAlive = false;
+						//onSomething=true;////////////\\\\\\\\\\\\\\\\\
+						
 					}
 				}
 			}
@@ -467,7 +477,11 @@ public class Person extends Sprite {
 			Rectangle spikeBounds = spike.getBounds();
 
 			if (spikeBounds.intersects(personBounds)) {
+				System.out.println("Touched a spike, shouldn't respawn");
+				touchedDeadlyObstacle=true;
 				isAlive = false;
+				//onSomething=true;////////////\\\\\\\\\\\\\\\\\
+				
 			}
 		}
 
@@ -478,16 +492,26 @@ public class Person extends Sprite {
 
 		int key = e.getKeyCode();
 
-		if ((key == KeyEvent.VK_A || key == KeyEvent.VK_D) && isAlive) {
-			if (key == KeyEvent.VK_A) {
-				gunRaisedLeft = true;
-				gunRaisedRight = false;
-			} else {
-				gunRaisedLeft = false;
-				gunRaisedRight = true;
+//		if ((key == KeyEvent.VK_A || key == KeyEvent.VK_D) && isAlive) {
+//			if (key == KeyEvent.VK_A) {
+//				gunRaisedLeft = true;
+//				gunRaisedRight = false;
+//			} else {
+//				gunRaisedLeft = false;
+//				gunRaisedRight = true;
+//			}
+//			fire();
+		if (key == KeyEvent.VK_A || key == KeyEvent.VK_D) {
+			if(isAlive) {
+				if (key == KeyEvent.VK_A) {
+					gunRaisedLeft = true;
+					gunRaisedRight = false;
+				} else if(key == KeyEvent.VK_D){
+					gunRaisedLeft = false;
+					gunRaisedRight = true;
+				}
+				fire();
 			}
-			fire();
-
 		} else {
 			gunRaisedRight = false;
 			gunRaisedLeft = false;

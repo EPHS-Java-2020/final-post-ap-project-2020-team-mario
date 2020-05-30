@@ -22,7 +22,7 @@ import javax.swing.JPanel;
 public class StartScreen extends JPanel{
 	private Rectangle level1Button = new Rectangle(100, 500, 350, 350);
 	private Rectangle level2Button = new Rectangle(550, 500, 350, 350);
-	public boolean changedScreens=false;
+	public boolean changedFromStartScreen=false;
 	
 	public StartScreen() {
 		
@@ -221,7 +221,7 @@ public class StartScreen extends JPanel{
 			int y = e.getY();
 			
 			if (Board.currentScreen == Board.SCREEN.START_SCREEN) {
-				changedScreens=true;
+				changedFromStartScreen=true;
 				if (x >= level1Button.x && x <= level1Button.x + 350 && y >= level1Button.y
 						&& y <= level1Button.y + 350) {
 					Board.currentScreen = Board.currentScreen.LEVEL1;
@@ -230,6 +230,7 @@ public class StartScreen extends JPanel{
 					Board.currentScreen = Board.currentScreen.LEVEL2;
 				}
 			}else {
+				changedFromStartScreen=false;
 				if(x>=775 && x<=1025 && y>=50 && y<=115) {
 					Board.currentScreen = Board.currentScreen.START_SCREEN;
 				}

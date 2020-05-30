@@ -65,6 +65,7 @@ public class Board extends JPanel implements Runnable {
 	}
 	private void reInitBoard() {
 		if (currentScreen != SCREEN.START_SCREEN) {
+			//System.out.println("Reinit was called");
 			if (currentScreen == SCREEN.LEVEL1) {
 				level = 1;
 				map.changeLevel(1);
@@ -172,8 +173,8 @@ public class Board extends JPanel implements Runnable {
 				} else {
 					person.fall();
 					if(person.needToRefresh) {
-						person.needToRefresh=false;
 						reInitBoard();
+						person.needToRefresh=false;
 					}
 				}
 			}
@@ -215,9 +216,8 @@ public class Board extends JPanel implements Runnable {
 		public void mousePressed(MouseEvent e) {
 
 			starter.mousePressed(e);
-			if (starter.changedScreens) {
+			if (starter.changedFromStartScreen) {
 				reInitBoard();
-				starter.changedScreens = false;
 			}
 
 		}
