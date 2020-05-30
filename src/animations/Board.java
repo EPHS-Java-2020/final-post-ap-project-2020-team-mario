@@ -129,14 +129,14 @@ public class Board extends JPanel implements Runnable {
 			Font title  = new Font("arial", Font.BOLD, 20);
 			g.setFont(title);
 			g.setColor(Color.white);
-			g.drawString("Return to Main Menu", 1500, 65);
-			g2d.draw(new Rectangle(1475, 35, 250, 50));
+			g.drawString("Return to Main Menu", 500, 65);
+			g2d.draw(new Rectangle(475, 35, 250, 50));
 			
 			Font retryTitle  = new Font("arial", Font.BOLD, 20);
 			g.setFont(retryTitle);
 			g.setColor(Color.black);
-			g.drawString("Retry", 1775, 65);
-			g2d.draw(new Rectangle(1750, 35, 100, 50));
+			g.drawString("Retry", 775, 65);
+			g2d.draw(new Rectangle(750, 35, 100, 50));
 			
 		}else {
 			starter.drawImage(g);
