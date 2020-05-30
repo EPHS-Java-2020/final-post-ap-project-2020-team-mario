@@ -18,7 +18,7 @@ public abstract class Sprite extends JPanel{
     protected int y;
     protected int width;
     protected int height;
-    protected boolean visible;
+    public boolean visible;
     //protected Image image;
 
     public Sprite(int x, int y) {

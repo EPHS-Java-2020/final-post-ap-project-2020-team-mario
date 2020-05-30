@@ -93,7 +93,9 @@ public class DrawMap {
 			tree.drawImage(x,y,g2d);
 		}
 		for(Chicken chicken: chickens) {
-			chicken.drawImage(x,y,g2d);
+			if (chicken.visible) {
+				chicken.drawImage(x,y,g2d);
+			}
 		}
 		for(Car car: cars) {
 			car.drawImage(x,y,g2d);

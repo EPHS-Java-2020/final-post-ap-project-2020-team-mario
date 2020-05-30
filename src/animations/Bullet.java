@@ -17,27 +17,31 @@ public class Bullet extends Obstacle{
 	private final int BOARD_WIDTH = 1000;
 	private final int BULLET_SPEED = 7;
 	private boolean facingRight;
-	private int length;
+	private int start;
 	public AffineTransform tx;
 	
 
-	public Bullet(int x, int y, int charP, boolean facingRight, AffineTransform tx) {
-		super(x, y, 0);
-		length = charP;
+	public Bullet(int x, int y, int pX, int pY, boolean facingRight) {
+		super(x + pX, y + pY, 0);
+		start = x+pX;
 		this.facingRight = facingRight;
 		this.tx = tx;
 	}
 
 	public void move() {
 		if (facingRight) {
-			super.x += BULLET_SPEED;
+			super.sX += BULLET_SPEED;
+			if (sX > start + 700) {
+				visible = false;
+			}
 		} else {
-			super.x -= BULLET_SPEED;
+			super.sX -= BULLET_SPEED;
+			if (sX < start - 700) {
+				visible = false;
+			}
 		}
 
-		if (super.x > length + 700) {
-			visible = false;
-		}
+		
 	}
 	
 
