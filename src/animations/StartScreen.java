@@ -53,6 +53,7 @@ public class StartScreen extends JPanel{
 		g.setColor(Color.black);
 		g.drawString("ESCAPE JAIL RIGHT NOW!", 300, 100);
 		
+		
 		Font levels = new Font("arial", Font.BOLD, 30);
 		g.setFont(levels);
 		g.setColor(Color.green);

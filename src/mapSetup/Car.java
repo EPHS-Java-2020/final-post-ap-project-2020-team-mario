@@ -13,16 +13,34 @@ import javax.swing.ImageIcon;
 import animations.Sprite;
 
 public class Car extends Obstacle{
+	public boolean isMoving=false;
 	
 	public Car(int x, int y, int speed) {
 		super(x,y, speed);
+		
+	}
+	
+	public void move() {
+		sX+=10;
+	}
+	
+	public void setX(int x) {
+		super.x=x;
+	}
+	public int getX() {
+		return super.x;
 	}
 	
 	@Override
 	public void loadImage() {
 		ii = new ImageIcon("src/Drawings/car.png");
 		image = ii.getImage();
+		super.width = ii.getIconWidth();
+		super.height = ii.getIconHeight();
 	}
 	
+	public Rectangle getBounds() {
+		return new Rectangle(super.x+image.getWidth(null)/2, super.y, image.getWidth(null)/2, image.getHeight(null));
+	}
 	
 }

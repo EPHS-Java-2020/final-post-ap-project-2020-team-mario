@@ -141,7 +141,7 @@ public class DrawMap {
 		spikes.add(new Spike(2380,1050,0));
 		chickens.add(new Chicken(1910,1000,0, 1, 180));
 
-		floors.add(new Floor(3200,925,0, 2500));
+		floors.add(new Floor(3200,925,0, 8000));
 		floors.add(new Floor(3200,1000,0, 2500));
 		chickens.add(new Chicken(2950,1000,0,2,100));
 		
@@ -182,6 +182,10 @@ public class DrawMap {
 	}
 	public ArrayList<Chicken> getChickens() {
 		return chickens;
+	}
+	
+	public ArrayList<Car> getCars() {
+		return cars;
 	}
 	
 	public ArrayList<Brick> getBricks(){

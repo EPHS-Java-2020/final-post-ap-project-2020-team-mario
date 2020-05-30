@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mapSetup.Brick;
+import mapSetup.Car;
 import mapSetup.Chicken;
 import mapSetup.CopBullet;
 import mapSetup.DrawMap;
@@ -42,6 +43,7 @@ public class Person extends Sprite {
 	private double distanceFallen = 0;
 	public boolean needToRefresh = false;
 	public boolean touchedDeadlyObstacle=false;
+	public boolean escaped=false;
 	public int ammo = 0;
 
 	public Person(int x, int y) {
@@ -477,6 +479,18 @@ public class Person extends Sprite {
 				touchedDeadlyObstacle=true;
 				isAlive = false;
 				
+			}
+		}
+		
+		ArrayList<Car> cars = map.getCars();
+		for (Car car : cars) {
+			Rectangle carBounds = car.getBounds();
+
+			if (car.isMoving || carBounds.intersects(personBounds)) {
+				car.isMoving=true;
+				escaped=true;
+				car.move();
+				this.visible=false;
 			}
 		}
 

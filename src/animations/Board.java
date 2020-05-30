@@ -105,7 +105,14 @@ public class Board extends JPanel implements Runnable {
 			Graphics2D g2d = (Graphics2D) g;
 			map.drawAll(g, person.x, person.y);
 
-			if(person.visible) {drawCharacter(g);} //if-statement new (w/out the drawCharacter method)
+			if(person.visible) {
+				drawCharacter(g);
+			} else if(person.escaped) {
+				Font finish  = new Font("arial", Font.BOLD, 80);
+				g.setFont(finish);
+				g.setColor(Color.black);
+				g.drawString("FREEDOM!", 800, 300);
+			}
 
 			
 			//home button
@@ -139,7 +146,9 @@ public class Board extends JPanel implements Runnable {
 	}
 
 	private void drawCharacter(Graphics g) {
-		person.drawImage(g);
+		if (person.visible) {
+			person.drawImage(g);
+		}
 	}
 	
 	
