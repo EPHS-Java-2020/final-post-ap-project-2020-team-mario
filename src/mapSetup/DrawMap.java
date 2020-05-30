@@ -141,9 +141,10 @@ public class DrawMap {
 		spikes.add(new Spike(2380,1050,0));
 		chickens.add(new Chicken(1910,1000,0, 1, 180));
 
-		floors.add(new Floor(3200,925,0, 8000));
-		floors.add(new Floor(3200,1000,0, 2500));
-		chickens.add(new Chicken(2950,1000,0,2,100));
+		floors.add(new Floor(3200,925,0, 1200));
+		floors.add(new Floor(3200,1000,0, 1200));
+		bricks.add(new Brick(3000, 1000, 0));
+		bricks.add(new Brick(3000, 1040, 0));
 		
 
 		bricks.add(new Brick(3400,865,0));
@@ -178,7 +179,29 @@ public class DrawMap {
 		bricks.add(new Brick(4200,865,0));
 		bricks.add(new Brick(4200,800,0));
 		
-		cars.add(new Car(4700, 720, 0));
+		bricks.add(new Brick(4400, 770,0));
+		bricks.add(new Brick(4400, 830,0));
+		bricks.add(new Brick(4400, 890,0));
+		floors.add(new Floor(4450, 750, 0, 2000));
+		chickens.add(new Chicken(4600, 650, 0, 1, 600));
+		chickens.add(new Chicken(4800, 650, 0, 1, 600));
+		chickens.add(new Chicken(5000, 650, 0, 1, 600));
+		chickens.add(new Chicken(5200, 650, 0, 1, 600));
+		chickens.add(new Chicken(5300, 650, 0, 1, 600));
+		
+		bricks.add(new Brick(6000, 685, 0));
+		bricks.add(new Brick(6000, 625, 0));
+		spikes.add(new Spike(6050, 685, 0));
+		spikes.add(new Spike(6100, 685, 0));
+		spikes.add(new Spike(6150, 685, 0));
+		spikes.add(new Spike(6200, 685, 0));
+		spikes.add(new Spike(6250, 685, 0));
+		
+		floors.add(new Floor(6100, 925, 0, 2000));
+		
+		
+		
+		cars.add(new Car(6700, 720, 0));
 	}
 	public ArrayList<Chicken> getChickens() {
 		return chickens;
