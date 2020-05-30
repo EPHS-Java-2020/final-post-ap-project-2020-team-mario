@@ -382,7 +382,7 @@ public class Person extends Sprite {
 			dy += 0.25;
 		}
 		distanceFallen += dy;
-		if (!touchedDeadlyObstacle  && distanceFallen >= 1000 ) {
+		if (!touchedDeadlyObstacle  && distanceFallen >= 2000 ) {
 			needToRefresh = true;
 		}else {
 			needToRefresh=false;

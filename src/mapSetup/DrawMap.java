@@ -111,13 +111,102 @@ public class DrawMap {
 	}
 	
 	public void setUpLevel2() {
-		floors.add(new Floor(1000 ,1300, 0, 4000));
-		floors.add(new Floor(1400 ,900, 0, 4000));
+		//floors.add(new Floor(1000 ,1300, 0, 4000));
 		bricks.add(new Brick(1200,1240, 0));
 		bricks.add(new Brick(1200,1175, 0));
-		bricks.add(new Brick(1250,1110, 0));
-		bricks.add(new Brick(1250,1045, 0));
-		enemies.add(new Enemy(2700, 675, 3, 400));
+		bricks.add(new Brick(1250,1080, 0));
+		bricks.add(new Brick(1250,1030, 0));
+		bricks.add(new Brick(1080, 930, 0));
+		bricks.add(new Brick(1370,850, 0));
+		
+		//bottom floor at beginning
+		floors.add(new Floor(1000 ,1300, 0, 2150));
+
+		bricks.add(new Brick(1600,1240, 0));
+		spikes.add(new Spike(1650,1250,0));
+		bricks.add(new Brick(1700,1240, 0));
+		
+		bricks.add(new Brick(1800,1240, 0));
+		spikes.add(new Spike(1850,1250,0));
+		spikes.add(new Spike(1900,1250,0));		
+		bricks.add(new Brick(1950,1240, 0));
+
+		
+		spikes.add(new Spike(2100,1250,0));
+		spikes.add(new Spike(2140,1250,0));
+		spikes.add(new Spike(2180,1250,0));
+		spikes.add(new Spike(2220,1250,0));
+		chickens.add(new Chicken(2550,1200,0,3,120));
+		chickens.add(new Chicken(2600,1200,0,5,100));
+		
+		
+		bricks.add(new Brick(3150,1600, 0));
+		bricks.add(new Brick(3200,2000, 0));
+		
+		//third floor
+		floors.add(new Floor(3250 ,2100, 0, 800));
+		bricks.add(new Brick(4150,2050,0));
+		
+		//prank floor
+		floors.add(new Floor(4250 ,2000, 0, 1000));
+		floors.add(new Floor(5250 ,2300, 0, 500));
+		bricks.add(new Brick(5850,2340,0));
+		bricks.add(new Brick(5850,2275,0));
+		bricks.add(new Brick(5850,2210,0));
+		bricks.add(new Brick(5850,2145,0));
+		bricks.add(new Brick(5850,2080,0));
+		
+		// last floor
+		floors.add(new Floor(4250, 3000, 0, 1000));
+		cars.add(new Car(4500, 2795, 0));
+
+		//top floor at beginning
+		floors.add(new Floor(1400 ,800, 0, 2000));
+		floors.add(new Floor(3550 ,800, 0, 1050));
+
+		bricks.add(new Brick(1450,735,0));
+		bricks.add(new Brick(1450,670,0));
+		
+		bricks.add(new Brick(1500,735,0));
+		bricks.add(new Brick(1500,670,0)); 
+		bricks.add(new Brick(1500,615,0));
+		
+		bricks.add(new Brick(1550,735,0));
+		bricks.add(new Brick(1550,670,0));
+		bricks.add(new Brick(1550,605,0));
+		bricks.add(new Brick(1550,540,0));
+		bricks.add(new Brick(1550,490,0));
+
+		spikes.add(new Spike(1600,745,0));
+		spikes.add(new Spike(1650,685,0));
+		spikes.add(new Spike(1700,685,0));
+		spikes.add(new Spike(1750,625,0));
+		spikes.add(new Spike(1800,685,0));
+		spikes.add(new Spike(1850,745,0));
+		spikes.add(new Spike(2000,745,0));
+		spikes.add(new Spike(2050,695,0));
+		spikes.add(new Spike(2100,745,0));
+		
+
+		bricks.add(new Brick(2600,745,0));
+		
+
+		bricks.add(new Brick(3400,745,0));
+		bricks.add(new Brick(3400,700,0));
+		
+		bricks.add(new Brick(3500,745,0));
+		bricks.add(new Brick(3500,700,0));
+		
+		bricks.add(new Brick(4600,745,0));
+		bricks.add(new Brick(4600,680,0));
+		bricks.add(new Brick(4600,615,0));
+		bricks.add(new Brick(4600,550,0));
+		bricks.add(new Brick(4600,485,0));
+		
+		
+		enemies.add(new Enemy(2700, 575, 3, 400));
+		enemies.add(new Enemy(3600, 575, 5, 200));
+		
 	}
 	
 	public void setUpLevel1()
