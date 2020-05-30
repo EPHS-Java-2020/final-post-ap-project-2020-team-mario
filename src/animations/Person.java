@@ -62,7 +62,6 @@ public class Person extends Sprite {
 		if (isAlive) {
 			super.x += dx;
 			super.y += dy;
-			System.out.println("dy value=="+dy);
 			if (onSomething && dx != 0) {
 				isWalking = true;
 			} else {
@@ -382,7 +381,6 @@ public class Person extends Sprite {
 		}
 		distanceFallen += dy;
 		if (!touchedDeadlyObstacle  && distanceFallen >= 1000 ) {
-			System.out.println("//////////////////////////////////fell too much, onSomething-->"+onSomething);
 			needToRefresh = true;
 		}else {
 			needToRefresh=false;
@@ -463,7 +461,6 @@ public class Person extends Sprite {
 					} else {
 						touchedDeadlyObstacle=true;
 						isAlive = false;
-						//onSomething=true;////////////\\\\\\\\\\\\\\\\\
 						
 					}
 				}
@@ -477,10 +474,8 @@ public class Person extends Sprite {
 			Rectangle spikeBounds = spike.getBounds();
 
 			if (spikeBounds.intersects(personBounds)) {
-				System.out.println("Touched a spike, shouldn't respawn");
 				touchedDeadlyObstacle=true;
 				isAlive = false;
-				//onSomething=true;////////////\\\\\\\\\\\\\\\\\
 				
 			}
 		}

@@ -122,8 +122,15 @@ public class Board extends JPanel implements Runnable {
 			Font title  = new Font("arial", Font.BOLD, 20);
 			g.setFont(title);
 			g.setColor(Color.white);
-			g.drawString("Return to Main Menu", 800, 100);
-			g2d.draw(new Rectangle(775, 65, 250, 50));
+			g.drawString("Return to Main Menu", 1500, 65);
+			g2d.draw(new Rectangle(1475, 35, 250, 50));
+			
+			Font retryTitle  = new Font("arial", Font.BOLD, 20);
+			g.setFont(retryTitle);
+			g.setColor(Color.white);
+			g.drawString("Retry", 1775, 65);
+			g2d.draw(new Rectangle(1750, 35, 100, 50));
+			
 		}else {
 			starter.drawImage(g);
 		}
@@ -166,15 +173,21 @@ public class Board extends JPanel implements Runnable {
 		while (true) {
 			repaint();
 			if (currentScreen != SCREEN.START_SCREEN) {
-				cycle();
-				person.checkCollisions(map);//new change
-				if (person.onSomething) {
-					person.land();
+				if(starter.needToRefresh) {
+					reInitBoard();
+					starter.needToRefresh=false;
 				} else {
-					person.fall();
-					if(person.needToRefresh) {
-						reInitBoard();
-						person.needToRefresh=false;
+
+					cycle();
+					person.checkCollisions(map);// new change
+					if (person.onSomething) {
+						person.land();
+					} else {
+						person.fall();
+						if (person.needToRefresh) {
+							reInitBoard();
+							person.needToRefresh = false;
+						}
 					}
 				}
 			}

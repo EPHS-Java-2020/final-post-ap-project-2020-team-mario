@@ -23,6 +23,7 @@ public class StartScreen extends JPanel{
 	private Rectangle level1Button = new Rectangle(100, 500, 350, 350);
 	private Rectangle level2Button = new Rectangle(550, 500, 350, 350);
 	public boolean changedFromStartScreen=false;
+	public boolean needToRefresh=false;
 	
 	public StartScreen() {
 		
@@ -231,8 +232,10 @@ public class StartScreen extends JPanel{
 				}
 			}else {
 				changedFromStartScreen=false;
-				if(x>=775 && x<=1025 && y>=50 && y<=115) {
+				if(x>=1475 && x<=1725 && y>=20 && y<=85) {
 					Board.currentScreen = Board.currentScreen.START_SCREEN;
+				} else if(x>=1750 && x<=1850 && y>=20 && y<=85) {
+					this.needToRefresh=true;
 				}
 			}
 		} 
