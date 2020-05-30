@@ -61,7 +61,7 @@ public class Person extends Sprite {
 	}
 
 	public void move() {
-		if (isAlive) {
+		if (isAlive & !escaped) {
 			super.x += dx;
 			super.y += dy;
 			if (onSomething && dx != 0) {
@@ -354,20 +354,20 @@ public class Person extends Sprite {
 					if ((floor.y - 2 <= intersection.getY() && floor.y + 2 >= intersection.getY())) {
 						onSomething = true;
 					} else {
-						dy = 2;
+						super.y -= dy;
 					}
 
 				} else {
 					if (floor.x - 2 <= intersection.getX() && floor.x + 2 >= intersection.getX()) {
-						if (!hitLeft) {
-							super.x -= 4;
-							hitLeft = true;
+						if (dx > 0) {
+							super.x -= dx;
 						}
+						hitLeft = true;
 					} else {
-						if (!hitRight) {
-							super.x += 4;
-							hitRight = true;
+						if (dx < 0) {
+							super.x -= dx;
 						}
+						hitRight = true;
 					}
 				}
 
@@ -424,7 +424,7 @@ public class Person extends Sprite {
 			if (brickBounds.intersects(personBounds)) {
 				Rectangle2D intersection = getBounds().createIntersection(brick.getBounds());
 
-				if (intersection.getHeight() < intersection.getWidth()) {
+				if (intersection.getHeight() + 3 < intersection.getWidth()) {
 					if ((brick.y - 2 <= intersection.getY() && brick.y + 2 >= intersection.getY())) {
 						onSomething = true;
 					} else {
@@ -434,12 +434,16 @@ public class Person extends Sprite {
 				} else {
 					if (brick.x - 2 <= intersection.getX() && brick.x + 2 >= intersection.getX()) {
 						if (!hitLeft) {
-							super.x -= 4;
+							if (dx > 0) {
+								super.x -= dx;
+							}
 							hitLeft = true;
 						}
 					} else {
 						if (!hitRight) {
-							super.x += 4;
+							if (dx < 0) {
+								super.x -= dx;
+							}
 							hitRight = true;
 						}
 					}
