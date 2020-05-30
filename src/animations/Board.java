@@ -134,8 +134,8 @@ public class Board extends JPanel implements Runnable {
 			
 			Font retryTitle  = new Font("arial", Font.BOLD, 20);
 			g.setFont(retryTitle);
-			g.setColor(Color.white);
-			g.drawString("Retry", 775, 65);
+			g.setColor(Color.black);
+			g.drawString("Retry", 1775, 65);
 			g2d.draw(new Rectangle(1750, 35, 100, 50));
 			
 		}else {
