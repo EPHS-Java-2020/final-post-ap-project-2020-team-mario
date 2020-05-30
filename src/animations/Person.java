@@ -27,8 +27,8 @@ public class Person extends Sprite {
 	private final int sX;
 	private final int sY;
 	private List<Bullet> bullets;
-    private boolean gunRaisedRight=false;
-    private boolean gunRaisedLeft=false;
+	private boolean gunRaisedRight = false;
+	private boolean gunRaisedLeft = false;
 	private boolean isWalking = false;
 	public boolean onSomething = false;
 	public boolean isAlive = true;
@@ -39,8 +39,9 @@ public class Person extends Sprite {
 	private boolean hitLeft = false;
 	private boolean hitRight = false;
 	private boolean isCrouching = false;
-	private double distanceFallen = 0; //\\
-	public boolean needToRefresh=false;
+	private double distanceFallen = 0;
+	public boolean needToRefresh = false;
+	public int ammo = 0;
 
 	public Person(int x, int y) {
 		super(x, y);
@@ -60,24 +61,22 @@ public class Person extends Sprite {
 		if (isAlive) {
 			super.x += dx;
 			super.y += dy;
-			if (onSomething&&dx!=0) {
+			if (onSomething && dx != 0) {
 				isWalking = true;
 			} else {
 				isWalking = false;
 			}
-			if (jumpCount!=0) {
+			if (jumpCount != 0) {
 				jumpCount--;
 			}
 			if (count != 0) {
 				count--;
-			} else {//ask for this
+			} else {// ask for this
 			}
 		} else {
 			super.x = super.x;
 			super.y = super.y;
 		}
-		
-		
 
 	}
 
@@ -215,8 +214,6 @@ public class Person extends Sprite {
 			g2d.fill(leftShoe);
 			g2d.fill(rightShoe);
 		}
-		
-		
 
 		time++;
 		if (time == PERIOD) {
@@ -224,7 +221,7 @@ public class Person extends Sprite {
 		}
 
 		super.height = 250;
-		
+
 		if (gunRaisedRight) {
 			super.width = 210;
 			Rectangle2D leftArm = new Rectangle2D.Double(sX - 13, sY - 165, 20, 80);
@@ -269,13 +266,13 @@ public class Person extends Sprite {
 		}
 
 		for (Bullet bullets : bullets) {
-			bullets.drawImage(g2d);
+			bullets.drawImage(super.x,super.y,g2d);
 		}
 
 	}
+
 	protected void crouchPose(Graphics g) {
-		
-		
+
 		Graphics2D g2d = (Graphics2D) g;
 
 		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -283,7 +280,7 @@ public class Person extends Sprite {
 		rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 
 		g2d.setRenderingHints(rh);
-		
+
 		Rectangle2D hair = new Rectangle2D.Double(sX + 7, sY - 100, 50, 10);
 		g2d.setColor(new Color(87, 49, 26));
 		g2d.fill(hair);
@@ -300,7 +297,7 @@ public class Person extends Sprite {
 		g2d.setColor(new Color(49, 54, 53));
 		g2d.fill(eye1);
 		g2d.fill(eye2);
-		
+
 		Rectangle2D leftLeg = new Rectangle2D.Double(sX + 7, sY - 40, 23, 50);
 		Rectangle2D rightLeg = new Rectangle2D.Double(sX + 34, sY - 40, 23, 50);
 		g2d.setColor(new Color(32, 51, 97));
@@ -315,13 +312,15 @@ public class Person extends Sprite {
 	}
 
 	public Rectangle getBounds() { // wtf this getBounds method for the else statement
-		if(isAlive) {
+		if (isAlive) {
 			if (isCrouching) {
 				return new Rectangle(sX + 7, sY - 100, 50, 125);
 			} else {
 				return new Rectangle(sX + 7, sY - 225, 50, 250);
 			}
-		} else {return new Rectangle(sX, sY + 230, 275, 105);}
+		} else {
+			return new Rectangle(sX, sY + 230, 275, 105);
+		}
 	}
 
 	public void setDx(int dx) {
@@ -330,15 +329,10 @@ public class Person extends Sprite {
 
 	public void isOnGround(DrawMap map) {
 		List<Floor> floors = map.getFloors();
-		/*for (Floor floor: floors) {
-			if (getBounds().intersects(floor.getBounds())) {
-				onSomething = true;
-				return;
-			} else {
-				onSomething = false;
-			}
-		}
-		*/
+		/*
+		 * for (Floor floor: floors) { if (getBounds().intersects(floor.getBounds())) {
+		 * onSomething = true; return; } else { onSomething = false; } }
+		 */
 		List<Brick> bricks = map.getBricks();
 		Rectangle personBounds = this.getBounds();
 
@@ -354,52 +348,51 @@ public class Person extends Sprite {
 
 				if (intersection.getHeight() < intersection.getWidth()) {
 					onSomething = true;
-					
+
 				} else {
 					if (floor.x - 2 <= intersection.getX() && floor.x + 2 >= intersection.getX()) {
-						if(!hitLeft) {
-							super.x-=4;
+						if (!hitLeft) {
+							super.x -= 4;
 							hitLeft = true;
 						}
 					} else {
-						if(!hitRight) {
-							super.x+=4;
+						if (!hitRight) {
+							super.x += 4;
 							hitRight = true;
 						}
 					}
 				}
-				
+
 			}
-			
+
 		}
-		
+
 	}
-	
 
 	public void fall() {
 		if (!(dy == 4)) {
 			dy += 0.25;
 		}
-		distanceFallen+=dy;
-		if(distanceFallen>=1000) {
-			needToRefresh=true;
+		distanceFallen += dy;
+		if (distanceFallen >= 1000) {
+			needToRefresh = true;
 		}
 	}
 
 	public void land() {
 		if (jumpCount == 0) {
 			dy = 0;
-		} 
-		distanceFallen=0;
+		}
+		distanceFallen = 0;
 	}
 
 	public void checkCollisions(DrawMap map) {// this method is new
 		// System.out.println("checking collisions");
-		
+
 		List<List<CopBullet>> bullets = map.getBullets();
-		
-		for (List<CopBullet> bulletList: bullets) {
-			for (CopBullet bullet: bulletList) {
+
+		for (List<CopBullet> bulletList : bullets) {
+			for (CopBullet bullet : bulletList) {
 				Rectangle bounds = bullet.getBounds();
 				if (bounds.intersects(getBounds())) {
 					isAlive = false;
@@ -424,36 +417,41 @@ public class Person extends Sprite {
 					if ((brick.y - 2 <= intersection.getY() && brick.y + 2 >= intersection.getY())) {
 						onSomething = true;
 					} else {
-						super.y+=Math.abs(dy);
+						super.y += Math.abs(dy);
 					}
-					
+
 				} else {
 					if (brick.x - 2 <= intersection.getX() && brick.x + 2 >= intersection.getX()) {
-						if(!hitLeft) {
-							super.x-=4;
+						if (!hitLeft) {
+							super.x -= 4;
 							hitLeft = true;
 						}
 					} else {
-						if(!hitRight) {
-							super.x+=4;
+						if (!hitRight) {
+							super.x += 4;
 							hitRight = true;
 						}
 					}
 				}
-				
+
 			}
-			
+
 		}
 		ArrayList<Chicken> chickens = map.getChickens();
 		for (int i = 0; i < chickens.size(); i++) {
 			Rectangle chickenBounds = chickens.get(i).getBounds();
 			if (chickenBounds.intersects(getBounds())) {
 				Rectangle2D intersection = getBounds().createIntersection(chickenBounds);
-				if (intersection.getHeight() < intersection.getWidth()) {
-					map.chickens.get(i).isEgg = true;
-					dy = -8;
+				if (chickens.get(i).isEgg) {
+					ammo+=3;
+					chickens.remove(i);
 				} else {
-					isAlive = false;
+					if (intersection.getHeight() < intersection.getWidth()) {
+						map.chickens.get(i).isEgg = true;
+						dy = -8;
+					} else {
+						isAlive = false;
+					}
 				}
 			}
 		}
@@ -476,20 +474,19 @@ public class Person extends Sprite {
 
 		int key = e.getKeyCode();
 
-		
-		if ((key == KeyEvent.VK_A || key == KeyEvent.VK_D)  && isAlive) {
-            if(key==KeyEvent.VK_A ) {
-            	gunRaisedLeft=true;
-            	gunRaisedRight=false;
-            }else {
-            	gunRaisedLeft=false;
-            	gunRaisedRight=true;
-            }
-        	fire();
-        	
+		if ((key == KeyEvent.VK_A || key == KeyEvent.VK_D) && isAlive) {
+			if (key == KeyEvent.VK_A) {
+				gunRaisedLeft = true;
+				gunRaisedRight = false;
+			} else {
+				gunRaisedLeft = false;
+				gunRaisedRight = true;
+			}
+			fire();
+
 		} else {
-			gunRaisedRight=false;
-			gunRaisedLeft=false;
+			gunRaisedRight = false;
+			gunRaisedLeft = false;
 			if (key == KeyEvent.VK_SPACE) {
 				if (onSomething) {
 					isCrouching = false;
@@ -519,29 +516,32 @@ public class Person extends Sprite {
 
 	}
 
-//	public void mousePressed(MouseEvent e) { //person class
-//
-//		int mouse = 501; //501 = MouseEvent.MOUSE_PRESSED
-//		if (mouse == MouseEvent.MOUSE_PRESSED && isAlive) {
-//			fire();
-//
-//			gunRaised = true;
-//			count = 30;
-//		} 
-//		
-//	}
-	
+	/*public void mousePressed(MouseEvent e) { // person class
+
+		int mouse = 501; // 501 = MouseEvent.MOUSE_PRESSED
+		if (mouse == MouseEvent.MOUSE_PRESSED && isAlive) {
+			fire();
+
+			gunRaised = true;
+			count = 30;
+		}
+	}*/
+
 	public void fire() {
-		if(gunRaisedRight) {
-			bullets.add(new Bullet(sX + 197, sY - 160, sX, true, null));
-		}else {
-			bullets.add(new Bullet(sX - 168, sY - 160, sX, false, null));
+		if (ammo > 0) {
+			ammo--;
+			if (gunRaisedRight) {
+				bullets.add(new Bullet(sX + 197, sY - 160, x, y, true));
+			} else {
+				bullets.add(new Bullet(sX - 168, sY - 160, x, y, false));
+			}
 		}
 	}
 
 	public int getSX() {
 		return sX;
 	}
+
 	public int getSY() {
 		return sY;
 	}
