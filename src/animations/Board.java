@@ -37,7 +37,7 @@ public class Board extends JPanel implements Runnable {
 	private Floor floor;
 	private DrawMap map;
 	private StartScreen starter;
-	private int level;
+	private LevelManager levels;
 	
 	public static enum SCREEN{
 		START_SCREEN,
@@ -60,21 +60,21 @@ public class Board extends JPanel implements Runnable {
 		hasPainted = false;
 		person = new Person(500, 450);
 		starter=new StartScreen();
-		level = 0;
-		map = new DrawMap(new LevelManager(0));
+		levels = new LevelManager(0);
+		map = new DrawMap(levels);
 	}
 	private void reInitBoard() {
 		if (currentScreen != SCREEN.START_SCREEN) {
 			//System.out.println("Reinit was called");
 			if (currentScreen == SCREEN.LEVEL1) {
-				level = 1;
+				levels.changeLevel(1);
 				map.changeLevel(1);
 			} else if (currentScreen == SCREEN.LEVEL2){
-				level = 2;
+				levels.changeLevel(2);
 				map.changeLevel(2);
 			}
 			person = new Person();
-			map = new DrawMap(new LevelManager(level));
+			map = new DrawMap(levels);
 			hasPainted = false;
 		}
 	}

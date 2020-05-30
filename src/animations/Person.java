@@ -428,7 +428,7 @@ public class Person extends Sprite {
 					if ((brick.y - 2 <= intersection.getY() && brick.y + 2 >= intersection.getY())) {
 						onSomething = true;
 					} else {
-						super.y += Math.abs(dy);
+						dy = 2;
 					}
 
 				} else {
