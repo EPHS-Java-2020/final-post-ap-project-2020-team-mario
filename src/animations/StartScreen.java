@@ -233,9 +233,9 @@ public class StartScreen extends JPanel{
 				}
 			}else {
 				changedFromStartScreen=false;
-				if(x>=1475 && x<=1725 && y>=20 && y<=85) {
+				if(x>=475 && x<=725 && y>=20 && y<=85) {
 					Board.currentScreen = Board.currentScreen.START_SCREEN;
-				} else if(x>=1750 && x<=1850 && y>=20 && y<=85) {
+				} else if(x>=750 && x<=850 && y>=20 && y<=85) {
 					this.needToRefresh=true;
 				}
 			}
