@@ -106,8 +106,16 @@ public class DrawMap {
 			setUpLevel1();
 		}else if(levels.level==2) {
 			setUpLevel2();
+		}else if(levels.level==3) {
+			setUpLevel3();
+		}else if(levels.level==4) {
+			
 		}
-
+		//write else statements for level 3
+	}
+	
+	public void setUpLevel3() {
+		floors.add(new Floor(500 ,1100, 0, 4000));
 	}
 	
 	public void setUpLevel2() {
