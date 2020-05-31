@@ -20,8 +20,10 @@ import javax.swing.JPanel;
 
 
 public class StartScreen extends JPanel{
-	private Rectangle level1Button = new Rectangle(100, 500, 350, 350);
-	private Rectangle level2Button = new Rectangle(550, 500, 350, 350);
+	private Rectangle level1Button = new Rectangle(100, 500, 250, 150);
+	private Rectangle level2Button = new Rectangle(400, 500, 250, 150);
+	private Rectangle level3Button = new Rectangle(700, 500, 250, 150);
+	private Rectangle level4Button = new Rectangle(400, 700, 250, 150);
 	public boolean changedFromStartScreen=false;
 	public boolean needToRefresh=false;
 	
@@ -54,15 +56,23 @@ public class StartScreen extends JPanel{
 		g.drawString("ESCAPE JAIL RIGHT NOW!", 300, 100);
 		
 		
-		Font levels = new Font("arial", Font.BOLD, 30);
+		Font levels = new Font("arial", Font.BOLD, 50);
 		g.setFont(levels);
 		g.setColor(Color.green);
-		g.drawString("Level 1", 200, 600);
+		g.drawString("Level 1", 150, 600);
 		g2d.draw(level1Button);
 		
 		g.setColor(Color.yellow);
-		g.drawString("Level 2", 700, 600);
+		g.drawString("Level 2", 450, 600);
 		g2d.draw(level2Button);
+		
+		g.setColor(Color.yellow);
+		g.drawString("Level 3", 750, 600);
+		g2d.draw(level3Button);
+		
+		g.setColor(Color.red);
+		g.drawString("Level 4", 450, 800);
+		g2d.draw(level4Button);
 		
 	}
 	
@@ -224,12 +234,18 @@ public class StartScreen extends JPanel{
 			
 			if (Board.currentScreen == Board.SCREEN.START_SCREEN) {
 				changedFromStartScreen=true;
-				if (x >= level1Button.x && x <= level1Button.x + 350 && y >= level1Button.y
-						&& y <= level1Button.y + 350) {
+				if (x >= level1Button.x && x <= level1Button.x + 250 && y >= level1Button.y
+						&& y <= level1Button.y + 150) {
 					Board.currentScreen = Board.currentScreen.LEVEL1;
-				} else if (x >= level2Button.x && x <= level2Button.x + 350 && y >= level2Button.y
-						&& y <= level2Button.y + 350) {
+				} else if (x >= level2Button.x && x <= level2Button.x + 250 && y >= level2Button.y
+						&& y <= level2Button.y + 150) {
 					Board.currentScreen = Board.currentScreen.LEVEL2;
+				}else if (x >= level3Button.x && x <= level3Button.x + 250 && y >= level3Button.y
+						&& y <= level3Button.y + 150) {
+					Board.currentScreen = Board.currentScreen.LEVEL3;
+				}else if (x >= level4Button.x && x <= level4Button.x + 250 && y >= level4Button.y
+						&& y <= level4Button.y + 150) {
+					Board.currentScreen = Board.currentScreen.LEVEL4;
 				}
 			}else {
 				changedFromStartScreen=false;

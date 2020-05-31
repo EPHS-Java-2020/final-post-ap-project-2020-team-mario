@@ -42,7 +42,9 @@ public class Board extends JPanel implements Runnable {
 	public static enum SCREEN{
 		START_SCREEN,
 		LEVEL1,
-		LEVEL2
+		LEVEL2,
+		LEVEL3,
+		LEVEL4
 	};
 	public static SCREEN currentScreen = SCREEN.START_SCREEN;
 
@@ -72,6 +74,12 @@ public class Board extends JPanel implements Runnable {
 			} else if (currentScreen == SCREEN.LEVEL2){
 				levels.changeLevel(2);
 				map.changeLevel(2);
+			}else if (currentScreen == SCREEN.LEVEL3) {
+				levels.changeLevel(3);
+				map.changeLevel(3);
+			}else if (currentScreen == SCREEN.LEVEL4) {
+				levels.changeLevel(4);
+				map.changeLevel(4);
 			}
 			person = new Person();
 			map = new DrawMap(levels);
@@ -128,7 +136,7 @@ public class Board extends JPanel implements Runnable {
 			
 			Font title  = new Font("arial", Font.BOLD, 20);
 			g.setFont(title);
-			g.setColor(Color.white);
+			g.setColor(Color.black);
 			g.drawString("Return to Main Menu", 500, 65);
 			g2d.draw(new Rectangle(475, 35, 250, 50));
 			
@@ -137,6 +145,13 @@ public class Board extends JPanel implements Runnable {
 			g.setColor(Color.black);
 			g.drawString("Retry", 775, 65);
 			g2d.draw(new Rectangle(750, 35, 100, 50));
+			
+			Font ammoCount  = new Font("arial", Font.BOLD, 50);
+			g.setFont(ammoCount);
+			g.setColor(Color.white);
+			g.drawString("Ammo: "+person.ammo, 100, 65);
+			
+			
 			
 		}else {
 			starter.drawImage(g);
