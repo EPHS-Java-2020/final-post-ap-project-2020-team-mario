@@ -152,18 +152,21 @@ public class DrawMap {
 		
 		//third floor
 		floors.add(new Floor(3250 ,2100, 0, 800));
+		enemies.add(new Enemy(3500, 1875, 2, 300));
 		bricks.add(new Brick(4150,2050,0));
 		
 		//prank floor
 		floors.add(new Floor(4250 ,2000, 0, 1000));
 		floors.add(new Floor(5250 ,2300, 0, 500));
-		bricks.add(new Brick(5850,2340,0));
-		bricks.add(new Brick(5850,2275,0));
-		bricks.add(new Brick(5850,2210,0));
-		bricks.add(new Brick(5850,2145,0));
-		bricks.add(new Brick(5850,2080,0));
+		bricks.add(new Brick(5750,2340,0));
+		bricks.add(new Brick(5750,2275,0));
+		bricks.add(new Brick(5750,2210,0));
+		bricks.add(new Brick(5750,2145,0));
+		bricks.add(new Brick(5750,2080,0));
 		
 		// last floor
+		bricks.add(new Brick(4100, 2400, 0));
+		bricks.add(new Brick(4200, 2800, 0));
 		floors.add(new Floor(4250, 3000, 0, 1000));
 		cars.add(new Car(4500, 2795, 0));
 
@@ -212,8 +215,7 @@ public class DrawMap {
 		
 		
 		enemies.add(new Enemy(2700, 575, 3, 400));
-		enemies.add(new Enemy(3600, 575, 5, 200));
-		
+		enemies.add(new Enemy(3600, 575, 4, 200));
 	}
 	
 	public void setUpLevel1()
