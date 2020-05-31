@@ -354,7 +354,8 @@ public class Person extends Sprite {
 					if ((floor.y - 2 <= intersection.getY() && floor.y + 2 >= intersection.getY())) {
 						onSomething = true;
 					} else {
-						dy  = 2;
+						super.y+=3.2;
+						
 					}
 
 				} else {
