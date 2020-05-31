@@ -304,6 +304,9 @@ public class DrawMap {
 	public ArrayList<Chicken> getChickens() {
 		return chickens;
 	}
+	public ArrayList<Enemy> getEnemies() {
+		return enemies;
+	}
 	
 	public ArrayList<Car> getCars() {
 		return cars;

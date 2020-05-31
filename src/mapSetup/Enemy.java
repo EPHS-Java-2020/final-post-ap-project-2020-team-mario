@@ -290,8 +290,8 @@ public class Enemy extends Obstacle {
 		return new Rectangle(x,y-10,50, 250);
 	}
 	
-	public void checkCollisions(ArrayList<Bullet> personBullets) {////
-		for(Bullet bullet: personBullets) {
+	public void checkCollisions(List<Bullet> list) {////
+		for(Bullet bullet: list) {
 			if(bullet.getBounds().intersects(this.getBounds())) {
 				shotCount++;
 				injuryTime=15;

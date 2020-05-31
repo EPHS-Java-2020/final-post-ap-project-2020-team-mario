@@ -203,6 +203,10 @@ public class Board extends JPanel implements Runnable {
 
 					cycle();
 					person.checkCollisions(map);
+					ArrayList<Enemy> enemies = map.getEnemies();
+					for(Enemy enemy: enemies) {
+						enemy.checkCollisions(person.getBullets());
+					}
 					eggs+=person.coins;
 					starter.eggs=eggs;
 					if (person.onSomething) {
