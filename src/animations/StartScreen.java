@@ -26,9 +26,10 @@ public class StartScreen extends JPanel{
 	private Rectangle level4Button = new Rectangle(400, 700, 250, 150);
 	public boolean changedFromStartScreen=false;
 	public boolean needToRefresh=false;
+	public int eggs;
 	
-	public StartScreen() {
-		
+	public StartScreen(int eggs) {
+		this.eggs = eggs;
 	}
 	
 	public void drawImage(Graphics g) {
