@@ -69,7 +69,7 @@ public class DrawMap {
 		
 		for (int i = 0; i < enemies.size(); i++) {
 			Enemy enemy = enemies.get(i);
-			enemy.drawImage(x,y,g2d);
+			if(enemy.visible) {enemy.drawImage(x,y,g2d);}
 			try {
 				bullets.set(i,enemy.getBullets());
 			} catch (Exception e) {

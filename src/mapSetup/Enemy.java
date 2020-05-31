@@ -126,7 +126,11 @@ public class Enemy extends Obstacle {
 			g2d.setColor(new Color(128, 78, 68));
 			g2d.fill(mouth);
 			Ellipse2D mouthBelow = new Ellipse2D.Double(x, y + 43, 45, 20);
-			g2d.setColor(new Color(255, 210, 143));
+			if(injuryTime>0) {
+				g2d.setColor(new Color(255,0,0));
+			}else {
+				g2d.setColor(new Color(255, 210, 143));
+			}
 			g2d.fill(mouthBelow);
 		}
 
@@ -295,7 +299,8 @@ public class Enemy extends Obstacle {
 			if(bullet.getBounds().intersects(this.getBounds())) {
 				shotCount++;
 				injuryTime=15;
-				if(shotCount==2) {
+				bullet.visible=false;
+				if(shotCount==3) {
 					this.visible=false;
 				}
 			}

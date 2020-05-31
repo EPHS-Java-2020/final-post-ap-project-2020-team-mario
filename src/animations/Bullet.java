@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
@@ -44,6 +45,9 @@ public class Bullet extends Obstacle{
 		
 	}
 	
+	public Rectangle getBounds() {
+		return new Rectangle(x, y, 35, 5);
+	}
 
 	@Override
 	public void drawImage(Graphics g) {

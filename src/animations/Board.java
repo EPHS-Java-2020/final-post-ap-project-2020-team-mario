@@ -150,7 +150,7 @@ public class Board extends JPanel implements Runnable {
 			Font coinsTitle = new Font("arial", Font.BOLD, 40);
 			g.setFont(coinsTitle);
 			g.setColor(Color.black);
-			g.drawString("Eggs: " + eggs, 100, 65);
+			g.drawString("Ammo: " + person.ammo, 100, 65);
 			
 		}else {
 			starter.drawImage(g);

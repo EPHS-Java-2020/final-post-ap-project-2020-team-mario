@@ -462,6 +462,7 @@ public class Person extends Sprite {
 				Rectangle2D intersection = getBounds().createIntersection(chickenBounds);
 				if (chickens.get(i).isEgg) {
 					coins++;
+					ammo+=3;///////////////////////////////////////////////////////////////
 					chickens.remove(i);
 				} else {
 					if (intersection.getHeight() < intersection.getWidth()) {
