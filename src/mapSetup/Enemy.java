@@ -4,11 +4,14 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.geom.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import animations.Bullet;
 
 public class Enemy extends Obstacle {
 
@@ -20,7 +23,9 @@ public class Enemy extends Obstacle {
 	private int bulletTime;
 	private boolean forward = true;
 	public int pX;
+	public int injuryTime=0;
 	public int pY;
+	private int shotCount=0;
 	public ArrayList<CopBullet> bullets;
 	private boolean isLeft;
 
@@ -78,7 +83,11 @@ public class Enemy extends Obstacle {
 		}
 
 		Rectangle2D head = new Rectangle2D.Double(x, y + 10, 50, 50);
-		g2d.setColor(new Color(255, 210, 143));
+		if(injuryTime>0) {
+			g2d.setColor(new Color(255, 0, 0));
+		}else{
+			g2d.setColor(new Color(255, 210, 143));
+		}
 		g2d.fill(head);
 
 		// glasses
@@ -239,6 +248,9 @@ public class Enemy extends Obstacle {
 			}
 		}
 		time++;
+		if(injuryTime>0) {
+			injuryTime--;
+		}
 		bulletCounting++;
 		if (time == PERIOD) {
 			time = 0;
@@ -248,7 +260,7 @@ public class Enemy extends Obstacle {
 			forward = !forward;
 			timeToWalk = 0;
 		} 
-		if (bulletCounting == bulletTime) {
+		if (this.visible  &&  bulletCounting == bulletTime)  {
 			bulletCounting = 0;
 			CopBullet bullet;
 			if (isLeft) {
@@ -272,6 +284,22 @@ public class Enemy extends Obstacle {
 
 		}
 
+	}
+	
+	public Rectangle getBounds() {
+		return new Rectangle(x,y-10,50, 250);
+	}
+	
+	public void checkCollisions(ArrayList<Bullet> personBullets) {////
+		for(Bullet bullet: personBullets) {
+			if(bullet.getBounds().intersects(this.getBounds())) {
+				shotCount++;
+				injuryTime=15;
+				if(shotCount==2) {
+					this.visible=false;
+				}
+			}
+		}
 	}
 	public ArrayList<CopBullet> getBullets() {
 		return bullets;
