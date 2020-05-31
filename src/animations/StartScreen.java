@@ -18,15 +18,15 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 
-
 public class StartScreen extends JPanel{
 	private Rectangle level1Button = new Rectangle(100, 500, 350, 350);
 	private Rectangle level2Button = new Rectangle(550, 500, 350, 350);
 	public boolean changedFromStartScreen=false;
 	public boolean needToRefresh=false;
+	public int eggs;
 	
-	public StartScreen() {
-		
+	public StartScreen(int eggs) {
+		this.eggs = eggs;
 	}
 	
 	public void drawImage(Graphics g) {
@@ -63,6 +63,11 @@ public class StartScreen extends JPanel{
 		g.setColor(Color.yellow);
 		g.drawString("Level 2", 700, 600);
 		g2d.draw(level2Button);
+		
+		Font coinsTitle = new Font("arial", Font.BOLD, 40);
+		g.setFont(coinsTitle);
+		g.setColor(Color.black);
+		g.drawString("Eggs: " + eggs, 100, 65);
 		
 	}
 	

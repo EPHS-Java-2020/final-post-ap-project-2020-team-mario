@@ -37,6 +37,7 @@ public class Board extends JPanel implements Runnable {
 	private Floor floor;
 	private DrawMap map;
 	private StartScreen starter;
+	private int eggs = 0;
 	private LevelManager levels;
 	
 	public static enum SCREEN{
@@ -59,7 +60,7 @@ public class Board extends JPanel implements Runnable {
 		setFocusable(true);
 		hasPainted = false;
 		person = new Person(500, 450);
-		starter=new StartScreen();
+		starter=new StartScreen(eggs);
 		levels = new LevelManager(0);
 		map = new DrawMap(levels);
 	}
@@ -138,6 +139,11 @@ public class Board extends JPanel implements Runnable {
 			g.drawString("Retry", 775, 65);
 			g2d.draw(new Rectangle(750, 35, 100, 50));
 			
+			Font coinsTitle = new Font("arial", Font.BOLD, 40);
+			g.setFont(coinsTitle);
+			g.setColor(Color.black);
+			g.drawString("Eggs: " + eggs, 100, 65);
+			
 		}else {
 			starter.drawImage(g);
 		}
@@ -188,7 +194,9 @@ public class Board extends JPanel implements Runnable {
 				} else {
 
 					cycle();
-					person.checkCollisions(map);// new change
+					person.checkCollisions(map);
+					eggs+=person.coins;
+					starter.eggs=eggs;
 					if (person.onSomething) {
 						person.land();
 					} else {
