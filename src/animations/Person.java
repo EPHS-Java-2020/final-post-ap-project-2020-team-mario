@@ -45,6 +45,7 @@ public class Person extends Sprite {
 	public boolean touchedDeadlyObstacle=false;
 	public boolean escaped=false;
 	public int ammo = 0;
+	public int coins = 0;
 
 	public Person(int x, int y) {
 		super(x, y);
@@ -425,7 +426,7 @@ public class Person extends Sprite {
 			if (brickBounds.intersects(personBounds)) {
 				Rectangle2D intersection = getBounds().createIntersection(brick.getBounds());
 
-				if (intersection.getHeight() + 3 < intersection.getWidth()) {
+				if (intersection.getHeight() + 2 < intersection.getWidth()) {
 					if ((brick.y - 2 <= intersection.getY() && brick.y + 2 >= intersection.getY())) {
 						onSomething = true;
 					} else {
@@ -453,13 +454,14 @@ public class Person extends Sprite {
 			}
 
 		}
+		coins = 0;
 		ArrayList<Chicken> chickens = map.getChickens();
 		for (int i = 0; i < chickens.size(); i++) {
 			Rectangle chickenBounds = chickens.get(i).getBounds();
 			if (chickenBounds.intersects(getBounds())) {
 				Rectangle2D intersection = getBounds().createIntersection(chickenBounds);
 				if (chickens.get(i).isEgg) {
-					ammo+=3;
+					coins++;
 					chickens.remove(i);
 				} else {
 					if (intersection.getHeight() < intersection.getWidth()) {

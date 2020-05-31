@@ -28,6 +28,10 @@ public class Brick extends Obstacle{
 	public String toString() {
 		return "{BRICK--> (X="+super.x+",Y="+super.y+")  (WIDTH="+super.width+",HEIGHT="+super.height+")}";
 	}
+	@Override
+	public Rectangle getBounds() {
+		return new Rectangle(super.x, super.y, image.getWidth(null), image.getHeight(null));
+	}
 	
 	
 	

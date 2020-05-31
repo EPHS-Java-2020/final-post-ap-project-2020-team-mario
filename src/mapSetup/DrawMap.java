@@ -281,10 +281,10 @@ public class DrawMap {
 		bricks.add(new Brick(4400, 830,0));
 		bricks.add(new Brick(4400, 890,0));
 		floors.add(new Floor(4450, 750, 0, 2000));
-		chickens.add(new Chicken(4600, 650, 0, 1, 600));
-		chickens.add(new Chicken(4800, 650, 0, 1, 600));
-		chickens.add(new Chicken(5000, 650, 0, 1, 600));
-		chickens.add(new Chicken(5200, 650, 0, 1, 600));
+		chickens.add(new Chicken(4500, 650, 0, 1, 600));
+		chickens.add(new Chicken(4700, 650, 0, 1, 600));
+		chickens.add(new Chicken(4900, 650, 0, 1, 600));
+		chickens.add(new Chicken(5100, 650, 0, 1, 600));
 		chickens.add(new Chicken(5300, 650, 0, 1, 600));
 		
 		bricks.add(new Brick(6000, 685, 0));
