@@ -69,7 +69,7 @@ public class Board extends JPanel implements Runnable {
 		levels = new LevelManager(0);
 		map = new DrawMap(levels);
 		try {
-			Scanner input = new Scanner(new File("eggs.txt"));
+			Scanner input = new Scanner(new File("Eggs.txt"));
 			String eggs = input.next();
 			this.eggs = Integer.parseInt(eggs);
 		}catch(FileNotFoundException e){
@@ -228,7 +228,7 @@ public class Board extends JPanel implements Runnable {
 					eggs+=person.coins;
 					starter.eggs=eggs;
 					try {
-						PrintStream output = new PrintStream(new File("eggs.txt"));
+						PrintStream output = new PrintStream(new File("Eggs.txt"));
 						output.println(this.eggs);
 						output.close();
 					} catch (FileNotFoundException e) {
