@@ -69,13 +69,13 @@ public class Board extends JPanel implements Runnable {
 		starter=new StartScreen(eggs);
 		levels = new LevelManager(0);
 		map = new DrawMap(levels);
-		try {
-			Scanner input = new Scanner(new File("eggs.txt"));
-			String eggs = input.next();
-			this.eggs = Integer.parseInt(eggs);
-		}catch(FileNotFoundException e){
-			
-		}
+//		try {
+//			Scanner input = new Scanner(new File("eggs.txt"));
+//			String eggs = input.next();
+//			this.eggs = Integer.parseInt(eggs);
+//		}catch(FileNotFoundException e){
+//			
+//		}
 		
 	}
 	private void reInitBoard() {

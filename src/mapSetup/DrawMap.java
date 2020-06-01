@@ -125,9 +125,49 @@ public class DrawMap {
 	
 	public void setUpLevel3() {
 
-		floors.add(new Floor(500 ,1100, 0, 4000));
+		floors.add(new Floor(500 ,1100, 0, 5000));
+		floors.add(new Floor(500, 1000, 0, 2000));
+		//enemies.add(new Enemy(2500, 875, 3, 400));
+		floors.add(new Floor(3000, 1000, 0, 1000));
+		//enemies.add(new Enemy(4000, 875, 3, 400));
+		floors.add(new Floor(5000, 1000, 0, 500));
+		//chickens.add(new Chicken(4000, 1000, 0, 2, 400));
+		//chickens.add(new Chicken(4000, 1000, 0, 3, 300));
 
+		freeBullets.add(new FreeBullet(800, 970));
 		freeBullets.add(new FreeBullet(800, 950));
+		freeBullets.add(new FreeBullet(800, 930));
+		freeBullets.add(new FreeBullet(700, 970));
+		freeBullets.add(new FreeBullet(700, 950));
+		freeBullets.add(new FreeBullet(700, 930));
+		freeBullets.add(new FreeBullet(600, 950));
+		freeBullets.add(new FreeBullet(600, 930));
+		
+
+		bricks.add(new Brick(5600, 1040, 0));
+		bricks.add(new Brick(5750, 1180, 0));
+		bricks.add(new Brick(5900, 1300, 0));
+		floors.add(new Floor(6000, 1400, 0, 3000));
+		
+
+		spikes.add(new Spike(6300,1350,0));
+		spikes.add(new Spike(6350,1300,0));
+		spikes.add(new Spike(6400,1350,0));
+
+		freeBullets.add(new FreeBullet(6300, 1300));
+		freeBullets.add(new FreeBullet(6350, 1250));
+		freeBullets.add(new FreeBullet(6400, 1300));
+		
+		
+		int randSpawn = (int)(Math.random()*2);
+		System.out.println(randSpawn);
+		if(randSpawn == 0) {
+			enemies.add(new Enemy(4000, 875, 3, 400));
+		}else {
+			enemies.add(new Enemy(7500, 1175, 3, 400));
+		}
+		//enemies.add(new Enemy(4000, 875, 3, 400));
+		//enemies.add(new Enemy(6700, 1175, 3, 400));
 	}
 	
 	public void setUpLevel2() {
