@@ -1,6 +1,7 @@
 package animations;
 
 import java.awt.BasicStroke;
+import shop.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -14,7 +15,7 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
-
+import java.util.Scanner;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 

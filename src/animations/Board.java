@@ -2,7 +2,7 @@ package animations;
 
 
 import java.awt.BasicStroke;
-
+import shop.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -14,8 +14,12 @@ import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -55,7 +59,7 @@ public class Board extends JPanel implements Runnable {
 		initBoard();
 	}
 
-	private void initBoard() {
+	private void initBoard()  {
 		addKeyListener(new TAdapter());
 		addMouseListener(new MAdapter());
 		setBackground(new Color(79, 127, 240));
@@ -65,6 +69,14 @@ public class Board extends JPanel implements Runnable {
 		starter=new StartScreen(eggs);
 		levels = new LevelManager(0);
 		map = new DrawMap(levels);
+		try {
+			Scanner input = new Scanner(new File("eggs.txt"));
+			String eggs = input.next();
+			this.eggs = Integer.parseInt(eggs);
+		}catch(FileNotFoundException e){
+			
+		}
+		
 	}
 	private void reInitBoard() {
 		if (currentScreen != SCREEN.START_SCREEN) {
@@ -214,6 +226,14 @@ public class Board extends JPanel implements Runnable {
 					}
 					eggs+=person.coins;
 					starter.eggs=eggs;
+					try {
+						PrintStream output = new PrintStream(new File("eggs.txt"));
+						output.println(this.eggs);
+						output.close();
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						//e.printStackTrace();
+					}
 					if (person.onSomething) {
 						person.land();
 					} else {
