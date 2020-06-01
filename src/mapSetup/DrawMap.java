@@ -1,6 +1,7 @@
 package mapSetup;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -22,6 +23,7 @@ public class DrawMap {
 	public ArrayList<Chicken> chickens;
 	private List<List<CopBullet>> bullets;
 	private ArrayList<Car> cars;
+	private ArrayList<FreeBullet> freeBullets;
 	public LevelManager levels;
 	
 	public DrawMap(LevelManager levels) {
@@ -40,6 +42,7 @@ public class DrawMap {
 		bullets = new ArrayList<List<CopBullet>>();
 		chickens = new ArrayList<Chicken>();
 		cars = new ArrayList<Car>();
+		freeBullets =  new ArrayList<FreeBullet>();
 		addStuff();
 		
 	}
@@ -100,6 +103,12 @@ public class DrawMap {
 		for(Car car: cars) {
 			car.drawImage(x,y,g2d);
 		}
+		
+		for(FreeBullet freeBullet: freeBullets) {
+			if(freeBullet.visible) {
+				freeBullet.drawImage(x,y,g2d);
+			}
+		}
 	}
 	public void addStuff() {
 		if (levels.level == 1) {
@@ -115,7 +124,10 @@ public class DrawMap {
 	}
 	
 	public void setUpLevel3() {
+
 		floors.add(new Floor(500 ,1100, 0, 4000));
+
+		freeBullets.add(new FreeBullet(800, 950));
 	}
 	
 	public void setUpLevel2() {
@@ -125,7 +137,9 @@ public class DrawMap {
 		bricks.add(new Brick(1250,1080, 0));
 		bricks.add(new Brick(1250,1030, 0));
 		bricks.add(new Brick(1080, 930, 0));
+		freeBullets.add(new FreeBullet(1080, 900));
 		bricks.add(new Brick(1370,850, 0));
+		freeBullets.add(new FreeBullet(1370, 800));
 		
 		//bottom floor at beginning
 		floors.add(new Floor(1000 ,1300, 0, 2150));
@@ -176,16 +190,24 @@ public class DrawMap {
 
 		bricks.add(new Brick(1450,735,0));
 		bricks.add(new Brick(1450,670,0));
+		freeBullets.add(new FreeBullet(1450, 600));
 		
 		bricks.add(new Brick(1500,735,0));
 		bricks.add(new Brick(1500,670,0)); 
 		bricks.add(new Brick(1500,615,0));
+		freeBullets.add(new FreeBullet(1500, 550));
 		
 		bricks.add(new Brick(1550,735,0));
 		bricks.add(new Brick(1550,670,0));
 		bricks.add(new Brick(1550,605,0));
 		bricks.add(new Brick(1550,540,0));
 		bricks.add(new Brick(1550,490,0));
+		freeBullets.add(new FreeBullet(1550, 440));
+		
+		freeBullets.add(new FreeBullet(1650, 380));
+		freeBullets.add(new FreeBullet(1710, 440));
+		freeBullets.add(new FreeBullet(1850, 560));
+		freeBullets.add(new FreeBullet(1920, 650));
 
 		spikes.add(new Spike(1600,745,0));
 		spikes.add(new Spike(1650,685,0));
@@ -203,6 +225,9 @@ public class DrawMap {
 
 		bricks.add(new Brick(3400,745,0));
 		bricks.add(new Brick(3400,700,0));
+		freeBullets.add(new FreeBullet(3460, 800));
+		freeBullets.add(new FreeBullet(3460, 780));
+		freeBullets.add(new FreeBullet(3460, 760));
 		
 		bricks.add(new Brick(3500,745,0));
 		bricks.add(new Brick(3500,700,0));
@@ -325,5 +350,9 @@ public class DrawMap {
 	}
 	public List<List<CopBullet>> getBullets() {
 		return bullets;
+	}
+	
+	public ArrayList<FreeBullet> getFreeBullets(){
+		return freeBullets;
 	}
 }

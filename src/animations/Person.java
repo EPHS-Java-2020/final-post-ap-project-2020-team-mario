@@ -18,6 +18,7 @@ import mapSetup.Chicken;
 import mapSetup.CopBullet;
 import mapSetup.DrawMap;
 import mapSetup.Floor;
+import mapSetup.FreeBullet;
 import mapSetup.Spike;
 import java.awt.event.MouseEvent;
 
@@ -384,7 +385,7 @@ public class Person extends Sprite {
 			dy += 0.25;
 		}
 		distanceFallen += dy;
-		if (!touchedDeadlyObstacle  && distanceFallen >= 2000 ) {
+		if (!touchedDeadlyObstacle  && distanceFallen >= 1500 ) {
 			needToRefresh = true;
 		}else {
 			needToRefresh=false;
@@ -413,6 +414,14 @@ public class Person extends Sprite {
 			}
 		}
 		isOnGround(map);
+		
+		ArrayList<FreeBullet> freeBullets = map.getFreeBullets();
+		for(FreeBullet freeBullet: freeBullets) {
+			if(freeBullet.visible && freeBullet.getBounds().intersects(getBounds())) {
+				freeBullet.visible=false;
+				ammo++;
+			}
+		}
 
 		List<Brick> bricks = map.getBricks();
 		Rectangle personBounds = this.getBounds();
