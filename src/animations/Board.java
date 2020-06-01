@@ -147,10 +147,15 @@ public class Board extends JPanel implements Runnable {
 			g.drawString("Retry (R)", 765, 65);
 			g2d.draw(new Rectangle(750, 35, 115, 50));
 			
+			Font ammoTitle = new Font("arial", Font.BOLD, 40);
+			g.setFont(ammoTitle);
+			g.setColor(Color.black);
+			g.drawString("Ammo: " + person.ammo, 100, 65);
+			
 			Font coinsTitle = new Font("arial", Font.BOLD, 40);
 			g.setFont(coinsTitle);
 			g.setColor(Color.black);
-			g.drawString("Ammo: " + person.ammo, 100, 65);
+			g.drawString("Eggs: " + eggs, 1100, 65);
 			
 		}else {
 			starter.drawImage(g);

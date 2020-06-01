@@ -77,6 +77,11 @@ public class StartScreen extends JPanel{
 		g.drawString("Level 4", 1050, 600);
 		g2d.draw(level4Button);
 		
+		Font coinsTitle = new Font("arial", Font.BOLD, 40);
+		g.setFont(coinsTitle);
+		g.setColor(Color.black);
+		g.drawString("Eggs: " + eggs, 1100, 65);
+		
 	}
 	
 	private void drawCop(int x, int y, Graphics g) {
