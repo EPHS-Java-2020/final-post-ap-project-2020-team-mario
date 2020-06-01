@@ -9,6 +9,7 @@ import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
@@ -23,7 +24,7 @@ public class StartScreen extends JPanel{
 	private Rectangle level1Button = new Rectangle(100, 500, 250, 150);
 	private Rectangle level2Button = new Rectangle(400, 500, 250, 150);
 	private Rectangle level3Button = new Rectangle(700, 500, 250, 150);
-	private Rectangle level4Button = new Rectangle(400, 700, 250, 150);
+	private Rectangle level4Button = new Rectangle(1000, 500, 250, 150);
 	public boolean changedFromStartScreen=false;
 	public boolean needToRefresh=false;
 	public int eggs;
@@ -31,6 +32,7 @@ public class StartScreen extends JPanel{
 	public StartScreen(int eggs) {
 		this.eggs = eggs;
 	}
+	
 	
 	public void drawImage(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
@@ -72,7 +74,7 @@ public class StartScreen extends JPanel{
 		g2d.draw(level3Button);
 		
 		g.setColor(Color.red);
-		g.drawString("Level 4", 450, 800);
+		g.drawString("Level 4", 1050, 600);
 		g2d.draw(level4Button);
 		
 	}
@@ -226,7 +228,17 @@ public class StartScreen extends JPanel{
         
 	}
 	
+	public void keyPressed(KeyEvent e) {
+		int key = e.getKeyCode();
+		if (key == KeyEvent.VK_R) {
+			this.needToRefresh=true;
+		}
+		else if (key == KeyEvent.VK_M) {
+			Board.currentScreen = Board.currentScreen.START_SCREEN;;
+		}
+	}
 	
+
 	
 	public void mousePressed(MouseEvent e) { //person class
 		if (501 == MouseEvent.MOUSE_PRESSED) {

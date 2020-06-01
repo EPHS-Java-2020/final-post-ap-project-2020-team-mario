@@ -201,7 +201,7 @@ public class DrawMap {
 		bricks.add(new Brick(1550,670,0));
 		bricks.add(new Brick(1550,605,0));
 		bricks.add(new Brick(1550,540,0));
-		bricks.add(new Brick(1550,490,0));
+		//bricks.add(new Brick(1550,490,0));
 		freeBullets.add(new FreeBullet(1550, 440));
 		
 		freeBullets.add(new FreeBullet(1650, 380));

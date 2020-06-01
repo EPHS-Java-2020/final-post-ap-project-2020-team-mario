@@ -567,6 +567,7 @@ public class Person extends Sprite {
 				isCrouching = true;
 			}
 		}
+		
 
 	}
 
