@@ -66,7 +66,6 @@ public class Board extends JPanel implements Runnable {
 		setFocusable(true);
 		hasPainted = false;
 		person = new Person(500, 450);
-		starter=new StartScreen(eggs);
 		levels = new LevelManager(0);
 		map = new DrawMap(levels);
 		try {
@@ -76,6 +75,8 @@ public class Board extends JPanel implements Runnable {
 		}catch(FileNotFoundException e){
 			
 		}
+
+		starter=new StartScreen(eggs);
 		
 	}
 	private void reInitBoard() {
