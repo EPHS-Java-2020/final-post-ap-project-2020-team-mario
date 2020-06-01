@@ -66,9 +66,9 @@ public class Board extends JPanel implements Runnable {
 		setFocusable(true);
 		hasPainted = false;
 		person = new Person(500, 450);
-		starter=new StartScreen(eggs);
 		levels = new LevelManager(0);
 		map = new DrawMap(levels);
+<<<<<<< HEAD
 //		try {
 //			Scanner input = new Scanner(new File("eggs.txt"));
 //			String eggs = input.next();
@@ -76,6 +76,17 @@ public class Board extends JPanel implements Runnable {
 //		}catch(FileNotFoundException e){
 //			
 //		}
+=======
+		try {
+			Scanner input = new Scanner(new File("Eggs.txt"));
+			String eggs = input.next();
+			this.eggs = Integer.parseInt(eggs);
+		}catch(FileNotFoundException e){
+			
+		}
+
+		starter=new StartScreen(eggs);
+>>>>>>> 9623ccaafdc5c7c48128407664deea65fc63f2d2
 		
 	}
 	private void reInitBoard() {
@@ -227,7 +238,7 @@ public class Board extends JPanel implements Runnable {
 					eggs+=person.coins;
 					starter.eggs=eggs;
 					try {
-						PrintStream output = new PrintStream(new File("eggs.txt"));
+						PrintStream output = new PrintStream(new File("Eggs.txt"));
 						output.println(this.eggs);
 						output.close();
 					} catch (FileNotFoundException e) {
