@@ -80,17 +80,13 @@ public class StartScreen extends JPanel{
 		g.drawString("Level 4", 1050, 600);
 		g2d.draw(level4Button);
 		
-		g.setColor(Color.black);
-		g.drawString("Shop", 1050, 400);
-		g2d.draw(shopButton);
-		
 		Font coinsTitle = new Font("arial", Font.BOLD, 40);
 		g.setFont(coinsTitle);
 		g.setColor(Color.black);
 		g.drawString("Eggs: " + eggs, 1100, 65);
 		
 		g2d.draw(shopButton);
-		g.drawString("SHOP", 1100, 400);
+		g.drawString("SHOP", 1050, 400);
 		
 	}
 	
