@@ -2,7 +2,6 @@ package animations;
 
 
 import java.awt.BasicStroke;
-import shop.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;

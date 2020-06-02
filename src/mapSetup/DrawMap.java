@@ -152,9 +152,10 @@ public class DrawMap {
 		freeBullets.add(new FreeBullet(5300, 950));
 		freeBullets.add(new FreeBullet(5300, 950));
 		freeBullets.add(new FreeBullet(5300, 950));
-		floors.add(new Floor(6700, 1100, 0, 1000));
-		enemies.add(new Enemy(6800, 860, 3, 500));
-		enemies.add(new Enemy(7000, 860, 3, 600));
+		floors.add(new Floor(6700, 1100, 0, 3000));
+		enemies.add(new Enemy(6800, 860, 3, 200));
+		enemies.add(new Enemy(7000, 860, 3, 300));
+		cars.add(new Car(8000, 900, 0));
 		
 		
 	}
