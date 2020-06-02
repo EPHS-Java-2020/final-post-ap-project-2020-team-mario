@@ -99,15 +99,6 @@ public class Shop {
 		g2d.setColor(shirtColor);//new Color(77, 73, 73)
 		g2d.fill(body);
 
-		if(shirtColor.equals(Color.red)) {
-			Ellipse2D openSickle = new Ellipse2D.Double(sX + 17, sY-140, 25, 25);
-			g2d.setColor(Color.yellow);
-			g2d.fill(openSickle);
-			Ellipse2D closeSickle = new Ellipse2D.Double(sX + 24, sY-140, 25, 25);
-			g2d.setColor(Color.red);
-			g2d.fill(closeSickle);
-			g2d.fill(closeSickle);
-		}
 		Rectangle2D leftLeg = null;
 		Rectangle2D leftShoe = null;
 		Rectangle2D rightLeg = null;

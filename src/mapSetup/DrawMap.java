@@ -159,7 +159,6 @@ public class DrawMap {
 		
 		
 		int randSpawn = (int)(Math.random()*2);
-		System.out.println(randSpawn);
 //		if(randSpawn == 0) {
 //			enemies.add(new Enemy(4000, 875, 3, 400));
 //			chickens.add(new Chicken(7500, 1000, 0, 2, 400));
@@ -171,9 +170,21 @@ public class DrawMap {
 //			chickens.add(new Chicken(4000, 1000, 0, 3, 300));
 //		}
 		
-		bricks.add(new Brick(9300, 1040, 0));
-		bricks.add(new Brick(9600, 1200, 0));
-		bricks.add(new Brick(9800, 1100, 0));
+		bricks.add(new Brick(9300, 1440, 0));
+		bricks.add(new Brick(9720, 1600, 0));
+		bricks.add(new Brick(10050, 1550, 0));
+		bricks.add(new Brick(10110, 1520, 0));
+		spikes.add(new Spike(10300, 1800, 0));
+		spikes.add(new Spike(10430, 1860, 0));
+		bricks.add(new Brick(10480, 1850, 0));
+		
+
+		floors.add(new Floor(10500, 2110, 0, 800));
+		chickens.add(new Chicken(10800, 2010, 0, 2, 150));
+		chickens.add(new Chicken(10950, 2010, 0, 2, 150));
+		floors.add(new Floor(11300, 1950, 0, 3000));
+		enemies.add(new Enemy(12300, 1725, 3, 500));
+		cars.add(new Car(12050, 1745, 0));
 	}
 	
 	public void setUpLevel2() {
