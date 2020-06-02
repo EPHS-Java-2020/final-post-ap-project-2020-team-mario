@@ -41,10 +41,12 @@ public class Board extends JPanel implements Runnable {
 	private Floor floor;
 	private DrawMap map;
 	private StartScreen starter;
+	private Shop shop;
 	private int eggs = 0;
 	private LevelManager levels;
 	
 	public static enum SCREEN{
+		SHOP,
 		START_SCREEN,
 		LEVEL1,
 		LEVEL2,
@@ -65,17 +67,9 @@ public class Board extends JPanel implements Runnable {
 		setBackground(new Color(79, 127, 240));
 		setFocusable(true);
 		hasPainted = false;
-		person = new Person(500, 450);
+		person = new Person(500, 400);
 		levels = new LevelManager(0);
 		map = new DrawMap(levels);
-
-//		try {
-//			Scanner input = new Scanner(new File("eggs.txt"));
-//			String eggs = input.next();
-//			this.eggs = Integer.parseInt(eggs);
-//		}catch(FileNotFoundException e){
-//			
-//		}
 		try {
 			Scanner input = new Scanner(new File("Eggs.txt"));
 			String eggs = input.next();
@@ -85,6 +79,7 @@ public class Board extends JPanel implements Runnable {
 		}
 
 		starter=new StartScreen(eggs);
+		shop = new Shop(eggs);
 		
 	}
 	private void reInitBoard() {
@@ -102,7 +97,10 @@ public class Board extends JPanel implements Runnable {
 			} else if (currentScreen == SCREEN.LEVEL4){
 				levels.changeLevel(4);
 				map.changeLevel(4);
-			} 
+			} else if(currentScreen == SCREEN.SHOP) {
+				//levels.changeLevel(0);
+				//map.changeLevel(0);
+			}
 			person = new Person();
 			map = new DrawMap(levels);
 			hasPainted = false;
@@ -131,7 +129,7 @@ public class Board extends JPanel implements Runnable {
 		
 		super.paintComponent(g);
 		
-		if(currentScreen!=SCREEN.START_SCREEN) {
+		if(currentScreen!=SCREEN.START_SCREEN && currentScreen!=SCREEN.SHOP) {
 			Graphics2D g2d = (Graphics2D) g;
 			map.drawAll(g, person.x, person.y);
 
@@ -178,8 +176,10 @@ public class Board extends JPanel implements Runnable {
 			g.setColor(Color.black);
 			g.drawString("Eggs: " + eggs, 1100, 65);
 			
-		}else {
+		}else if(currentScreen==SCREEN.START_SCREEN){
 			starter.drawImage(g);
+		}else if(currentScreen==SCREEN.SHOP){
+			shop.drawImage(g);
 		}
 		
 		Toolkit.getDefaultToolkit().sync();
@@ -187,6 +187,7 @@ public class Board extends JPanel implements Runnable {
 
 	private void drawCharacter(Graphics g) {
 		if (person.visible) {
+			person.setColorScheme(shop.pantColor, shop.shirtColor, shop.shoeColor);
 			person.drawImage(g);
 		}
 	}
@@ -221,7 +222,7 @@ public class Board extends JPanel implements Runnable {
 
 		while (true) {
 			repaint();
-			if (currentScreen != SCREEN.START_SCREEN) {
+			if (currentScreen != SCREEN.START_SCREEN && currentScreen != SCREEN.SHOP) {
 				if(starter.needToRefresh) {
 					reInitBoard();
 					starter.needToRefresh=false;
@@ -295,6 +296,9 @@ public class Board extends JPanel implements Runnable {
 			starter.mousePressed(e);
 			if (starter.changedFromStartScreen) {
 				reInitBoard();
+				if(currentScreen==SCREEN.SHOP) {
+					shop.mousePressed(e);
+				}
 			}
 
 		}

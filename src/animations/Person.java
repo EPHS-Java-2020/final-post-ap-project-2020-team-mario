@@ -24,6 +24,10 @@ import java.awt.event.MouseEvent;
 
 public class Person extends Sprite {
 
+	private Color pantColor=new Color(32, 51, 97);
+	private Color shirtColor=new Color(77, 73, 73);
+	private Color shoeColor=new Color(100, 100, 100);
+	
 	private double dx;
 	private double dy;
 	private final int sX;
@@ -60,6 +64,12 @@ public class Person extends Sprite {
 		sX = 500;
 		sY = 500;
 		bullets = new ArrayList<Bullet>();
+	}
+	
+	public void setColorScheme(Color pantColor, Color shirtColor, Color shoeColor) {
+		this.pantColor = pantColor;
+		this.shirtColor = shirtColor;
+		this.shoeColor = shoeColor;
 	}
 
 	public void move() {
@@ -117,14 +127,14 @@ public class Person extends Sprite {
 //		g2d.fill(blood);
 
 		Rectangle2D shoe = new Rectangle2D.Double(sX, sY, 15, 30);// super.y+10
-		g2d.setColor(new Color(100, 100, 100));
+		g2d.setColor(shoeColor);//new Color(100, 100, 100)
 		g2d.fill(shoe);
 		Rectangle2D leg = new Rectangle2D.Double(sX + 15, sY, 90, 23);// super.y-80
-		g2d.setColor(new Color(32, 51, 97));
+		g2d.setColor(pantColor);//new Color(32, 51, 97)
 		g2d.fill(leg);
 
 		Rectangle2D body = new Rectangle2D.Double(sX + 105, sY, 85, 28);// super.y-165
-		g2d.setColor(new Color(77, 73, 73));
+		g2d.setColor(shirtColor);//new Color(77, 73, 73)
 		g2d.fill(body);
 		Rectangle2D arm = new Rectangle2D.Double(sX + 110, sY + 4, 80, 20);// super.y-165
 		g2d.setColor(Color.red);//new Color(255, 210, 143) <----Original for arm & head
@@ -175,7 +185,7 @@ public class Person extends Sprite {
 		g2d.fill(eye1);
 		g2d.fill(eye2);
 		Rectangle2D body = new Rectangle2D.Double(sX + 7, sY - 165, 50, 85);
-		g2d.setColor(new Color(77, 73, 73));
+		g2d.setColor(shirtColor);//new Color(77, 73, 73)
 		g2d.fill(body);
 
 		Rectangle2D leftLeg = null;
@@ -186,37 +196,37 @@ public class Person extends Sprite {
 		if (time <= 22 && isWalking) {
 			leftLeg = new Rectangle2D.Double(sX + 7, sY - 80, 23, 90);
 			rightLeg = new Rectangle2D.Double(sX + 34, sY - 80, 23, 70);
-			g2d.setColor(new Color(32, 51, 97));
+			g2d.setColor(pantColor);//new Color(32, 51, 97)
 			g2d.fill(leftLeg);
 			g2d.fill(rightLeg);
 
 			leftShoe = new Rectangle2D.Double(sX, sY + 10, 30, 15);
 			rightShoe = new Rectangle2D.Double(sX + 34, sY - 10, 30, 15);
-			g2d.setColor(new Color(100, 100, 100));
+			g2d.setColor(shoeColor);//new Color(100, 100, 100)
 			g2d.fill(leftShoe);
 			g2d.fill(rightShoe);
 		} else if (time <= 44 && isWalking) {
 			leftLeg = new Rectangle2D.Double(sX + 7, sY - 80, 23, 70);
 			rightLeg = new Rectangle2D.Double(sX + 34, sY - 80, 23, 90);
-			g2d.setColor(new Color(32, 51, 97));
+			g2d.setColor(pantColor);//new Color(32, 51, 97)
 			g2d.fill(leftLeg);
 			g2d.fill(rightLeg);
 
 			leftShoe = new Rectangle2D.Double(sX, sY - 10, 30, 15);
 			rightShoe = new Rectangle2D.Double(sX + 34, sY + 10, 30, 15);
-			g2d.setColor(new Color(100, 100, 100));
+			g2d.setColor(shoeColor);//new Color(100, 100, 100)
 			g2d.fill(leftShoe);
 			g2d.fill(rightShoe);
 		} else {
 			leftLeg = new Rectangle2D.Double(sX + 7, sY - 80, 23, 90);
 			rightLeg = new Rectangle2D.Double(sX + 34, sY - 80, 23, 90);
-			g2d.setColor(new Color(32, 51, 97));
+			g2d.setColor(pantColor);//new Color(32, 51, 97)
 			g2d.fill(leftLeg);
 			g2d.fill(rightLeg);
 
 			leftShoe = new Rectangle2D.Double(sX, sY + 10, 30, 15);
 			rightShoe = new Rectangle2D.Double(sX + 34, sY + 10, 30, 15);
-			g2d.setColor(new Color(100, 100, 100));
+			g2d.setColor(shoeColor);//new Color(100, 100, 100)
 			g2d.fill(leftShoe);
 			g2d.fill(rightShoe);
 		}
@@ -306,13 +316,13 @@ public class Person extends Sprite {
 
 		Rectangle2D leftLeg = new Rectangle2D.Double(sX + 7, sY - 40, 23, 50);
 		Rectangle2D rightLeg = new Rectangle2D.Double(sX + 34, sY - 40, 23, 50);
-		g2d.setColor(new Color(32, 51, 97));
+		g2d.setColor(pantColor);//new Color(32, 51, 97)
 		g2d.fill(leftLeg);
 		g2d.fill(rightLeg);
 
 		Rectangle2D leftShoe = new Rectangle2D.Double(sX, sY + 10, 30, 15);
 		Rectangle2D rightShoe = new Rectangle2D.Double(sX + 34, sY + 10, 30, 15);
-		g2d.setColor(new Color(100, 100, 100));
+		g2d.setColor(shoeColor);//new Color(100, 100, 100)
 		g2d.fill(leftShoe);
 		g2d.fill(rightShoe);
 	}

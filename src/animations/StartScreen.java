@@ -26,6 +26,8 @@ public class StartScreen extends JPanel{
 	private Rectangle level2Button = new Rectangle(400, 500, 250, 150);
 	private Rectangle level3Button = new Rectangle(700, 500, 250, 150);
 	private Rectangle level4Button = new Rectangle(1000, 500, 250, 150);
+	private Rectangle shopButton = new Rectangle(1000, 300, 250, 150);
+	
 	public boolean changedFromStartScreen=false;
 	public boolean needToRefresh=false;
 	public int eggs;
@@ -77,6 +79,10 @@ public class StartScreen extends JPanel{
 		g.setColor(Color.red);
 		g.drawString("Level 4", 1050, 600);
 		g2d.draw(level4Button);
+		
+		g.setColor(Color.black);
+		g.drawString("Shop", 1050, 400);
+		g2d.draw(shopButton);
 		
 		Font coinsTitle = new Font("arial", Font.BOLD, 40);
 		g.setFont(coinsTitle);
@@ -265,13 +271,20 @@ public class StartScreen extends JPanel{
 				}else if (x >= level4Button.x && x <= level4Button.x + 250 && y >= level4Button.y
 						&& y <= level4Button.y + 150) {
 					Board.currentScreen = Board.currentScreen.LEVEL4;
+				}else if(x >= shopButton.x && x<= shopButton.x+250 && y>= shopButton.y && y<= shopButton.y+150) {
+					Board.currentScreen = Board.currentScreen.SHOP;
+				}
+			}else if(Board.currentScreen != Board.SCREEN.SHOP){
+				changedFromStartScreen=false;
+				if(x>=475 && x<=725 && y>=20 && y<=85) { //main menu button for levels
+					Board.currentScreen = Board.currentScreen.START_SCREEN;
+				} else if(x>=750 && x<=850 && y>=20 && y<=85) { //retry button for levels
+					this.needToRefresh=true;
 				}
 			}else {
-				changedFromStartScreen=false;
-				if(x>=475 && x<=725 && y>=20 && y<=85) {
-					Board.currentScreen = Board.currentScreen.START_SCREEN;
-				} else if(x>=750 && x<=850 && y>=20 && y<=85) {
-					this.needToRefresh=true;
+				changedFromStartScreen=true;
+				if(x>=shopButton.x && x<=shopButton.x+250 && y>=shopButton.y && y<=shopButton.y+150) {
+					Board.currentScreen = Board.currentScreen.SHOP;
 				}
 			}
 		} 

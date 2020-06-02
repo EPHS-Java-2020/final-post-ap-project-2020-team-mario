@@ -127,9 +127,8 @@ public class DrawMap {
 
 		floors.add(new Floor(500 ,1100, 0, 5000));
 		floors.add(new Floor(500, 1000, 0, 2000));
-		//enemies.add(new Enemy(2500, 875, 3, 400));
+		//enemies.add(new Enemy(2500, 875, 2, 400));
 		floors.add(new Floor(3000, 1000, 0, 1000));
-		//enemies.add(new Enemy(4000, 875, 3, 400));
 		floors.add(new Floor(5000, 1000, 0, 500));
 		//chickens.add(new Chicken(4000, 1000, 0, 2, 400));
 		//chickens.add(new Chicken(4000, 1000, 0, 3, 300));
@@ -161,13 +160,20 @@ public class DrawMap {
 		
 		int randSpawn = (int)(Math.random()*2);
 		System.out.println(randSpawn);
-		if(randSpawn == 0) {
-			enemies.add(new Enemy(4000, 875, 3, 400));
-		}else {
-			enemies.add(new Enemy(7500, 1175, 3, 400));
-		}
-		//enemies.add(new Enemy(4000, 875, 3, 400));
-		//enemies.add(new Enemy(6700, 1175, 3, 400));
+//		if(randSpawn == 0) {
+//			enemies.add(new Enemy(4000, 875, 3, 400));
+//			chickens.add(new Chicken(7500, 1000, 0, 2, 400));
+//			chickens.add(new Chicken(7500, 1000, 0, 3, 300));
+//			
+//		}else {
+//			enemies.add(new Enemy(7500, 1175, 3, 400));
+//			chickens.add(new Chicken(4000, 1000, 0, 2, 400));
+//			chickens.add(new Chicken(4000, 1000, 0, 3, 300));
+//		}
+		
+		bricks.add(new Brick(9300, 1040, 0));
+		bricks.add(new Brick(9600, 1200, 0));
+		bricks.add(new Brick(9800, 1100, 0));
 	}
 	
 	public void setUpLevel2() {
