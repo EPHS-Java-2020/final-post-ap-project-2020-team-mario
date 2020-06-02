@@ -74,6 +74,7 @@ public class Board extends JPanel implements Runnable {
 			Scanner input = new Scanner(new File("Eggs.txt"));
 			String eggs = input.next();
 			this.eggs = Integer.parseInt(eggs);
+			input.close();
 		}catch(FileNotFoundException e){
 			
 		}
