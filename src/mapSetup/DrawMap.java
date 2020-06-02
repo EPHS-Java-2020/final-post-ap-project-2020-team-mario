@@ -198,8 +198,8 @@ public class DrawMap {
 		int randSpawn = (int)(Math.random()*2);
 		if(randSpawn == 0) {
 			enemies.add(new Enemy(4000, 875, 3, 400));
-			chickens.add(new Chicken(7500, 1000, 0, 2, 400));
-			chickens.add(new Chicken(7500, 1000, 0, 3, 300));
+			chickens.add(new Chicken(7500, 1300, 0, 2, 400));
+			chickens.add(new Chicken(7500, 1300, 0, 3, 300));
 			
 		}else {
 			enemies.add(new Enemy(7500, 1175, 3, 400));

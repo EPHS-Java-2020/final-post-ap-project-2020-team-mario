@@ -13,11 +13,15 @@ import java.awt.geom.Rectangle2D;
 
 public class Shop {
 	private Rectangle mainMenuButton = new Rectangle(475, 35, 265, 50);
-	private Rectangle defaultSkinButton = new Rectangle(0, 100, 200 ,300);
-	private Rectangle blackSkinButton = new Rectangle(200, 100, 200, 300);
-	private Rectangle redSkinButton = new Rectangle(400, 100, 200, 300);
+	private Rectangle defaultSkinButton = new Rectangle(0, 100, 200 ,200);
+	private Rectangle blackSkinButton = new Rectangle(0, 300, 200, 200);
+	private Rectangle whiteSkinButton = new Rectangle(0,500, 200, 200);
+	private Rectangle redSkinButton = new Rectangle(200, 100, 200, 200);
+	private Rectangle useButton = new Rectangle(1100, 460, 150, 50);
+	//private boolean changedSkins = false;
+	//private boolean purchaseStatus = {
 	
-	private int eggs;
+	public int eggs;
 	
 	public Color pantColor=new Color(32, 51, 97);
 	public Color shirtColor=new Color(77, 73, 73);
@@ -50,20 +54,38 @@ public class Shop {
 		g.setFont(defaultSkinTXT);
 		g.setColor(Color.black);
 		g.drawString("Default Skin", 50, 150);
+		g.drawString("Price: FREE", 50, 210);
 		g2d.draw(defaultSkinButton);
 		
+
 		
 		Font blackSkinTXT = new Font("arial", Font.BOLD, 20);
 		g.setFont(blackSkinTXT);
 		g.setColor(Color.black);
-		g.drawString("Black Skin", 250, 150);
+		g.drawString("Black Skin", 50, 350);
+		g.drawString("Price: 5 eggs", 50, 410);
 		g2d.draw(blackSkinButton);
+		
+		Font whiteSkinTXT = new Font("arial", Font.BOLD, 20);
+		g.setFont(whiteSkinTXT);
+		g.setColor(Color.white);
+		g.drawString("White Skin", 50, 550);
+		g.drawString("Price: 5 eggs", 50, 610);
+		g2d.draw(whiteSkinButton);
 		
 		Font redSkinTXT = new Font("arial", Font.BOLD, 20);
 		g.setFont(redSkinTXT);
-		g.setColor(Color.black);
-		g.drawString("Red Skin", 450, 150);
+		g.setColor(Color.red);
+		g.drawString("Red Skin", 250, 150);
+		g.drawString("Price: 10 eggs", 250, 210);
 		g2d.draw(redSkinButton);
+		
+		Font useTXT = new Font("arial", Font.BOLD, 40);
+		g.setFont(redSkinTXT);
+		g.setColor(Color.black);
+		g.drawString("USE SKIN", 1100, 480);
+		g2d.draw(useButton);
+		
 		
         drawPerson(1200, 400, g);
 	}
@@ -134,24 +156,41 @@ public class Shop {
 			
 			if(x>=mainMenuButton.x && x<=mainMenuButton.x+265 && y>=mainMenuButton.y && y<=mainMenuButton.y+50) {
 				Board.currentScreen = Board.currentScreen.START_SCREEN;
-				colorSchemeChanged=false;
-			}else if(x>=defaultSkinButton.x && x<=defaultSkinButton.x+200 && y>=defaultSkinButton.y && y<=defaultSkinButton.y+300) {
+				//colorSchemeChanged=false;
+			}else if(x>=defaultSkinButton.x && x<=defaultSkinButton.x+200 && y>=defaultSkinButton.y && y<=defaultSkinButton.y+200) {
 				pantColor=new Color(32, 51, 97);
 				shirtColor=new Color(77, 73, 73);
 				shoeColor=new Color(100, 100, 100);
-				colorSchemeChanged=true;
-			}else if(x>=blackSkinButton.x && x<=blackSkinButton.x+200 && y>=blackSkinButton.y && y<=blackSkinButton.y+300) {
+				colorSchemeChanged=false;
+			}else if(x>=blackSkinButton.x && x<=blackSkinButton.x+200 && y>=blackSkinButton.y && y<=blackSkinButton.y+200) {
 				pantColor=new Color(50, 50, 50);
 				shirtColor=new Color(0, 0, 0);
 				shoeColor=new Color(0, 0, 0);
-				colorSchemeChanged=true;
-			}else if(x>=redSkinButton.x && x<=redSkinButton.x+200 && y>=redSkinButton.y && y<=redSkinButton.y+300) {
+				colorSchemeChanged=false;
+			}else if(x>=whiteSkinButton.x && x<=whiteSkinButton.x+200 && y>=whiteSkinButton.y && y<=whiteSkinButton.y+200) {
+				pantColor=new Color(0, 0, 0);
+				shirtColor=new Color(255, 255, 255);
+				shoeColor=new Color(100, 100, 100);
+				colorSchemeChanged=false;
+			}else if(x>=redSkinButton.x && x<=redSkinButton.x+200 && y>=redSkinButton.y && y<=redSkinButton.y+200) {
 				pantColor=new Color(100, 0, 0);
 				shirtColor=new Color(255, 0, 0);
 				shoeColor=new Color(255, 0, 0);
+				colorSchemeChanged=false;
+			}else if(x>=useButton.x && x<=useButton.x+150 && y>=useButton.y && y<=useButton.y+50) {
 				colorSchemeChanged=true;
 			}
 		}
 	}
 	
+	public Color getShirtColor() {
+		System.out.println(shirtColor);
+		return shirtColor;
+	}
+	public Color getPantColor() {
+		return pantColor;
+	}
+	public Color getShoeColor() {
+		return shoeColor;
+	}
 }

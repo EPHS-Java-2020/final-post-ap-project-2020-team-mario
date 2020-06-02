@@ -71,7 +71,7 @@ public class Board extends JPanel implements Runnable {
 		map = new DrawMap(levels);
 		shop = new Shop(this.eggs);
 		try {
-			Scanner input = new Scanner(new File("Eggs.txt"));
+			Scanner input = new Scanner(new File("eggs.txt"));
 			String eggs = input.next();
 			this.eggs = Integer.parseInt(eggs);
 			input.close();
@@ -182,6 +182,10 @@ public class Board extends JPanel implements Runnable {
 			starter.drawImage(g);
 		}else if(currentScreen==SCREEN.SHOP){
 			shop.drawImage(g);
+			Font coinsTitle = new Font("arial", Font.BOLD, 40);
+			g.setFont(coinsTitle);
+			g.setColor(Color.black);
+			g.drawString("Eggs: " + eggs, 1100, 65);
 		}else if (currentScreen == SCREEN.START_SCREEN){
 			starter.drawImage(g);
 		} else {
@@ -193,7 +197,10 @@ public class Board extends JPanel implements Runnable {
 
 	private void drawCharacter(Graphics g) {
 		if (person.visible) {
-			person.setColorScheme(shop.pantColor, shop.shirtColor, shop.shoeColor);
+			System.out.println(shop.colorSchemeChanged);
+			if(shop.colorSchemeChanged) { 
+				person.setColorScheme(shop.getPantColor(), shop.getShirtColor(), shop.getShoeColor());
+			}
 			person.drawImage(g);
 		}
 	}
@@ -228,6 +235,7 @@ public class Board extends JPanel implements Runnable {
 
 		while (true) {
 			repaint();
+			//System.out.println(shop.colorSchemeChanged);
 			if (currentScreen != SCREEN.START_SCREEN && currentScreen != SCREEN.SHOP) {
 				if(starter.needToRefresh) {
 					reInitBoard();
@@ -240,10 +248,17 @@ public class Board extends JPanel implements Runnable {
 					for(Enemy enemy: enemies) {
 						enemy.checkCollisions(person.getBullets());
 					}
+					if(currentScreen != SCREEN.SHOP) {
 					eggs+=person.coins;
 					starter.eggs=eggs;
+					shop.eggs=eggs;
+					}
+//					else {
+//						
+//					}
+					
 					try {
-						PrintStream output = new PrintStream(new File("Eggs.txt"));
+						PrintStream output = new PrintStream(new File("eggs.txt"));
 						output.println(this.eggs);
 						output.close();
 					} catch (FileNotFoundException e) {
