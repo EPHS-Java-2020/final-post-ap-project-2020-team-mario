@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.Shape;
 import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
@@ -23,6 +24,8 @@ public class Spike extends Obstacle{
 		ii = new ImageIcon("src/Drawings/Spike.png");
 		image = ii.getImage();
 	}
+	
+	
 	
 	
 }

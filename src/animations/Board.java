@@ -43,6 +43,7 @@ public class Board extends JPanel implements Runnable {
 	private StartScreen starter;
 	private int eggs = 0;
 	private LevelManager levels;
+	private Shop shop;
 	
 	public static enum SCREEN{
 		START_SCREEN,
@@ -68,14 +69,7 @@ public class Board extends JPanel implements Runnable {
 		person = new Person(500, 450);
 		levels = new LevelManager(0);
 		map = new DrawMap(levels);
-
-//		try {
-//			Scanner input = new Scanner(new File("eggs.txt"));
-//			String eggs = input.next();
-//			this.eggs = Integer.parseInt(eggs);
-//		}catch(FileNotFoundException e){
-//			
-//		}
+		shop = new Shop();
 		try {
 			Scanner input = new Scanner(new File("Eggs.txt"));
 			String eggs = input.next();
@@ -107,6 +101,7 @@ public class Board extends JPanel implements Runnable {
 			map = new DrawMap(levels);
 			hasPainted = false;
 		}
+		person.isAlive = true;
 	}
 
 	@Override
@@ -178,8 +173,9 @@ public class Board extends JPanel implements Runnable {
 			g.setColor(Color.black);
 			g.drawString("Eggs: " + eggs, 1100, 65);
 			
-		}else {
+		}else if (currentScreen == SCREEN.START_SCREEN){
 			starter.drawImage(g);
+		} else {
 		}
 		
 		Toolkit.getDefaultToolkit().sync();

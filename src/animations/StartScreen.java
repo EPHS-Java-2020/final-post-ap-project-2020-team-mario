@@ -26,6 +26,7 @@ public class StartScreen extends JPanel{
 	private Rectangle level2Button = new Rectangle(400, 500, 250, 150);
 	private Rectangle level3Button = new Rectangle(700, 500, 250, 150);
 	private Rectangle level4Button = new Rectangle(1000, 500, 250, 150);
+	private Rectangle shopButton = new Rectangle(1000, 300, 250, 150);
 	public boolean changedFromStartScreen=false;
 	public boolean needToRefresh=false;
 	public int eggs;
@@ -82,6 +83,9 @@ public class StartScreen extends JPanel{
 		g.setFont(coinsTitle);
 		g.setColor(Color.black);
 		g.drawString("Eggs: " + eggs, 1100, 65);
+		
+		g2d.draw(shopButton);
+		g.drawString("SHOP", 1100, 400);
 		
 	}
 	
