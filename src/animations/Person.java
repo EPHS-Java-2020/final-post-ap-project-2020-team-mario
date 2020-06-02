@@ -511,6 +511,10 @@ public class Person extends Sprite {
 		ArrayList<Car> cars = map.getCars();
 		for (Car car : cars) {
 			Rectangle carBounds = car.getBounds();
+			
+			if (carBounds.intersects(personBounds)&&!escaped) {
+				coins+=10;
+			}
 
 			if (car.isMoving || carBounds.intersects(personBounds)) {
 				car.isMoving=true;
