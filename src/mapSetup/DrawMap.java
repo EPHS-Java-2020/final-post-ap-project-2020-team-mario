@@ -118,9 +118,45 @@ public class DrawMap {
 		}else if(levels.level==3) {
 			setUpLevel3();
 		}else if(levels.level==4) {
-			
+			setUpLevel4();
 		}
 		//write else statements for level 3
+	}
+	
+	public void setUpLevel4() {
+		floors.add(new Floor(500, 1150, 0, 2000));
+		trees.add(new Tree(1000, 600, 0));
+		chickens.add(new Chicken(600, 1050, 0, 1, 400));
+		bricks.add(new Brick(2550, 1200, 0));
+		enemies.add(new Enemy(2700, 1060, 2, 200));
+		enemies.add(new Enemy(2900, 1060, 2, 500));
+		floors.add(new Floor(2700, 1300, 0, 1000));
+		cloudes.add(new Cloud(2800, 500, 0));
+		bricks.add(new Brick(3750, 1200, 0));
+		bricks.add(new Brick(3850, 1100, 0));
+		bricks.add(new Brick(3950, 1000, 0));
+		floors.add(new Floor(4050, 900, 0, 1000));
+		suns.add(new Sun(4050, 100, 0));
+		chickens.add(new Chicken(4200, 800, 0, 5, 100));
+		chickens.add(new Chicken(4200, 800, 0, 10, 50));
+		floors.add(new Floor(4700, 1000, 0, 2000));
+		trees.add(new Tree(4600, 350, 0));
+		bricks.add(new Brick(5200, 940, 0));
+		spikes.add(new Spike(5200, 880, 0));
+		freeBullets.add(new FreeBullet(5300, 950));
+		freeBullets.add(new FreeBullet(5300, 950));
+		freeBullets.add(new FreeBullet(5300, 950));
+		freeBullets.add(new FreeBullet(5300, 950));
+		freeBullets.add(new FreeBullet(5300, 950));
+		freeBullets.add(new FreeBullet(5300, 950));
+		freeBullets.add(new FreeBullet(5300, 950));
+		freeBullets.add(new FreeBullet(5300, 950));
+		freeBullets.add(new FreeBullet(5300, 950));
+		floors.add(new Floor(6700, 1100, 0, 1000));
+		enemies.add(new Enemy(6800, 860, 3, 500));
+		enemies.add(new Enemy(7000, 860, 3, 600));
+		
+		
 	}
 	
 	public void setUpLevel3() {
