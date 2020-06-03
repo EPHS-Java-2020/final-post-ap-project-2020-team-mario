@@ -254,6 +254,7 @@ public class Shop {
 				this.decidedPantColor=pantColor;
 				this.decidedShirtColor=shirtColor;
 				this.decidedShoeColor=shoeColor;
+				Board.currentScreen = Board.currentScreen.START_SCREEN;
 			}
 		}
 	}
