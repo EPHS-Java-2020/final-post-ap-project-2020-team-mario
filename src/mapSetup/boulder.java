@@ -20,7 +20,7 @@ public class boulder extends Obstacle{
 	
 	@Override
 	public void loadImage() {
-		ii = new ImageIcon("src/Drawings/bolder.png");
+		ii = new ImageIcon("resources/bolder.png");
 		image = ii.getImage();
 	}
 	

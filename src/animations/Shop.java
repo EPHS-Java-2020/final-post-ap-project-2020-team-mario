@@ -100,7 +100,7 @@ public class Shop {
 		
 		try {
 			
-			Scanner input = new Scanner(new File("skins.txt"));
+			Scanner input = new Scanner(new File("resources/skins.txt"));
 			
 			String inputStrings ="";
 			while(input.hasNext()) {

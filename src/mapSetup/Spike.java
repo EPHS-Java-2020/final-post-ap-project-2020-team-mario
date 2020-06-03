@@ -21,7 +21,7 @@ public class Spike extends Obstacle{
 	
 	@Override
 	public void loadImage() {
-		ii = new ImageIcon("src/Drawings/Spike.png");
+		ii = new ImageIcon("resources/Spike.png");
 		image = ii.getImage();
 	}
 	

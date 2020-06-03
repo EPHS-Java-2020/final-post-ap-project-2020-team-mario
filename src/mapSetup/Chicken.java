@@ -31,7 +31,7 @@ public class Chicken extends Obstacle{
 	}
 	
 	public void loadImage() {
-		ii = new ImageIcon("src/Drawings/Egg.png");
+		ii = new ImageIcon("resources/Egg.png");
 		image = ii.getImage();
 		super.width=ii.getIconWidth();
 		super.height=ii.getIconHeight();

@@ -20,7 +20,7 @@ public class Bush extends Obstacle{
 	
 	@Override
 	public void loadImage() {
-		ii = new ImageIcon("src/Drawings/bush.png");
+		ii = new ImageIcon("resources/bush.png");
 		image = ii.getImage();
 	}
 	

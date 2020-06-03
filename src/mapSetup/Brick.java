@@ -19,7 +19,7 @@ public class Brick extends Obstacle{
 	}
 	@Override
 	public void loadImage() {
-		ii = new ImageIcon("src/Drawings/Fancy Brick.png");
+		ii = new ImageIcon("resources/Fancy Brick.png");
 		image = ii.getImage();
 		super.width=ii.getIconWidth();
 		super.height=ii.getIconHeight();

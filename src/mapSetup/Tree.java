@@ -20,7 +20,7 @@ public class Tree extends Obstacle{
 	
 	@Override
 	public void loadImage() {
-		ii = new ImageIcon("src/Drawings/tree.png");
+		ii = new ImageIcon("resources/tree.png");
 		image = ii.getImage();
 	}
 	

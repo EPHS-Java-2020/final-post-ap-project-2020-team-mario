@@ -20,7 +20,7 @@ public class Rock extends Obstacle{
 	
 	@Override
 	public void loadImage() {
-		ii = new ImageIcon("src/Drawings/rock.png");
+		ii = new ImageIcon("resources/rock.png");
 		image = ii.getImage();
 	}
 	

@@ -20,7 +20,7 @@ public class Moon extends Obstacle{
 	
 	@Override
 	public void loadImage() {
-		ii = new ImageIcon("src/Drawings/moon.png");
+		ii = new ImageIcon("resources/moon.png");
 		image = ii.getImage();
 	}
 	

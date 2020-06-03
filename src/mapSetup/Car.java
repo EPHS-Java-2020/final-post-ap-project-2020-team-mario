@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
+import Drawings.*;
 
 import javax.swing.ImageIcon;
 
@@ -33,7 +34,7 @@ public class Car extends Obstacle{
 	
 	@Override
 	public void loadImage() {
-		ii = new ImageIcon("src/Drawings/car.png");
+		ii = new ImageIcon("resources/car.png");
 		image = ii.getImage();
 		super.width = ii.getIconWidth();
 		super.height = ii.getIconHeight();

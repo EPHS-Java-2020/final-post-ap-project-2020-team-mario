@@ -20,7 +20,7 @@ public class Cloud extends Obstacle{
 	
 	@Override
 	public void loadImage() {
-		ii = new ImageIcon("src/Drawings/cloud.png");
+		ii = new ImageIcon("resources/cloud.png");
 		image = ii.getImage();
 	}
 	

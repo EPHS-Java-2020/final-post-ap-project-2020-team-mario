@@ -20,7 +20,7 @@ public class Sun extends Obstacle{
 	
 	@Override
 	public void loadImage() {
-		ii = new ImageIcon("src/Drawings/sun.png");
+		ii = new ImageIcon("resources/sun.png");
 		image = ii.getImage();
 	}
 	
