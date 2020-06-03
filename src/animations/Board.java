@@ -69,7 +69,6 @@ public class Board extends JPanel implements Runnable {
 		person = new Person(500, 400);
 		levels = new LevelManager(0);
 		map = new DrawMap(levels);
-		shop = new Shop(this.eggs);
 		try {
 			Scanner input = new Scanner(new File("eggs.txt"));
 			String eggs = input.next();
@@ -78,7 +77,6 @@ public class Board extends JPanel implements Runnable {
 		}catch(FileNotFoundException e){
 			
 		}
-
 		starter=new StartScreen(eggs);
 		shop = new Shop(eggs);
 		
@@ -251,21 +249,12 @@ public class Board extends JPanel implements Runnable {
 					for(Enemy enemy: enemies) {
 						enemy.checkCollisions(person.getBullets());
 					}
-					if(currentScreen != SCREEN.SHOP) {
 					eggs+=person.coins;
 					starter.eggs=eggs;
 					shop.eggs=eggs;
-					}
 				
 					
-					try {
-						PrintStream output = new PrintStream(new File("eggs.txt"));
-						output.println(this.eggs);
-						output.close();
-					} catch (FileNotFoundException e) {
-						// TODO Auto-generated catch block
-						//e.printStackTrace();
-					}
+					
 					if (person.onSomething) {
 						person.land();
 					} else {
@@ -279,6 +268,14 @@ public class Board extends JPanel implements Runnable {
 			}else if(currentScreen == SCREEN.SHOP) {
 				eggs = shop.eggs;
 				starter.eggs = eggs;
+			}
+			try {
+				PrintStream output = new PrintStream(new File("eggs.txt"));
+				output.println(this.eggs);
+				output.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
 			}
 			
 			timeDiff = System.currentTimeMillis() - beforeTime;
