@@ -162,22 +162,24 @@ public class DrawMap {
 	
 	public void setUpLevel3() {
 
-		floors.add(new Floor(500 ,1100, 0, 5000));
-		floors.add(new Floor(500, 1000, 0, 2000));
+		floors.add(new Floor(1100 ,1100, 0, 4400));
+		floors.add(new Floor(1100, 1000, 0, 1400));
+		bricks.add(new Brick(1000, 1100, 0));
+		bricks.add(new Brick(1050, 1040, 0));
 		enemies.add(new Enemy(2500, 875, 2, 400));
 		floors.add(new Floor(3000, 1000, 0, 1000));
 		floors.add(new Floor(5000, 1000, 0, 500));
 		chickens.add(new Chicken(4000, 1000, 0, 2, 400));
 		chickens.add(new Chicken(4000, 1000, 0, 3, 300));
 
-		freeBullets.add(new FreeBullet(800, 970));
-		freeBullets.add(new FreeBullet(800, 950));
-		freeBullets.add(new FreeBullet(800, 930));
-		freeBullets.add(new FreeBullet(700, 970));
-		freeBullets.add(new FreeBullet(700, 950));
-		freeBullets.add(new FreeBullet(700, 930));
-		freeBullets.add(new FreeBullet(600, 950));
-		freeBullets.add(new FreeBullet(600, 930));
+		freeBullets.add(new FreeBullet(1100, 900));
+		freeBullets.add(new FreeBullet(1100, 880));
+		freeBullets.add(new FreeBullet(1200, 860));
+		freeBullets.add(new FreeBullet(1200, 900));
+		freeBullets.add(new FreeBullet(1200, 880));
+		freeBullets.add(new FreeBullet(1200, 860));
+		freeBullets.add(new FreeBullet(1300, 900));
+		freeBullets.add(new FreeBullet(1300, 880));
 		
 
 		bricks.add(new Brick(5600, 1040, 0));

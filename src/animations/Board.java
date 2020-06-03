@@ -195,7 +195,7 @@ public class Board extends JPanel implements Runnable {
 
 	private void drawCharacter(Graphics g) {
 		if (person.visible) {
-			System.out.println(shop.colorSchemeChanged);
+			
 			//if(shop.colorSchemeChanged) { 
 				person.setColorScheme(shop.decidedPantColor, shop.decidedShirtColor, shop.decidedShoeColor);
 			//	shop.colorSchemeChanged=false;
