@@ -18,6 +18,15 @@ public class Shop {
 	private Rectangle whiteSkinButton = new Rectangle(0,500, 200, 200);
 	private Rectangle redSkinButton = new Rectangle(200, 100, 200, 200);
 	private Rectangle useButton = new Rectangle(1100, 460, 150, 50);
+	private Rectangle greenSkinButton = new Rectangle(200, 300, 200, 200);
+	private Rectangle blueSkinButton = new Rectangle(200, 500, 200, 200);
+	private Rectangle purpleSkinButton = new Rectangle(400, 100, 200, 200);
+	private Rectangle orangeSkinButton = new Rectangle(400, 300, 200, 200);
+	private Rectangle skyblueSkinButton = new Rectangle(400, 500, 200, 200);
+	private Rectangle mix1SkinButton = new Rectangle(600, 100, 200, 200);
+	private Rectangle mix2SkinButton = new Rectangle(600, 300, 200, 200);
+	private Rectangle mix3SkinButton = new Rectangle(600, 500, 200, 200);
+	
 	//private boolean changedSkins = false;
 	//private boolean purchaseStatus = {
 	
@@ -63,21 +72,21 @@ public class Shop {
 		g.setFont(blackSkinTXT);
 		g.setColor(Color.black);
 		g.drawString("Black Skin", 50, 350);
-		g.drawString("Price: 5 eggs", 50, 410);
+		g.drawString("Price: 10 eggs", 50, 410);
 		g2d.draw(blackSkinButton);
 		
 		Font whiteSkinTXT = new Font("arial", Font.BOLD, 20);
 		g.setFont(whiteSkinTXT);
 		g.setColor(Color.white);
 		g.drawString("White Skin", 50, 550);
-		g.drawString("Price: 5 eggs", 50, 610);
+		g.drawString("Price: 10 eggs", 50, 610);
 		g2d.draw(whiteSkinButton);
 		
 		Font redSkinTXT = new Font("arial", Font.BOLD, 20);
 		g.setFont(redSkinTXT);
 		g.setColor(Color.red);
 		g.drawString("Red Skin", 250, 150);
-		g.drawString("Price: 10 eggs", 250, 210);
+		g.drawString("Price: 20 eggs", 250, 210);
 		g2d.draw(redSkinButton);
 		
 		Font useTXT = new Font("arial", Font.BOLD, 40);
@@ -86,8 +95,63 @@ public class Shop {
 		g.drawString("USE SKIN", 1100, 480);
 		g2d.draw(useButton);
 		
+		Font greenSkinTXT = new Font("arial", Font.BOLD, 20);
+		g.setFont(greenSkinTXT);
+		g.setColor(Color.green);
+		g.drawString("Green Skin", 250, 350);
+		g.drawString("Price: 20 eggs", 250, 410);
+		g2d.draw(greenSkinButton);
 		
-        drawPerson(1200, 400, g);
+		Font blueSkinTXT = new Font("arial", Font.BOLD, 20);
+		g.setFont(greenSkinTXT);
+		g.setColor(Color.blue);
+		g.drawString("Blue Skin", 250, 550);
+		g.drawString("Price: 20 eggs", 250, 610);
+		g2d.draw(blueSkinButton);
+		
+		Font purpleSkinTXT = new Font("arial", Font.BOLD, 20);
+		g.setFont(purpleSkinTXT);
+		g.setColor(new Color(176, 2, 120));
+		g.drawString("Purple Skin", 450, 150);
+		g.drawString("Price: 45 eggs", 450, 210);
+		g2d.draw(purpleSkinButton);
+		
+		Font orangeSkinTXT = new Font("arial", Font.BOLD, 20);
+		g.setFont(orangeSkinTXT);
+		g.setColor(Color.orange);
+		g.drawString("Orange Skin", 450, 350);
+		g.drawString("Price: 45 eggs", 450, 410);
+		g2d.draw(orangeSkinButton);
+		
+		Font skyblueSkinTXT = new Font("arial", Font.BOLD, 20);
+		g.setFont(skyblueSkinTXT);
+		g.setColor(new Color(0, 255, 255));
+		g.drawString("Sky Blue Skin", 450, 550);
+		g.drawString("Price: 45 eggs", 450, 610);
+		g2d.draw(skyblueSkinButton);
+		
+		Font mix1SkinTXT = new Font("arial", Font.BOLD, 20);
+		g.setFont(mix1SkinTXT);
+		g.setColor(Color.black);
+		g.drawString("Mix 1 Skin", 650, 150);
+		g.drawString("Price: 75 eggs", 650, 210);
+		g2d.draw(mix1SkinButton);
+		
+		Font mix2SkinTXT = new Font("arial", Font.BOLD, 20);
+		g.setFont(mix2SkinTXT);
+		g.setColor(Color.black);
+		g.drawString("Mix 2 Skin", 650, 350);
+		g.drawString("Price: 75 eggs", 650, 410);
+		g2d.draw(mix2SkinButton);
+		
+		Font mix3SkinTXT = new Font("arial", Font.BOLD, 20);
+		g.setFont(mix3SkinTXT);
+		g.setColor(Color.black);
+		g.drawString("Mix 3 Skin", 650, 550);
+		g.drawString("Price: 75 eggs", 650, 610);
+		g2d.draw(mix3SkinButton);
+        
+		drawPerson(1200, 400, g);
 	}
 	
 	private void drawPerson(int sX, int sY, Graphics g) {
