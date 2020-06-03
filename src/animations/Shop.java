@@ -26,7 +26,11 @@ public class Shop {
 	public Color pantColor=new Color(32, 51, 97);
 	public Color shirtColor=new Color(77, 73, 73);
 	public Color shoeColor=new Color(100, 100, 100);
+	public Color decidedPantColor=new Color(32, 51, 97);
+	public Color decidedShirtColor=new Color(77, 73, 73);
+	public Color decidedShoeColor=new Color(100, 100, 100);
 	public boolean colorSchemeChanged=false;
+	public boolean colorButtonPressed=false;
 	
 	public Shop(int eggs) {
 		this.eggs=eggs;
@@ -149,7 +153,7 @@ public class Shop {
 	}
 	
 	
-	public void mousePressed(MouseEvent e) {
+	public void mousePressed(MouseEvent e) { //something wrong w/ boolean conditions... color changes to default instead of not changing if user enters shop but dpesn't clcik "USE" button
 		if(501==MouseEvent.MOUSE_PRESSED) {
 			int x = e.getX();
 			int y = e.getY();
@@ -158,27 +162,34 @@ public class Shop {
 				Board.currentScreen = Board.currentScreen.START_SCREEN;
 				//colorSchemeChanged=false;
 			}else if(x>=defaultSkinButton.x && x<=defaultSkinButton.x+200 && y>=defaultSkinButton.y && y<=defaultSkinButton.y+200) {
+				
 				pantColor=new Color(32, 51, 97);
 				shirtColor=new Color(77, 73, 73);
 				shoeColor=new Color(100, 100, 100);
 				colorSchemeChanged=false;
 			}else if(x>=blackSkinButton.x && x<=blackSkinButton.x+200 && y>=blackSkinButton.y && y<=blackSkinButton.y+200) {
+				
 				pantColor=new Color(50, 50, 50);
 				shirtColor=new Color(0, 0, 0);
 				shoeColor=new Color(0, 0, 0);
 				colorSchemeChanged=false;
 			}else if(x>=whiteSkinButton.x && x<=whiteSkinButton.x+200 && y>=whiteSkinButton.y && y<=whiteSkinButton.y+200) {
+				
 				pantColor=new Color(0, 0, 0);
 				shirtColor=new Color(255, 255, 255);
 				shoeColor=new Color(100, 100, 100);
 				colorSchemeChanged=false;
 			}else if(x>=redSkinButton.x && x<=redSkinButton.x+200 && y>=redSkinButton.y && y<=redSkinButton.y+200) {
+		
 				pantColor=new Color(100, 0, 0);
 				shirtColor=new Color(255, 0, 0);
 				shoeColor=new Color(255, 0, 0);
 				colorSchemeChanged=false;
 			}else if(x>=useButton.x && x<=useButton.x+150 && y>=useButton.y && y<=useButton.y+50) {
 				colorSchemeChanged=true;
+				this.decidedPantColor=pantColor;
+				this.decidedShirtColor=shirtColor;
+				this.decidedShoeColor=shoeColor;
 			}
 		}
 	}
