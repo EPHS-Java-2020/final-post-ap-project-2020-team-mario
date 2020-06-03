@@ -56,10 +56,10 @@ public class StartScreen extends JPanel{
         drawPerson(sX+500, sY, g);
         drawCop(sX, sY-200, g);
 		
-		Font title  = new Font("arial", Font.BOLD, 50);
+		Font title  = new Font("arial", Font.BOLD, 60);
 		g.setFont(title);
 		g.setColor(Color.black);
-		g.drawString("ESCAPE JAIL RIGHT NOW!", 300, 100);
+		g.drawString("GETAWAY!", 500, 100);
 		
 		Font hintTXT = new Font("arial", Font.BOLD, 35);
 		g.setFont(hintTXT);
