@@ -37,10 +37,9 @@ public class HintScreen {
 		g.setFont(headings);
 		g.setColor(Color.black);
 		
-		g.drawString("Key Controls", 100, 200);
-		g.drawString("Hazards", 100, 390);
-		g.drawString("Icons To Look For", 100, 610);
-		g.drawString("Finishing A Level", 100, 740);
+		g.drawString("Key Controls", 100, 100);
+		g.drawString("Hazards", 100, 290);
+		g.drawString("Icons To Look For", 100, 510);
 		
 		
 		Font instructions  = new Font("arial", Font.BOLD, 30);
@@ -48,22 +47,22 @@ public class HintScreen {
 		g.setColor(new Color(75, 75, 75));
 		
 		//keystrokes
-		g.drawString("• Use right arrow key to move right, left arrow key to move left", 200, 250);
-		g.drawString("• Use D key to shoot right, A arrow key to move left", 200, 290);
-		g.drawString("• Use space key to jump", 200, 330);
+		g.drawString("• Use right arrow key to move right, left arrow key to move left", 200, 150);
+		g.drawString("• Use D key to shoot right, A key to shoot left", 200, 190);
+		g.drawString("• Use space key to jump", 200, 230);
 		
 		//hazards
-		g.drawString("• Spikes --> jump over them", 200, 440);
-		g.drawString("• Jumping out of bounds --> retry or you will respawn and automatically retry", 200, 480);
-		g.drawString("• Chickens --> jump on them to get eggs, or they will run over you", 200, 520);
-		g.drawString("• Cops --> shoot them 3 times to kill them or dodge their bullets", 200, 560);
+		g.drawString("• Spikes --> jump over them", 200, 340);
+		g.drawString("• Jumping out of bounds --> retry or you will respawn and automatically retry", 200, 380);
+		g.drawString("• Chickens --> jump on them to get eggs, or they will run over you", 200, 420);
+		g.drawString("• Cops --> shoot them 3 times to kill them or dodge their bullets", 200, 460);
 		
 		//icons to look for
-		g.drawString("• Grey Bullets --> helps your ammo", 200, 650);
-		g.drawString("• Eggs --> get them by jumping on chickens", 200, 690);
+		g.drawString("• Grey Bullets --> helps your ammo", 200, 550);
+		g.drawString("• Eggs --> get them by jumping on chickens", 200, 590);
 		
 		//finish a level
-		g.drawString("• Look for a big red car to help you escape prison ", 200, 780);
+		g.drawString("• Look for a big red car to help you escape prison ", 200, 630);
 	}
 	
 	public void mousePressed(MouseEvent e) {
