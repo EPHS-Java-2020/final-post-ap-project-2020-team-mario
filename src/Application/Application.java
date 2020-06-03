@@ -1,5 +1,7 @@
 package Application;
 
+//Group Member Names: Adi Kulkarni, Sarthak Agarwal, Sameen Rahman, and Kanishk Denduluri
+//AP Java Project Title: Getaway Game
 
 import java.awt.EventQueue;
 
