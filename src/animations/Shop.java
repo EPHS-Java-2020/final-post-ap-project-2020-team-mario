@@ -38,7 +38,8 @@ public class Shop {
 	//private boolean purchaseStatus = {
 	
 	public int eggs;
-	
+	public int skinNum=0;
+	public int price=0;
 	public Color pantColor=new Color(32, 51, 97);
 	public Color shirtColor=new Color(77, 73, 73);
 	public Color shoeColor=new Color(100, 100, 100);
@@ -53,7 +54,7 @@ public class Shop {
 	public Shop(int eggs) {
 		this.eggs=eggs;
 		purchases = new Hashtable<Color, Boolean>();
-		outfits = new Color[3][6];
+		outfits = new Color[3][12];
 		
 		outfits[0][0]=new Color(77, 73, 73); //shirt
 		outfits[0][1]=new Color(0, 0, 0);
@@ -61,6 +62,12 @@ public class Shop {
 		outfits[0][3]=new Color(255, 0, 0);
 		outfits[0][4]=new Color(0, 255, 0);
 		outfits[0][5]=new Color(0, 0, 255);
+		outfits[0][6]=new Color(255, 0, 255);
+		outfits[0][7]=new Color(255, 175, 0);
+		outfits[0][8]=new Color(0, 255, 255);
+		outfits[0][9]=new Color(255,0,0);
+		outfits[0][10]=new Color(120,40,0);
+		outfits[0][11]=new Color(166,158,91);
 		
 		outfits[1][0]=new Color(32, 51, 97); //pant
 		outfits[1][1]=new Color(50, 50, 50);
@@ -68,6 +75,12 @@ public class Shop {
 		outfits[1][3]=new Color(100, 0, 0);
 		outfits[1][4]=new Color(0, 100, 0);
 		outfits[1][5]=new Color(0, 0, 100);
+		outfits[1][6]=new Color(100, 0, 100);
+		outfits[1][7]=new Color(155, 75, 0);
+		outfits[1][8]=new Color(0, 100, 100);
+		outfits[1][9]=new Color(255,255,255);
+		outfits[1][10]=new Color(0,100,0);
+		outfits[1][11]=new Color(205,205,0);
 		
 		outfits[2][0]=new Color(100, 100, 100); //shoe
 		outfits[2][1]=new Color(0, 0, 0);
@@ -75,6 +88,13 @@ public class Shop {
 		outfits[2][3]=new Color(255, 0, 0);
 		outfits[2][4]=new Color(0, 255, 0);
 		outfits[2][5]=new Color(0, 0, 255);
+		outfits[2][6]=new Color(255, 0, 255);
+		outfits[2][7]=new Color(255, 175, 0);
+		outfits[2][8]=new Color(0, 255, 255);
+		outfits[2][9]=new Color(0,0,255);
+		outfits[2][10]=new Color(120,40,0);
+		outfits[2][11]=new Color(135,135,0);
+		
 		
 		
 		
@@ -280,6 +300,7 @@ public class Shop {
 			pantColor=outfits[1][row];//new Color(32, 51, 97);
 			shirtColor=outfits[0][row];
 			shoeColor=outfits[2][row];
+			Board.currentScreen = Board.currentScreen.START_SCREEN;
 		}else {
 			if(eggs>=price) {
 				eggs-=price;
@@ -297,11 +318,23 @@ public class Shop {
 					// TODO Auto-generated catch block
 					//e.printStackTrace();
 				}
+				Board.currentScreen = Board.currentScreen.START_SCREEN;
+			}else {
+				pantColor=outfits[1][0];//new Color(32, 51, 97);
+				shirtColor=outfits[0][0];
+				shoeColor=outfits[2][0];
+				Board.currentScreen = Board.currentScreen.SHOP;
 			}
 		}
-		colorSchemeChanged=false;
 	}
 	
+	public void selectColor(int row, int price) {
+		pantColor=outfits[1][row];//new Color(32, 51, 97);
+		shirtColor=outfits[0][row];
+		shoeColor=outfits[2][row];
+		this.price=price;
+		this.skinNum=row;
+	}
 	
 	public void mousePressed(MouseEvent e) { //something wrong w/ boolean conditions... color changes to default instead of not changing if user enters shop but dpesn't clcik "USE" button
 		if(501==MouseEvent.MOUSE_PRESSED) {
@@ -312,26 +345,37 @@ public class Shop {
 				Board.currentScreen = Board.currentScreen.START_SCREEN;
 				//colorSchemeChanged=false;
 			}else if(x>=defaultSkinButton.x && x<=defaultSkinButton.x+200 && y>=defaultSkinButton.y && y<=defaultSkinButton.y+200) {
-				purchase(0,0);
+				//purchase(0,0);
+				selectColor(0, 0);
 			}else if(x>=blackSkinButton.x && x<=blackSkinButton.x+200 && y>=blackSkinButton.y && y<=blackSkinButton.y+200) {
-				purchase(1,10);
+				//purchase(1,10);
+				selectColor(1, 10);
 			}else if(x>=whiteSkinButton.x && x<=whiteSkinButton.x+200 && y>=whiteSkinButton.y && y<=whiteSkinButton.y+200) {
-				purchase(2,10);
-				colorSchemeChanged=false;
+				selectColor(2, 10);
 			}else if(x>=redSkinButton.x && x<=redSkinButton.x+200 && y>=redSkinButton.y && y<=redSkinButton.y+200) {
-				purchase(3,20);
+				selectColor(3, 20);
 			}else if(x>=greenSkinButton.x && x<=greenSkinButton.x+200 && y>=greenSkinButton.y && y<=greenSkinButton.y+200) { //g
-				purchase(4,20);
+				selectColor(4, 20);
 			}else if(x>=blueSkinButton.x && x<=blueSkinButton.x+200 && y>=blueSkinButton.y && y<=blueSkinButton.y+200) {//b
-				purchase(5,20);
+				selectColor(5, 20);
 			}
-//			else if(x>=purpleSkinButton.x && x<=purpleSkinButton.x+200 && y>=purpleSkinButton.y && y<=purpleSkinButton.y+200) {//p
-//		
-//				pantColor=new Color(100, 0, 0);
-//				shirtColor=new Color(255, 0, 0);
-//				shoeColor=new Color(255, 0, 0);
-//				colorSchemeChanged=false;
-//			}else if(x>=redSkinButton.x && x<=redSkinButton.x+200 && y>=redSkinButton.y && y<=redSkinButton.y+200) {//or
+			else if(x>=purpleSkinButton.x && x<=purpleSkinButton.x+200 && y>=purpleSkinButton.y && y<=purpleSkinButton.y+200) {//p
+				selectColor(6, 45);
+			}
+			else if(x>=orangeSkinButton.x && x<=orangeSkinButton.x+200 && y>=orangeSkinButton.y && y<=orangeSkinButton.y+200) {
+				selectColor(7, 45);
+			}else if(x>=skyblueSkinButton.x && x<=skyblueSkinButton.x+200 && y>=skyblueSkinButton.y && y<=skyblueSkinButton.y+200) {
+				selectColor(8, 45);
+			}
+			else if(x>=mix1SkinButton.x && x<=mix1SkinButton.x+200 && y>=mix1SkinButton.y && y<=mix1SkinButton.y+200) {
+				selectColor(9, 75);
+			}
+			else if(x>=mix2SkinButton.x && x<=mix2SkinButton.x+200 && y>=mix2SkinButton.y && y<=mix2SkinButton.y+200) {
+				selectColor(10, 75);
+			}
+			else if(x>=mix3SkinButton.x && x<=mix3SkinButton.x+200 && y>=mix3SkinButton.y && y<=mix3SkinButton.y+200) {
+				selectColor(11, 75);
+			}
 //		
 //				pantColor=new Color(100, 0, 0);
 //				shirtColor=new Color(255, 0, 0);
@@ -363,11 +407,12 @@ public class Shop {
 //				colorSchemeChanged=false;
 //			}
 			else if(x>=useButton.x && x<=useButton.x+150 && y>=useButton.y && y<=useButton.y+50) {
-				colorSchemeChanged=true;
-				this.decidedPantColor=pantColor;
-				this.decidedShirtColor=shirtColor;
-				this.decidedShoeColor=shoeColor;
-				Board.currentScreen = Board.currentScreen.START_SCREEN;
+//				colorSchemeChanged=true;
+//				this.decidedPantColor=pantColor;
+//				this.decidedShirtColor=shirtColor;
+//				this.decidedShoeColor=shoeColor;
+				purchase(skinNum, price);
+				
 			}
 		}
 	}

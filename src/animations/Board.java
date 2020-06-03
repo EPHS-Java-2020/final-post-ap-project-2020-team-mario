@@ -265,10 +265,9 @@ public class Board extends JPanel implements Runnable {
 						}
 					}
 				}
-			}else if(currentScreen == SCREEN.SHOP) {
-				eggs = shop.eggs;
-				starter.eggs = eggs;
 			}
+			eggs = shop.eggs;
+			starter.eggs = eggs;
 			try {
 				PrintStream output = new PrintStream(new File("eggs.txt"));
 				output.println(this.eggs);
