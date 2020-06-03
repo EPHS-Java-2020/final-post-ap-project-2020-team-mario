@@ -5,11 +5,18 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.List;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Scanner;
 
 public class Shop {
 	private Rectangle mainMenuButton = new Rectangle(475, 35, 265, 50);
@@ -40,9 +47,52 @@ public class Shop {
 	public Color decidedShoeColor=new Color(100, 100, 100);
 	public boolean colorSchemeChanged=false;
 	public boolean colorButtonPressed=false;
+	public Hashtable<Color, Boolean> purchases;
+	public Color[][] outfits; 
 	
 	public Shop(int eggs) {
 		this.eggs=eggs;
+		purchases = new Hashtable<Color, Boolean>();
+		outfits = new Color[3][4];
+		
+		outfits[0][0]=new Color(77, 73, 73); //shirt
+		outfits[0][1]=new Color(0, 0, 0);
+		outfits[0][2]=new Color(255, 255, 255);
+		outfits[0][3]=new Color(255, 0, 0);
+		outfits[1][0]=new Color(32, 51, 97); //pant
+		outfits[1][1]=new Color(50, 50, 50);
+		outfits[1][2]=new Color(0, 0, 0);
+		outfits[1][3]=new Color(100, 0, 0);
+		outfits[2][0]=new Color(100, 100, 100); //shoe
+		outfits[2][1]=new Color(0, 0, 0);
+		outfits[2][2]=new Color(100, 100, 100);
+		outfits[2][3]=new Color(255, 0, 0);
+		
+		
+		try {
+			
+			Scanner input = new Scanner(new File("skins.txt"));
+			
+			String inputStrings ="";
+			while(input.hasNext()) {
+				inputStrings = input.next();
+			}
+			String[] array = inputStrings.split(",");
+			int index=0;
+			System.out.println("InputStrings==="+inputStrings);
+			
+			for(int i=0; i<array.length; i++) {
+				if(array[i].equals("true")) {
+					this.purchases.put(outfits[0][i], true);
+				}else {
+					this.purchases.put(outfits[0][i], false);
+				}
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public void drawImage(Graphics g) {
@@ -227,15 +277,36 @@ public class Shop {
 				//colorSchemeChanged=false;
 			}else if(x>=defaultSkinButton.x && x<=defaultSkinButton.x+200 && y>=defaultSkinButton.y && y<=defaultSkinButton.y+200) {
 				
-				pantColor=new Color(32, 51, 97);
-				shirtColor=new Color(77, 73, 73);
-				shoeColor=new Color(100, 100, 100);
+				pantColor=outfits[1][0];//new Color(32, 51, 97);
+				shirtColor=outfits[0][0];
+				shoeColor=outfits[2][0];
 				colorSchemeChanged=false;
 			}else if(x>=blackSkinButton.x && x<=blackSkinButton.x+200 && y>=blackSkinButton.y && y<=blackSkinButton.y+200) {
+				Color temp = outfits[0][1];
 				
-				pantColor=new Color(50, 50, 50);
-				shirtColor=new Color(0, 0, 0);
-				shoeColor=new Color(0, 0, 0);
+				if(purchases.get(temp)) {
+					pantColor=outfits[1][1];//new Color(32, 51, 97);
+					shirtColor=outfits[0][1];
+					shoeColor=outfits[2][1];
+				}else {
+					if(eggs>=10) {
+						eggs-=10;
+						pantColor=outfits[1][1];//new Color(32, 51, 97);
+						shirtColor=outfits[0][1];
+						shoeColor=outfits[2][1];
+						purchases.put(outfits[0][1], true);
+						try {
+							PrintStream output = new PrintStream(new File("skins.txt"));
+							for(Color outfit: outfits[0]) {
+								output.print(purchases.get(outfit)+",");
+							}
+							output.close();
+						} catch (FileNotFoundException error) {
+							// TODO Auto-generated catch block
+							//e.printStackTrace();
+						}
+					}
+				}
 				colorSchemeChanged=false;
 			}else if(x>=whiteSkinButton.x && x<=whiteSkinButton.x+200 && y>=whiteSkinButton.y && y<=whiteSkinButton.y+200) {
 				
@@ -243,13 +314,62 @@ public class Shop {
 				shirtColor=new Color(255, 255, 255);
 				shoeColor=new Color(100, 100, 100);
 				colorSchemeChanged=false;
-			}else if(x>=redSkinButton.x && x<=redSkinButton.x+200 && y>=redSkinButton.y && y<=redSkinButton.y+200) {
-		
+			}else if(x>=purpleSkinButton.x && x<=purpleSkinButton.x+200 && y>=purpleSkinButton.y && y<=purpleSkinButton.y+200) {
 				pantColor=new Color(100, 0, 0);
 				shirtColor=new Color(255, 0, 0);
 				shoeColor=new Color(255, 0, 0);
 				colorSchemeChanged=false;
-			}else if(x>=useButton.x && x<=useButton.x+150 && y>=useButton.y && y<=useButton.y+50) {
+			}else if(x>=greenSkinButton.x && x<=greenSkinButton.x+200 && y>=greenSkinButton.y && y<=greenSkinButton.y+200) { //g
+		
+				pantColor=new Color(0, 100, 0);
+				shirtColor=new Color(0, 255, 0);
+				shoeColor=new Color(0, 255, 0);
+				colorSchemeChanged=false;
+			}else if(x>=blueSkinButton.x && x<=blueSkinButton.x+200 && y>=blueSkinButton.y && y<=blueSkinButton.y+200) {//b
+		
+				pantColor=new Color(0, 0, 100);
+				shirtColor=new Color(0, 0, 255);
+				shoeColor=new Color(0, 0, 255);
+				colorSchemeChanged=false;
+			}
+//			else if(x>=purpleSkinButton.x && x<=purpleSkinButton.x+200 && y>=purpleSkinButton.y && y<=purpleSkinButton.y+200) {//p
+//		
+//				pantColor=new Color(100, 0, 0);
+//				shirtColor=new Color(255, 0, 0);
+//				shoeColor=new Color(255, 0, 0);
+//				colorSchemeChanged=false;
+//			}else if(x>=redSkinButton.x && x<=redSkinButton.x+200 && y>=redSkinButton.y && y<=redSkinButton.y+200) {//or
+//		
+//				pantColor=new Color(100, 0, 0);
+//				shirtColor=new Color(255, 0, 0);
+//				shoeColor=new Color(255, 0, 0);
+//				colorSchemeChanged=false;
+//			}else if(x>=redSkinButton.x && x<=redSkinButton.x+200 && y>=redSkinButton.y && y<=redSkinButton.y+200) {//sky-blu
+//		
+//				pantColor=new Color(100, 0, 0);
+//				shirtColor=new Color(255, 0, 0);
+//				shoeColor=new Color(255, 0, 0);
+//				colorSchemeChanged=false;
+//			}else if(x>=redSkinButton.x && x<=redSkinButton.x+200 && y>=redSkinButton.y && y<=redSkinButton.y+200) {//mix1
+//		
+//				pantColor=new Color(100, 0, 0);
+//				shirtColor=new Color(255, 0, 0);
+//				shoeColor=new Color(255, 0, 0);
+//				colorSchemeChanged=false;
+//			}else if(x>=redSkinButton.x && x<=redSkinButton.x+200 && y>=redSkinButton.y && y<=redSkinButton.y+200) {//mix2
+//		
+//				pantColor=new Color(100, 0, 0);
+//				shirtColor=new Color(255, 0, 0);
+//				shoeColor=new Color(255, 0, 0);
+//				colorSchemeChanged=false;
+//			}else if(x>=redSkinButton.x && x<=redSkinButton.x+200 && y>=redSkinButton.y && y<=redSkinButton.y+200) {//mix3
+//		
+//				pantColor=new Color(100, 0, 0);
+//				shirtColor=new Color(255, 0, 0);
+//				shoeColor=new Color(255, 0, 0);
+//				colorSchemeChanged=false;
+//			}
+			else if(x>=useButton.x && x<=useButton.x+150 && y>=useButton.y && y<=useButton.y+50) {
 				colorSchemeChanged=true;
 				this.decidedPantColor=pantColor;
 				this.decidedShirtColor=shirtColor;

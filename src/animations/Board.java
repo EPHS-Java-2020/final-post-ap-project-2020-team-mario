@@ -256,9 +256,7 @@ public class Board extends JPanel implements Runnable {
 					starter.eggs=eggs;
 					shop.eggs=eggs;
 					}
-//					else {
-//						
-//					}
+				
 					
 					try {
 						PrintStream output = new PrintStream(new File("eggs.txt"));
@@ -278,6 +276,9 @@ public class Board extends JPanel implements Runnable {
 						}
 					}
 				}
+			}else if(currentScreen == SCREEN.SHOP) {
+				eggs = shop.eggs;
+				starter.eggs = eggs;
 			}
 			
 			timeDiff = System.currentTimeMillis() - beforeTime;
