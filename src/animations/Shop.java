@@ -297,16 +297,16 @@ public class Shop {
 		Color temp = outfits[0][row];
 		
 		if(purchases.get(temp)) {
-			pantColor=outfits[1][row];//new Color(32, 51, 97);
-			shirtColor=outfits[0][row];
-			shoeColor=outfits[2][row];
+			decidedPantColor=outfits[1][row];//new Color(32, 51, 97);
+			decidedShirtColor=outfits[0][row];
+			decidedShoeColor=outfits[2][row];
 			Board.currentScreen = Board.currentScreen.START_SCREEN;
 		}else {
 			if(eggs>=price) {
 				eggs-=price;
-				pantColor=outfits[1][row];//new Color(32, 51, 97);
-				shirtColor=outfits[0][row];
-				shoeColor=outfits[2][row];
+				decidedPantColor=outfits[1][row];//new Color(32, 51, 97);
+				decidedShirtColor=outfits[0][row];
+				decidedShoeColor=outfits[2][row];
 				purchases.put(outfits[0][row], true);
 				try {
 					PrintStream output = new PrintStream(new File("skins.txt"));

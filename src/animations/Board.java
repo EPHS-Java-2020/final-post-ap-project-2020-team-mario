@@ -43,8 +43,10 @@ public class Board extends JPanel implements Runnable {
 	private int eggs = 0;
 	private LevelManager levels;
 	private Shop shop;
+	private HintScreen hints;
 	
 	public static enum SCREEN{
+		HINTS,
 		SHOP,
 		START_SCREEN,
 		LEVEL1,
@@ -79,6 +81,7 @@ public class Board extends JPanel implements Runnable {
 		}
 		starter=new StartScreen(eggs);
 		shop = new Shop(eggs);
+		hints = new HintScreen();
 		
 	}
 	private void reInitBoard() {
@@ -96,10 +99,7 @@ public class Board extends JPanel implements Runnable {
 			} else if (currentScreen == SCREEN.LEVEL4){
 				levels.changeLevel(4);
 				map.changeLevel(4);
-			} else if(currentScreen == SCREEN.SHOP) {
-				//levels.changeLevel(0);
-				//map.changeLevel(0);
-			}
+			} 
 			person = new Person();
 			map = new DrawMap(levels);
 			hasPainted = false;
@@ -129,7 +129,7 @@ public class Board extends JPanel implements Runnable {
 		
 		super.paintComponent(g);
 		
-		if(currentScreen!=SCREEN.START_SCREEN && currentScreen!=SCREEN.SHOP) {
+		if(currentScreen!=SCREEN.START_SCREEN && currentScreen!=SCREEN.SHOP && currentScreen!=SCREEN.HINTS) {
 			Graphics2D g2d = (Graphics2D) g;
 			map.drawAll(g, person.x, person.y);
 
@@ -184,8 +184,8 @@ public class Board extends JPanel implements Runnable {
 			g.setFont(coinsTitle);
 			g.setColor(Color.black);
 			g.drawString("Eggs: " + eggs, 1100, 65);
-		}else if (currentScreen == SCREEN.START_SCREEN){
-			starter.drawImage(g);
+		}else if (currentScreen == SCREEN.HINTS){
+			hints.drawImage(g);
 		} else {
 			
 		}
@@ -195,13 +195,7 @@ public class Board extends JPanel implements Runnable {
 
 	private void drawCharacter(Graphics g) {
 		if (person.visible) {
-			
-			//if(shop.colorSchemeChanged) { 
-				person.setColorScheme(shop.decidedPantColor, shop.decidedShirtColor, shop.decidedShoeColor);
-			//	shop.colorSchemeChanged=false;
-//			}else{
-//				person.setColorScheme(shop.pantColor, shop.shirtColor, shop.shoeColor);
-//			}
+			person.setColorScheme(shop.decidedPantColor, shop.decidedShirtColor, shop.decidedShoeColor);
 			person.drawImage(g);
 		}
 	}
@@ -214,16 +208,21 @@ public class Board extends JPanel implements Runnable {
 
         	Bullet bullet = bullets.get(i);
 
-            if (bullet.isVisible()) {
-
+            if (bullet.visible) {
                 bullet.move();
             } else {
-
                 bullets.remove(i);
+                i--; //was not here previously
             }
             
         }
         person.move();
+        
+        for(int i=0; i<map.getEnemies().size(); i++) {
+        	if(!map.getEnemies().get(i).visible) {
+        		map.getEnemies().remove(i);
+        	}
+        }
 	}
 	
 
@@ -236,8 +235,7 @@ public class Board extends JPanel implements Runnable {
 
 		while (true) {
 			repaint();
-			//System.out.println(shop.colorSchemeChanged);
-			if (currentScreen != SCREEN.START_SCREEN && currentScreen != SCREEN.SHOP) {
+			if (currentScreen != SCREEN.START_SCREEN && currentScreen != SCREEN.SHOP && currentScreen != SCREEN.HINTS) {
 				if(starter.needToRefresh) {
 					reInitBoard();
 					starter.needToRefresh=false;
@@ -319,6 +317,9 @@ public class Board extends JPanel implements Runnable {
 				reInitBoard();
 				if(currentScreen==SCREEN.SHOP) {
 					shop.mousePressed(e);
+				}
+				if(currentScreen==SCREEN.HINTS) {
+					hints.mousePressed(e);
 				}
 			}
 

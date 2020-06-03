@@ -120,7 +120,6 @@ public class DrawMap {
 		}else if(levels.level==4) {
 			setUpLevel4();
 		}
-		//write else statements for level 3
 	}
 	
 	public void setUpLevel4() {

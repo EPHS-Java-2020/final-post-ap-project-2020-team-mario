@@ -150,6 +150,10 @@ public class Person extends Sprite {
 		Rectangle2D hair = new Rectangle2D.Double(sX + 240, sY - 5, 10, 50);// super.y-225
 		g2d.setColor(new Color(87, 49, 26));
 		g2d.fill(hair);
+		
+		for (Bullet bullets : bullets) {
+			bullets.drawImage(super.x,super.y,g2d);
+		}
 	}
 
 	// modify the appearance
@@ -325,9 +329,13 @@ public class Person extends Sprite {
 		g2d.setColor(shoeColor);//new Color(100, 100, 100)
 		g2d.fill(leftShoe);
 		g2d.fill(rightShoe);
+		
+		for (Bullet bullets : bullets) {
+			bullets.drawImage(super.x,super.y,g2d);
+		}
 	}
 
-	public Rectangle getBounds() { // wtf this getBounds method for the else statement
+	public Rectangle getBounds() { 
 		if (isAlive) {
 			if (isCrouching) {
 				return new Rectangle(sX + 7, sY - 100, 50, 125);
@@ -345,16 +353,10 @@ public class Person extends Sprite {
 
 	public void isOnGround(DrawMap map) {
 		List<Floor> floors = map.getFloors();
-		/*
-		 * for (Floor floor: floors) { if (getBounds().intersects(floor.getBounds())) {
-		 * onSomething = true; return; } else { onSomething = false; } }
-		 */
 		List<Brick> bricks = map.getBricks();
 		Rectangle personBounds = this.getBounds();
 
-		// System.out.println(person);
-		// System.out.println(bricks);
-		// int count=0;
+		
 		onSomething = false;
 		for (Floor floor : floors) {
 			Rectangle brickBounds = floor.getBounds();
@@ -409,8 +411,7 @@ public class Person extends Sprite {
 		distanceFallen = 0;
 	}
 
-	public void checkCollisions(DrawMap map) {// this method is new
-		// System.out.println("checking collisions");
+	public void checkCollisions(DrawMap map) {
 
 		List<List<CopBullet>> bullets = map.getBullets();
 
@@ -436,9 +437,6 @@ public class Person extends Sprite {
 		List<Brick> bricks = map.getBricks();
 		Rectangle personBounds = this.getBounds();
 
-		// System.out.println(person);
-		// System.out.println(bricks);
-		// int count=0;
 		for (Brick brick : bricks) {
 			Rectangle brickBounds = brick.getBounds();
 
@@ -526,7 +524,7 @@ public class Person extends Sprite {
 
 	}
 
-	// modify movements when keys pressed
+	
 	public void keyPressed(KeyEvent e) {
 
 		int key = e.getKeyCode();

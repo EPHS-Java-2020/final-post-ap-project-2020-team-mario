@@ -21,6 +21,7 @@ import javax.swing.JPanel;
 
 
 public class StartScreen extends JPanel{
+	private Rectangle hintButton = new Rectangle(100, 100, 125, 125);
 	private Rectangle level1Button = new Rectangle(100, 500, 250, 150);
 	private Rectangle level2Button = new Rectangle(400, 500, 250, 150);
 	private Rectangle level3Button = new Rectangle(700, 500, 250, 150);
@@ -60,6 +61,13 @@ public class StartScreen extends JPanel{
 		g.setColor(Color.black);
 		g.drawString("ESCAPE JAIL RIGHT NOW!", 300, 100);
 		
+		Font hintTXT = new Font("arial", Font.BOLD, 35);
+		g.setFont(hintTXT);
+		g.setColor(Color.white);
+		g.drawString("HOW", 110, 140);
+		g.drawString("TO", 140, 175);
+		g.drawString("PLAY", 110, 210);
+		g2d.draw(hintButton);
 		
 		Font levels = new Font("arial", Font.BOLD, 50);
 		g.setFont(levels);
@@ -271,20 +279,24 @@ public class StartScreen extends JPanel{
 					Board.currentScreen = Board.currentScreen.LEVEL4;
 				}else if(x >= shopButton.x && x<= shopButton.x+250 && y>= shopButton.y && y<= shopButton.y+150) {
 					Board.currentScreen = Board.currentScreen.SHOP;
+				}else if(x >= hintButton.x && x<= hintButton.x+250 && y>= hintButton.y && y<= hintButton.y+150) {
+					Board.currentScreen = Board.currentScreen.HINTS;
 				}
-			}else if(Board.currentScreen != Board.SCREEN.SHOP){
+			}else if(Board.currentScreen != Board.SCREEN.SHOP && Board.currentScreen != Board.SCREEN.HINTS){
 				changedFromStartScreen=false;
 				if(x>=475 && x<=725 && y>=20 && y<=85) { //main menu button for levels
 					Board.currentScreen = Board.currentScreen.START_SCREEN;
 				} else if(x>=750 && x<=850 && y>=20 && y<=85) { //retry button for levels
 					this.needToRefresh=true;
 				}
-			}else {
-				changedFromStartScreen=true;
-				if(x>=shopButton.x && x<=shopButton.x+250 && y>=shopButton.y && y<=shopButton.y+150) {
-					Board.currentScreen = Board.currentScreen.SHOP;
-				}
 			}
+			
+//			else {
+//				changedFromStartScreen=true;
+//				if(x>=shopButton.x && x<=shopButton.x+250 && y>=shopButton.y && y<=shopButton.y+150) {
+//					Board.currentScreen = Board.currentScreen.SHOP;
+//				}
+//			}
 		} 
 		
 	}

@@ -119,7 +119,11 @@ public class Enemy extends Obstacle {
 			g2d.setColor(new Color(128, 78, 68));
 			g2d.fill(mouth);
 			Ellipse2D mouthBelow = new Ellipse2D.Double(x + 5, y + 43, 45, 20);
-			g2d.setColor(new Color(255, 210, 143));
+			if(injuryTime>0) {
+				g2d.setColor(new Color(255,0,0));
+			}else {
+				g2d.setColor(new Color(255, 210, 143));
+			}
 			g2d.fill(mouthBelow);
 		} else {
 			Ellipse2D mouth = new Ellipse2D.Double(x + 5, y + 40, 40, 20);
