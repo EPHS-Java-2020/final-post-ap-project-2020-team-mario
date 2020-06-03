@@ -73,7 +73,10 @@ public class Board extends JPanel implements Runnable {
 		map = new DrawMap(levels);
 		try {
 			Scanner input = new Scanner(new File("eggs.txt"));
-			String eggs = input.next();
+			String eggs = "0";
+			while(input.hasNext()) {
+				eggs = input.next();
+			}
 			this.eggs = Integer.parseInt(eggs);
 			input.close();
 		}catch(FileNotFoundException e){
