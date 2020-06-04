@@ -45,8 +45,8 @@ public class CopBullet extends Obstacle{
 
 		rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 		
-		Rectangle2D bullet = new Rectangle2D.Double(x,y,20, 4);
-		g2d.setColor(Color.red);
+		Rectangle2D bullet = new Rectangle2D.Double(x,y,30, 6);
+		g2d.setColor(Color.green);
 		g2d.fill(bullet);
 		
 		
@@ -54,7 +54,7 @@ public class CopBullet extends Obstacle{
 	}
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle(x,y,20,4);
+		return new Rectangle(x,y,30,6);
 	}
 
 }

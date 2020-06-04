@@ -270,7 +270,7 @@ public class Board extends JPanel implements Runnable {
 			eggs = shop.eggs;
 			starter.eggs = eggs;
 			try {
-				PrintStream output = new PrintStream(new File("resources/eggs.txt"));
+				PrintStream output = new PrintStream(new File("resources/qeggs.txt"));
 				output.println(this.eggs);
 				output.close();
 			} catch (FileNotFoundException e) {

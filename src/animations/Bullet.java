@@ -66,7 +66,7 @@ public class Bullet extends Obstacle{
 		int len = 30 + (int) (Math.random() * 10);
 		Rectangle2D bullet = new Rectangle2D.Double(x, y, len, 5);
 
-		g2d.setColor(new Color(255, 0, 0));
+		g2d.setColor(new Color(0, 0, 255));
 		if (tx == null) {
 			g2d.fill(bullet);
 		} else {

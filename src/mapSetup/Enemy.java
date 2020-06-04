@@ -69,15 +69,15 @@ public class Enemy extends Obstacle {
 		g2d.setRenderingHints(rh);
 		
 		if (isLeft) {
-			Rectangle2D hat = new Rectangle2D.Double(x, y, 75, 10);
-			Rectangle2D topHat = new Rectangle2D.Double(x, y - 10, 50, 10);
-			g2d.setColor(new Color(0, 6, 94));
+			Rectangle2D hat = new Rectangle2D.Double(x - 20, y, 90, 10);
+			Rectangle2D topHat = new Rectangle2D.Double(x, y - 20, 50, 20);
+			g2d.setColor(new Color(50,50,50));
 			g2d.fill(hat);
 			g2d.fill(topHat);
 		} else {
-			Rectangle2D hat = new Rectangle2D.Double(x - 25, y, 75, 10);
-			Rectangle2D topHat = new Rectangle2D.Double(x, y - 10, 50, 10);
-			g2d.setColor(new Color(0, 6, 94));
+			Rectangle2D hat = new Rectangle2D.Double(x - 20, y, 90, 10);
+			Rectangle2D topHat = new Rectangle2D.Double(x, y - 20, 50, 20);
+			g2d.setColor(new Color(50, 50, 50));
 			g2d.fill(hat);
 			g2d.fill(topHat);
 		}
@@ -139,7 +139,7 @@ public class Enemy extends Obstacle {
 		}
 
 		Rectangle2D body = new Rectangle2D.Double(x, y + 60, 50, 85);
-		g2d.setColor(new Color(10, 16, 94));
+		g2d.setColor(new Color(50, 50, 50));
 		g2d.fill(body);
 		int temp = 0;
 		g2d.setColor(new Color(255, 255, 255));
@@ -153,7 +153,7 @@ public class Enemy extends Obstacle {
 			Line2D leftLine = new Line2D.Double(x - 2, y + 62, x - 2, y + 77);
 			//Rectangle2D rightArm = new Rectangle2D.Double(x + 53, y + 60, 17, 60);
 			Rectangle2D rightArm = new Rectangle2D.Double(x + 53, y + 60, 60, 17);
-			g2d.setColor(new Color(10, 16, 94));
+			g2d.setColor(new Color(50,50,50));
 			Line2D rightLine = new Line2D.Double(x + 50, y + 62, x + 50, y + 77);
 			g2d.fill(leftArm);
 			g2d.fill(rightArm);
@@ -174,7 +174,7 @@ public class Enemy extends Obstacle {
 			Rectangle2D leftArm = new Rectangle2D.Double(x - 63, y + 60, 60, 17);
 			Rectangle2D rightArm = new Rectangle2D.Double(x + 53, y + 60, 17, 60);
 			Line2D leftLine = new Line2D.Double(x - 2, y + 62, x - 2, y + 77);
-			g2d.setColor(new Color(10, 16, 94));
+			g2d.setColor(new Color(50,50,50));
 			Line2D rightLine = new Line2D.Double(x + 50, y + 62, x + 50, y + 77);
 			g2d.fill(leftArm);
 			g2d.fill(rightArm);
