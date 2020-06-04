@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 
@@ -20,7 +21,8 @@ public class Sun extends Obstacle{
 	
 	@Override
 	public void loadImage() {
-		ii = new ImageIcon("resources/sun.png");
+		URL url = getClass().getClassLoader().getResource("sun.png");
+		ii = new ImageIcon(url);
 		image = ii.getImage();
 	}
 	

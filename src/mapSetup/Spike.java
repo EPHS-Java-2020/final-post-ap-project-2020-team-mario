@@ -8,6 +8,7 @@ import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.event.KeyEvent;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 
@@ -21,7 +22,8 @@ public class Spike extends Obstacle{
 	
 	@Override
 	public void loadImage() {
-		ii = new ImageIcon("resources/Spike.png");
+		URL url = getClass().getClassLoader().getResource("Spike.png");
+		ii = new ImageIcon(url);
 		image = ii.getImage();
 	}
 	

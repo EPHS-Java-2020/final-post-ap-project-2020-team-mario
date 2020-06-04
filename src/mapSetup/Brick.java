@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 
@@ -19,7 +20,8 @@ public class Brick extends Obstacle{
 	}
 	@Override
 	public void loadImage() {
-		ii = new ImageIcon("resources/Fancy Brick.png");
+		URL url = getClass().getClassLoader().getResource("Fancy Brick.png");
+		ii = new ImageIcon(url);
 		image = ii.getImage();
 		super.width=ii.getIconWidth();
 		super.height=ii.getIconHeight();

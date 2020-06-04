@@ -13,7 +13,10 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Scanner;
@@ -101,13 +104,9 @@ public class Shop {
 		try {
 			
 			Scanner input = new Scanner(new File("resources/skins.txt"));
-			
-			String inputStrings ="";
-			while(input.hasNext()) {
-				inputStrings = input.next();
-			}
+			String inputStrings = input.next();
+			input.close();
 			String[] array = inputStrings.split(",");
-			int index=0;
 			
 			for(int i=0; i<array.length; i++) {
 				if(array[i].equals("true")) {

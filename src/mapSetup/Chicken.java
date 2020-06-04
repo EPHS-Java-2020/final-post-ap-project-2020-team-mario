@@ -11,6 +11,7 @@ import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 
@@ -31,7 +32,8 @@ public class Chicken extends Obstacle{
 	}
 	
 	public void loadImage() {
-		ii = new ImageIcon("resources/Egg.png");
+		URL url = getClass().getClassLoader().getResource("Egg.png");
+		ii = new ImageIcon(url);
 		image = ii.getImage();
 		super.width=ii.getIconWidth();
 		super.height=ii.getIconHeight();
