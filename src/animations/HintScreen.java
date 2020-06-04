@@ -55,10 +55,10 @@ public class HintScreen {
 		g.drawString("• Spikes --> jump over them", 200, 340);
 		g.drawString("• Jumping out of bounds --> retry or you will respawn and automatically retry", 200, 380);
 		g.drawString("• Chickens --> jump on them to get eggs, or they will run over you", 200, 420);
-		g.drawString("• Cops --> shoot them 3 times to kill them or dodge their bullets", 200, 460);
+		g.drawString("• Evil Spies --> shoot them 3 times to kill them or dodge their lasers", 200, 460);
 		
 		//icons to look for
-		g.drawString("• Grey Bullets --> helps your ammo", 200, 550);
+		g.drawString("• Grey Laser Cartridges --> helps your ammo", 200, 550);
 		g.drawString("• Eggs --> get them by jumping on chickens", 200, 590);
 		
 		//finish a level
