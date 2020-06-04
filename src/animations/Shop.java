@@ -308,7 +308,7 @@ public class Shop {
 				decidedShoeColor=outfits[2][row];
 				purchases.put(outfits[0][row], true);
 				try {
-					PrintStream output = new PrintStream(new File("skins.txt"));
+					PrintStream output = new PrintStream(new File("resources/skins.txt"));
 					for(Color outfit: outfits[0]) {
 						output.print(purchases.get(outfit)+",");
 					}
