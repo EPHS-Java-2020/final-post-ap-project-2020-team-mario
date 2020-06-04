@@ -9,8 +9,6 @@ import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.net.URL;
 
-import Drawings.*;
-
 import javax.swing.ImageIcon;
 
 import animations.Sprite;

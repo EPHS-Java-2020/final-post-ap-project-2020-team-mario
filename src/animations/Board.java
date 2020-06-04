@@ -13,9 +13,19 @@ import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -44,6 +54,7 @@ public class Board extends JPanel implements Runnable {
 	private LevelManager levels;
 	private Shop shop;
 	private HintScreen hints;
+	private File file;
 	
 	public static enum SCREEN{
 		HINTS,
@@ -71,19 +82,68 @@ public class Board extends JPanel implements Runnable {
 		person = new Person(500, 400);
 		levels = new LevelManager(0);
 		map = new DrawMap(levels);
+		
+		
+//		InputStream is = getClass().getClassLoader().getResourceAsStream("eggs.txt");
+//		BufferedReader br = new BufferedReader(new InputStreamReader(is));
+//		StringBuffer sb = new StringBuffer();
+//		  String line;
+//		  try {
+//			while ((line = br.readLine()) != null) 
+//			  {
+//			    sb.append(line); 
+//			  }
+//			this.eggs = Integer.parseInt(sb.toString());
+//			br.close();
+//			is.close();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		
+//		FileReader fr = new FileReader(file); 
+//	      char [] a = new char[50];
+//	      fr.read(a);   // reads the content to the array
+//	      
+//	      for(char c : a)
+//	         System.out.print(c);   // prints the characters one by one
+//	      fr.close();
+		
+		file = new File("eggs.txt");
 		try {
-			Scanner input = new Scanner(new File("resources/eggs.txt"));
-			String eggs = "0";
-			while(input.hasNext()) {
-				eggs = input.next();
+			FileReader fr = new FileReader(file);
+			char[] a = new char[1000];
+			try {
+				fr.read(a);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
 			}
-			this.eggs = Integer.parseInt(eggs);
-			input.close();
-		}catch(FileNotFoundException e){
-			
+			String numEggs="";
+			for(char c: a) {
+				numEggs+=c;
+			}
+			fr.close();
+			this.eggs=Integer.parseInt(numEggs.trim());
+		} catch (FileNotFoundException e) {
+			this.eggs=0;
+			//e1.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
+
+		
+		
 		starter=new StartScreen(eggs);
-		shop = new Shop(eggs);
+		try {
+			shop = new Shop(eggs);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		hints = new HintScreen();
 		
 	}
@@ -269,14 +329,61 @@ public class Board extends JPanel implements Runnable {
 			}
 			eggs = shop.eggs;
 			starter.eggs = eggs;
+//			try {
+//				PrintStream output = new PrintStream(new File("resources/qeggs.txt"));
+//				output.println(this.eggs);
+//				output.close();
+//			} catch (FileNotFoundException e) {
+//				// TODO Auto-generated catch block
+//				//e.printStackTrace();
+//			}
+			
+			file = new File("eggs.txt");
 			try {
-				PrintStream output = new PrintStream(new File("resources/qeggs.txt"));
-				output.println(this.eggs);
-				output.close();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				//e.printStackTrace();
-			}
+				PrintStream fos = new PrintStream("eggs.txt");
+
+				//byte[] mybytes = ("" + eggs).getBytes();
+
+				//fos.write(mybytes);
+				fos.println(this.eggs);
+				//fos.flush();
+				fos.close();
+	        }catch(IOException e) {
+	        	try {
+					file.createNewFile();
+					PrintStream fos = new PrintStream("eggs.txt");
+					fos.println(this.eggs);
+					fos.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+	        	
+	        }
+			
+//			//File file = new File("eggs.txt");
+//			try {
+//				FileWriter writer = new FileWriter(file);
+//				writer.write(this.eggs);
+//				writer.flush();
+//				writer.close();
+//			} catch (IOException e1) {
+//				// TODO Auto-generated catch block
+//				try {
+//					file.createNewFile();
+//					FileWriter writer = new FileWriter(file);
+//					writer.write(this.eggs);
+//					writer.flush();
+//					writer.close();
+//					
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				e1.printStackTrace();
+//			}
+
+		
 			
 			timeDiff = System.currentTimeMillis() - beforeTime;
 			sleep = DELAY - timeDiff;

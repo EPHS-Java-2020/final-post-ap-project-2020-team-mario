@@ -11,11 +11,17 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -36,6 +42,7 @@ public class Shop {
 	private Rectangle mix1SkinButton = new Rectangle(600, 100, 200, 200);
 	private Rectangle mix2SkinButton = new Rectangle(600, 300, 200, 200);
 	private Rectangle mix3SkinButton = new Rectangle(600, 500, 200, 200);
+	private File file;
 	
 	//private boolean changedSkins = false;
 	//private boolean purchaseStatus = {
@@ -54,7 +61,7 @@ public class Shop {
 	public Hashtable<Color, Boolean> purchases;
 	public Color[][] outfits; 
 	
-	public Shop(int eggs) {
+	public Shop(int eggs) throws UnsupportedEncodingException {
 		this.eggs=eggs;
 		purchases = new Hashtable<Color, Boolean>();
 		outfits = new Color[3][12];
@@ -99,14 +106,50 @@ public class Shop {
 		outfits[2][11]=new Color(135,135,0);
 		
 		
+//		InputStream is = getClass().getResourceAsStream("/skins.txt");
+//		BufferedReader br = new BufferedReader(new InputStreamReader(is));
+//		StringBuffer sb = new StringBuffer();
+//		  String line;
+//		  try {
+//			while ((line = br.readLine()) != null) 
+//			  {
+//			    sb.append(line); 
+//			  }
+//			String[] array = (sb.toString()).split(",");
+//			
+//			for(int i=0; i<array.length; i++) {
+//				if(array[i].equals("true")) {
+//					this.purchases.put(outfits[0][i], true);
+//				}else {
+//					this.purchases.put(outfits[0][i], false);
+//				}
+//			}
+//			br.close();
+//			is.close();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			File file = new File("/skins.txt");
+//			e.printStackTrace();
+//		}
 		
-		
+	
+
+		file = new File("skins.txt");
 		try {
-			
-			Scanner input = new Scanner(new File("resources/skins.txt"));
-			String inputStrings = input.next();
-			input.close();
-			String[] array = inputStrings.split(",");
+			FileReader fr = new FileReader(file);
+			char[] a = new char[1000];
+			try {
+				fr.read(a);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+			String line="";
+			for(char c: a) {
+				line+=c;
+			}
+			fr.close();
+			String[] array = line.split(",");
 			
 			for(int i=0; i<array.length; i++) {
 				if(array[i].equals("true")) {
@@ -116,9 +159,15 @@ public class Shop {
 				}
 			}
 		} catch (FileNotFoundException e) {
+			for(Color outfit: outfits[0]) {
+				this.purchases.put(outfit,false);
+			}
+			//e1.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		  
 		
 	}
 	
@@ -307,18 +356,43 @@ public class Shop {
 				decidedShirtColor=outfits[0][row];
 				decidedShoeColor=outfits[2][row];
 				purchases.put(outfits[0][row], true);
+
+//				File file = new File("resources/skins.txt");
+//				try {
+//					FileOutputStream fos = new FileOutputStream(file); 
+//					
+//		            
+//		            	
+//		                for(Color outfit: outfits[0]) {
+//			                byte[] mybytes = (purchases.get(outfit)+",").getBytes();
+//			                fos.write(mybytes);
+//			                fos.flush();
+//						}
+//		                
+//		            
+//		        }catch(IOException e) {
+//		        	
+//		        }
+				
+
+				//file = new File("skins.txt");
 				try {
-					PrintStream output = new PrintStream(new File("resources/skins.txt"));
+					PrintStream fos = new PrintStream("skins.txt");
+
+					//byte[] mybytes = ("" + eggs).getBytes();
+
+					//fos.write(mybytes);
 					for(Color outfit: outfits[0]) {
-						output.print(purchases.get(outfit)+",");
+						fos.print(purchases.get(outfit)+",");
 					}
-					output.close();
-				} catch (FileNotFoundException error) {
-					// TODO Auto-generated catch block
-					//e.printStackTrace();
-				}
+					//fos.flush();
+					fos.close();
+		        }catch(IOException e) {
+		        	
+		        }
 				Board.currentScreen = Board.currentScreen.START_SCREEN;
 			}else {
+				System.out.println("hello");
 				pantColor=outfits[1][0];//new Color(32, 51, 97);
 				shirtColor=outfits[0][0];
 				shoeColor=outfits[2][0];
