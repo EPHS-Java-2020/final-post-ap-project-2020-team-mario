@@ -106,32 +106,6 @@ public class Shop {
 		outfits[2][11]=new Color(135,135,0);
 		
 		
-//		InputStream is = getClass().getResourceAsStream("/skins.txt");
-//		BufferedReader br = new BufferedReader(new InputStreamReader(is));
-//		StringBuffer sb = new StringBuffer();
-//		  String line;
-//		  try {
-//			while ((line = br.readLine()) != null) 
-//			  {
-//			    sb.append(line); 
-//			  }
-//			String[] array = (sb.toString()).split(",");
-//			
-//			for(int i=0; i<array.length; i++) {
-//				if(array[i].equals("true")) {
-//					this.purchases.put(outfits[0][i], true);
-//				}else {
-//					this.purchases.put(outfits[0][i], false);
-//				}
-//			}
-//			br.close();
-//			is.close();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			File file = new File("/skins.txt");
-//			e.printStackTrace();
-//		}
-		
 	
 
 		file = new File("skins.txt");
@@ -149,7 +123,7 @@ public class Shop {
 				line+=c;
 			}
 			fr.close();
-			String[] array = line.split(",");
+			String[] array = line.split(",",12);
 			
 			for(int i=0; i<array.length; i++) {
 				if(array[i].equals("true")) {
@@ -158,15 +132,12 @@ public class Shop {
 					this.purchases.put(outfits[0][i], false);
 				}
 			}
-		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
 			for(Color outfit: outfits[0]) {
 				this.purchases.put(outfit,false);
 			}
 			//e1.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} 
 		  
 		
 	}
@@ -357,38 +328,31 @@ public class Shop {
 				decidedShoeColor=outfits[2][row];
 				purchases.put(outfits[0][row], true);
 
-//				File file = new File("resources/skins.txt");
-//				try {
-//					FileOutputStream fos = new FileOutputStream(file); 
-//					
-//		            
-//		            	
-//		                for(Color outfit: outfits[0]) {
-//			                byte[] mybytes = (purchases.get(outfit)+",").getBytes();
-//			                fos.write(mybytes);
-//			                fos.flush();
-//						}
-//		                
-//		            
-//		        }catch(IOException e) {
-//		        	
-//		        }
-				
-
-				//file = new File("skins.txt");
 				try {
 					PrintStream fos = new PrintStream("skins.txt");
 
-					//byte[] mybytes = ("" + eggs).getBytes();
 
-					//fos.write(mybytes);
 					for(Color outfit: outfits[0]) {
 						fos.print(purchases.get(outfit)+",");
 					}
-					//fos.flush();
 					fos.close();
 		        }catch(IOException e) {
 		        	
+		        	PrintStream fos;
+					try {
+						file.createNewFile();
+						fos = new PrintStream("skins.txt");
+						for(Color outfit: outfits[0]) {
+							fos.print(purchases.get(outfit)+",");
+						}
+						fos.close();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+
+					
 		        }
 				Board.currentScreen = Board.currentScreen.START_SCREEN;
 			}else {
@@ -449,41 +413,7 @@ public class Shop {
 			else if(x>=mix3SkinButton.x && x<=mix3SkinButton.x+200 && y>=mix3SkinButton.y && y<=mix3SkinButton.y+200) {
 				selectColor(11, 75);
 			}
-//		
-//				pantColor=new Color(100, 0, 0);
-//				shirtColor=new Color(255, 0, 0);
-//				shoeColor=new Color(255, 0, 0);
-//				colorSchemeChanged=false;
-//			}else if(x>=redSkinButton.x && x<=redSkinButton.x+200 && y>=redSkinButton.y && y<=redSkinButton.y+200) {//sky-blu
-//		
-//				pantColor=new Color(100, 0, 0);
-//				shirtColor=new Color(255, 0, 0);
-//				shoeColor=new Color(255, 0, 0);
-//				colorSchemeChanged=false;
-//			}else if(x>=redSkinButton.x && x<=redSkinButton.x+200 && y>=redSkinButton.y && y<=redSkinButton.y+200) {//mix1
-//		
-//				pantColor=new Color(100, 0, 0);
-//				shirtColor=new Color(255, 0, 0);
-//				shoeColor=new Color(255, 0, 0);
-//				colorSchemeChanged=false;
-//			}else if(x>=redSkinButton.x && x<=redSkinButton.x+200 && y>=redSkinButton.y && y<=redSkinButton.y+200) {//mix2
-//		
-//				pantColor=new Color(100, 0, 0);
-//				shirtColor=new Color(255, 0, 0);
-//				shoeColor=new Color(255, 0, 0);
-//				colorSchemeChanged=false;
-//			}else if(x>=redSkinButton.x && x<=redSkinButton.x+200 && y>=redSkinButton.y && y<=redSkinButton.y+200) {//mix3
-//		
-//				pantColor=new Color(100, 0, 0);
-//				shirtColor=new Color(255, 0, 0);
-//				shoeColor=new Color(255, 0, 0);
-//				colorSchemeChanged=false;
-//			}
 			else if(x>=useButton.x && x<=useButton.x+150 && y>=useButton.y && y<=useButton.y+50) {
-//				colorSchemeChanged=true;
-//				this.decidedPantColor=pantColor;
-//				this.decidedShirtColor=shirtColor;
-//				this.decidedShoeColor=shoeColor;
 				purchase(skinNum, price);
 				
 			}
