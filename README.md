@@ -1,3 +1,1 @@
-# final-post-ap-project-2020-team-mario
-final-post-ap-project-2020-team-mario created by GitHub Classroom
-Hey, you guys, so this is our AP JAVA project, like a mario game with guns and a skin shop. It is best to play after converting the entire repo to a jar file.
+Hello! This is full game including several levels of fun! Here player shoot, run, jump, duck to avoid obstacles and make it to the getaway car. Players can even purchase different skins from the gift shop (using ingame money). Laser shooting desert rangers and awfully fast chickens gueststar.
